@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.dao.IdentityDao">
+	<resultMap type="com.clay.entity.Identity" id="iden">
+		<id property="identity_id" column="identity_id"/>
+		<result property="identity_idcard" column="identity_idcard"/>
+		<result property="identity_time" column="identity_time"/>
+		<result property="identity_name" column="identity_name"/>
+		<result property="identity_img" column="identity_img"/>
+		<association property="user_id" javaType="com.clay.entity.User" >
+			<id property="user_id" column="user_id"/>
+			<result property="user_name" column="user_name"/>
+			<result property="user_pwd" column="user_pwd"/>
+			<result property="user_img" column="user_img"/>
+			<result property="user_sex" column="user_sex"/>
+			<result property="user_tel" column="user_tel"/>
+			<result property="user_identity" column="user_identity"/>
+			<result property="user_regsiter" column="user_regsiter"/>
+			<result property="user_money" column="user_money"/>
+			<result property="user_credit" column="user_credit"/>
+		</association>
+	</resultMap>
+	<select id="queryByPage" resultMap="iden">
+		select *  from identity_info i, user_info u
+		<where>
+			u.user_id = i.user_id and u.user_identity = 1
+		</where>
+	</select>
+	
+	<select id="queryByUserId" resultMap="iden" parameterType="java.lang.Integer">
+		select *  from identity_info i, user_info u
+		<where>
+			u.user_id = i.user_id and u.user_id = #{id}
+		</where>
+	</select>
+	
+	<select id="queryByIdentityId" resultMap="iden" parameterType="java.lang.Integer">
+		select *  from identity_info i, user_info u
+		<where>
+			u.user_id = i.user_id and i.identity_id = #{id}
+		</where>
+	</select>
+	
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from identity_info
+	</select>
+	
+	<insert id="insertIdentity" parameterType="com.clay.entity.Identity">
+		insert into identity_info(identity_idcard,identity_time,identity_name, identity_img, user_id)
+		values(#{identity_idcard},now(),#{identity_name},#{identity_img},#{user_id.user_id})
+	</insert>
+	<delete id="deleteIdentity" parameterType="java.lang.Integer">
+		delete from identity_info where identity_id = #{id}
+	</delete>
+
+</mapper>

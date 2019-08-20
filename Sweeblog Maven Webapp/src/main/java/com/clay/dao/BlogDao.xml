@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.dao.BlogDao">
+
+	<resultMap type="com.clay.entity.Blog" id="myblog">
+		<id property="blog_id" column="blog_id"/>
+		<result property="blog_title" column="blog_title"/>
+		<result property="blog_text" column="blog_text"/>
+		<result property="blog_time" column="blog_time"/>
+		<result property="blog_hot" column="blog_hot"/>
+		<result property="blog_grade" column="blog_grade"/>
+		<association property="user_id" javaType="com.clay.entity.User" >
+			<id property="user_id" column="user_id"/>
+			<result property="user_name" column="user_name"/>
+			<result property="user_pwd" column="user_pwd"/>
+			<result property="user_img" column="user_img"/>
+			<result property="user_sex" column="user_sex"/>
+			<result property="user_tel" column="user_tel"/>
+			<result property="user_identity" column="user_identity"/>
+			<result property="user_regsiter" column="user_regsiter"/>
+			<result property="user_money" column="user_money"/>
+			<result property="user_credit" column="user_credit"/>
+		</association>
+		<association property="type_id" javaType="com.clay.entity.Type">
+			<id property="type_id" column="type_id"/>
+			<result property="type_name" column="type_name"/>
+		</association>
+		<collection property="images" column="blog_id" select="com.clay.dao.ImageDao.getImageByBlogId"/>
+	</resultMap>
+	
+	<sql id="queryByTypeId">
+		<if test="type_id!=null">
+			and type_id = #{type_id}
+		</if>
+	</sql>
+	<sql id="queryByUserId">
+		<if test="user_id!=null">
+			and u.user_id = #{user_id}
+		</if>
+	</sql>
+	<sql id="queryByTitleStr">
+		<if test="title_str_like!=null">
+			and blog_title like concat("%",#{title_str_like},"%")
+		</if>
+		
+	</sql>
+	<sql id="queryByTextStr">
+		<if test="text_str_like!=null">
+			and blog_text like concat("%",#{text_str_like},"%")
+		</if>
+	</sql>
+	<sql id="queryByMaxHot">
+		<if test="max_hot!=null">
+			and blog_hot &lt;= #{max_hot} 
+		</if>
+	</sql>
+	<sql id="queryByMinHot">
+		<if test="min_hot!=null">
+			and blog_hot &gt;= #{min_hot} 
+		</if>
+	</sql>
+	
+	
+	<select id="queryByPage" resultMap="myblog">
+		select * from blog_info b, user_info u, type_info t
+		<where>
+			b.user_id = u.user_id and t.type_id = b.type_id
+			<include refid="queryByTypeId"></include>
+			<include refid="queryByUserId"></include>
+			<include refid="queryByTitleStr"></include>
+			<include refid="queryByTextStr"></include>
+			<include refid="queryByMaxHot"></include>
+			<include refid="queryByMinHot"></include>
+		</where>
+	</select>
+	
+	<select id="queryAll" resultMap="myblog">
+		select * from blog_info b, user_info u, type_info t where b.user_id = u.user_id and t.type_id = b.type_id
+	</select>
+	
+	<select id="queryById" resultMap="myblog" parameterType="java.lang.Integer">
+		select * from blog_info b, user_info u, type_info t where b.user_id = u.user_id and t.type_id = b.type_id and blog_id = #{blog_id}
+	</select>
+	
+	<select id="getCount" resultType="java.lang.Integer" parameterType="com.clay.pojo.BlogVo">
+		select count(*) from blog_info b, user_info u  
+		<where>
+			b.user_id = u.user_id 
+			<include refid="queryByTypeId"></include>
+			<include refid="queryByUserId"></include>
+			<include refid="queryByTitleStr"></include>
+			<include refid="queryByTextStr"></include>
+			<include refid="queryByMaxHot"></include>
+			<include refid="queryByMinHot"></include>
+		</where>
+	</select>
+	
+	<insert id="insertBlog" parameterType="com.clay.entity.Blog">
+		insert into blog_info(blog_title, blog_text, blog_time, blog_hot, user_id, blog_grade, type_id) 
+				values(#{blog_title},#{blog_text},#{blog_time},#{blog_hot},#{user_id.user_id},#{blog_grade},#{type_id.type_id})
+	</insert>
+	<delete id="deleteBlog" parameterType="java.lang.Integer">
+		delete from blog_info where blog_id = #{blog_id}
+	</delete>
+	<update id="updateBlog" parameterType="com.clay.entity.Blog">
+		update blog_info set 
+		<if test="blog_title!=null">
+			blog_title = #{blog_title},
+		</if>
+		<if test="blog_text!=null">
+			blog_text = #{blog_text},
+		</if>
+		<if test="blog_hot!=null">
+			blog_hot = #{blog_hot},
+		</if>
+		<if test="type_id!=null">
+			type_id = #{type_id.type_id},
+		</if>
+		blog_time = now()
+		<where>
+			blog_id = #{blog_id}
+		</where>
+	</update>
+</mapper>

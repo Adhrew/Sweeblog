@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans  
+           http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+           http://www.springframework.org/schema/context 
+           http://www.springframework.org/schema/context/spring-context-4.0.xsd 
+           http://www.springframework.org/schema/aop 
+           http://www.springframework.org/schema/aop/spring-aop-4.0.xsd
+		   http://www.springframework.org/schema/tx 
+		   http://www.springframework.org/schema/tx/spring-tx-4.0.xsd        
+           ">
+
+	<!-- 引入数据库属性文件 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="location">
+			<value>classpath:database.properties</value>
+		</property>
+	</bean>
+
+	<!-- 数据源配置 -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${driverClassName}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+		<!-- 关闭事务自动提交 -->
+		<property name="defaultAutoCommit" value="false" />
+	</bean>
+
+
+	<!-- 配置SqlSessionFactoryBean -->
+	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<!-- 引用数据源组件 -->
+		<property name="dataSource" ref="dataSource" />
+		<!-- 引用MyBatis配置文件 -->
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+
+	<!-- 配置Dao，注入映射器 -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.clay.dao" />
+	</bean>
+
+	<!-- 扫描业务层，通过注解生成bean -->
+	<context:component-scan base-package="com.clay.service"></context:component-scan>
+
+	<!-- 配置事务管理器 -->
+	<bean id="txManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<!-- 引入数据源bean -->
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<!-- 注解事务驱动 -->
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+</beans>   

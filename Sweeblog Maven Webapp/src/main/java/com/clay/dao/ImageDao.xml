@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.dao.ImageDao">
+	<resultMap type="com.clay.entity.Image" id="img">
+		<id property="image_id" column="image_id"/>
+		<result property="image_src" column="image_src"/>
+		<result property="image_sort" column="image_sort"/>
+		<association property="blog_id" javaType="com.clay.entity.Blog" >
+			<id property="blog_id" column="blog_id"/>
+		</association>
+	</resultMap>
+	
+	<select id="getImageByBlogId" resultMap="img" parameterType="java.lang.Integer">
+		select * from image_info where blog_id = #{id}
+	</select>
+	<insert id="insertImage" parameterType="com.clay.entity.Image">
+		insert into image_info(image_src, image_sort, blog_id)
+			values(#{image_src},#{image_sort},#{blog_id.blog_id})
+	</insert>
+	<delete id="deleteImageByBlogId" parameterType="java.lang.Integer">
+		delete from image_info where blog_id = #{id}
+	</delete>
+</mapper>

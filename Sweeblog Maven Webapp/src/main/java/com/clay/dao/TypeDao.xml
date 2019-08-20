@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.dao.TypeDao">
+	<select id="queryAll" resultType="com.clay.entity.Type">
+		select * from type_info
+	</select>
+	<select id="queryByPage" resultType="com.clay.entity.Type">
+		select * from type_info
+	</select>
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from type_info
+	</select>
+	<select id="queryById" resultType="com.clay.entity.Type" parameterType="java.lang.Integer">
+		select * from type_info where type_id = #{type_id}
+	</select>
+	<insert id="insertType" parameterType="com.clay.entity.Type">
+		insert into type_info(type_name) values(#{type_name})
+	</insert>
+	<delete id="deleteType" parameterType="java.lang.Integer">
+		delete from type_info where type_id = #{id}
+	</delete>
+	<update id="updateType" parameterType="com.clay.entity.Type">
+		update type_info set type_name = #{type_name} where type_id = #{type_id}
+	</update>
+</mapper>
