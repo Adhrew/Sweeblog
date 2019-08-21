@@ -7,7 +7,16 @@ public class BlogVo {
 	private Integer user_id;
 	private Integer min_hot;
 	private Integer max_hot;
+	private Integer status;
 	
+	
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	public Integer getType_id() {
 		return type_id;
 	}

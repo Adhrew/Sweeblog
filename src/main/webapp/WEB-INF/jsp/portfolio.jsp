@@ -218,7 +218,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<div id="small-dialog" class="mfp-hide">
 				<div class="image-top">
 					<img src="images/img1.jpg" alt="" />
-					<p>某机电行业公司，从事机电传统行业几十年，先已转型互联网，助力企业再次发展. </p>
+					<p>某机电行业公司，从事机电传统行业几十年，先已转型互联网，助力企业再次发展.某机电行业公司，从事机电传统行业几十年，先已转型互联网，助力企业再次发展十年，先已转型互联网，助力企业再次发展十年，先已转型互联网，助力企业再次发展十年，先已转型互联网，助力企业再次发展.  </p>
 				</div>
 			</div>
 			
