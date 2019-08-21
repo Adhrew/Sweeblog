@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
-
 <!DOCTYPE HTML>
 <html>
 	<head>
@@ -23,7 +22,6 @@
 		 rel='stylesheet' type='text/css'>
 		 <link rel="stylesheet" href="css/layui.css" type="text/css" media="all">
 		<link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 		<link rel="shortcut icon" href="http://www.5imoban.net/favicon.ico" />
 		<script src="http://www.5imoban.net/download/jquery/jquery-1.8.3.min.js"></script>
 		<script src="js/responsiveslides.min.js"></script>
