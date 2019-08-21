@@ -30,7 +30,8 @@ public class NeedController {
 		
 		return "portfolio";
 	}
-	@RequestMapping("Neajax")
+	
+	@RequestMapping("/Neajax")
 	public void Neblog(HttpServletResponse response) throws IOException{
 		  response.setContentType("text/html;charset=UTF-8");
 		  PrintWriter out=response.getWriter();

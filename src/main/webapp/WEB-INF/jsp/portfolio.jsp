@@ -40,6 +40,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					pager: true,
 				});
 			});
+			
+			//一进去加载的需求博客
+			$(document).ready(function(){
+			     enterajax();
+			
+			
+			});
+			
+			//加载需求的博客函数
+			function enterajax(){
+			       $.getJSON("Neajax",function(a){
+			            console.log(a);
+			            var str1="";
+			            var str2="";
+			            for(var i;i<a.length;i++)
+			            {
+			              
+			            }
+			       
+			       
+			       
+			       });
+			
+			}
 		</script>
 
 		<!---- start-smoth-scrolling---->
