@@ -1,3 +1,8 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -121,13 +126,13 @@
 						<span class="menu"><img src="images/nav-icon.png" alt="" /></span>
 						<ul>
 							<nav class="cl-effect-5">
-								<li><a href="index.jsp"><span data-hover="首页">首页</span></a></li>
-								<li><a href="portfolio.jsp"><span data-hover="需求区">需求区</span></a></li>
+								<li><a href="index.html"><span data-hover="首页">首页</span></a></li>
+								<li><a href="portfolio.html"><span data-hover="需求区">需求区</span></a></li>
 								<!--<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>-->
-								<li><a href="blog.jsp"><span data-hover="技术区">技术区</span></a></li>
-								<li><a href="personal.jsp"><span data-hover="个人中心">个人中心</span></a></li>
-								<li><a href="features.jsp"><span data-hover="关于我们">关于我们</span></a></li>
-								<li><a href="contact.jsp"><span data-hover="联系我们">联系我们</span></a></li>
+								<li><a href="blog.html"><span data-hover="技术区">技术区</span></a></li>
+								<li><a href="personal.html"><span data-hover="个人中心">个人中心</span></a></li>
+								<li><a href="features.html"><span data-hover="关于我们">关于我们</span></a></li>
+								<li><a href="contact.html"><span data-hover="联系我们">联系我们</span></a></li>
 							</nav>
 						</ul>
 						<div class="clearfix"></div>
@@ -141,17 +146,18 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="container">
-			<div class="layui-row" style="height:auto;" id="lef">
+			<div class="layui-row" style="height:570px;" id="lef">
 				<div class="layui-col-xs3" style="max-width: 300px;height: 100%;">
 					<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="height:100%;width: 100%; margin-right: 10px;">
-						<li class="layui-nav-item active">
-							<a href="javascript:;" style="text-decoration: none;">首页</a>
+						<li class="layui-nav-item layui-this">
+							<a href="javascript:;" style="text-decoration: none;" >首页</a>
 						</li>
 						<li class="layui-nav-item">
 							<a href="javascript:;" style="text-decoration: none;">交易</a>
 							<dl class="layui-nav-child">
-								<dd><a href="javascript:;" style="text-decoration: none;">发起交易</a></dd>
+								<dd><a href="personal_init.html" style="text-decoration: none;">发起交易</a></dd>
 								<dd><a href="javascript:;" style="text-decoration: none;">接收交易</a></dd>
 							</dl>
 						</li>
@@ -224,8 +230,20 @@
 					$("#username").removeAttr("disabled");
 					$("#nan").removeAttr("disabled");
 					$("#nv").removeAttr("disabled");
-					$("#bj").html("<button class='layui-btn' lay-submit lay-filter='formDemo'>立即提交</button><button type='reset' class='layui-btn layui-btn-primary'>重置</button>");
-					$("#sctx").html("")
+					$("#bj").html("<button class='layui-btn' lay-submit lay-filter='formDemo'>修改</button><button class='layui-btn layui-btn-primary' onclick='qx()'>取消</button>");
+					$("#sctx").html("<label class='layui-form-label'>头像</label><button type='button' class='layui-btn' id='test1' style='float:left; margin-top:35px; margin-left:30px; margin-right:30px'>上传图片</button><div class='layui-upload-list' style=''><img class='layui-upload-img' id='demo1' width='150px' src='logo.png'><p id='demoText'></p></div>")
+					form.render(); 
+				});
+			}
+			
+			function qx(){
+				layui.use('form', function() {
+					var form = layui.form;
+					$("#username").prop("disabled","disabled");
+					$("#nan").prop("disabled","disabled");
+					$("#nv").prop("disabled","disabled");
+					$("#bj").html("<button class='layui-btn' onclick='bj()'>编辑</button>");
+					$("#sctx").html("<label class='layui-form-label'>头像</label><div class='layui-upload-list' style=''><img class='layui-upload-img' id='demo1' width='150px' src='logo.png'><p id='demoText'></p></div>")
 					form.render(); 
 				});
 			}

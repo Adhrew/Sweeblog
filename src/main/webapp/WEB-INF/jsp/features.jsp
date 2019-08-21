@@ -1,3 +1,8 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -79,13 +84,13 @@
 						<span class="menu"><img src="images/nav-icon.png" alt="" /></span>
 						<ul>
 							<nav class="cl-effect-5">
-								<li><a href="index.jsp"><span data-hover="首页">首页</span></a></li>
-								<li><a href="portfolio.jsp"><span data-hover="需求区">需求区</span></a></li>
+								<li><a href="index.html"><span data-hover="首页">首页</span></a></li>
+								<li><a href="portfolio.html"><span data-hover="需求区">需求区</span></a></li>
 								<!--<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>-->
-								<li><a href="blog.jsp"><span data-hover="技术区">技术区</span></a></li>
-								<li><a href="personal.jsp"><span data-hover="个人中心">个人中心</span></a></li>
-								<li><a href="features.jsp"><span data-hover="关于我们">关于我们</span></a></li>
-								<li><a href="contact.jsp"><span data-hover="联系我们">联系我们</span></a></li>
+								<li><a href="blog.html"><span data-hover="技术区">技术区</span></a></li>
+								<li><a href="personal.html"><span data-hover="个人中心">个人中心</span></a></li>
+								<li><a href="features.html"><span data-hover="关于我们">关于我们</span></a></li>
+								<li><a href="contact.html"><span data-hover="联系我们">联系我们</span></a></li>
 							</nav>
 						</ul>
 						<div class="clearfix"></div>
