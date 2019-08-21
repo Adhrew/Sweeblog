@@ -1,5 +1,7 @@
 package com.clay.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -10,12 +12,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.clay.dao.BlogDao;
 import com.clay.dao.RecordDao;
 import com.clay.dao.UserDao;
+import com.clay.entity.Blog;
 import com.clay.entity.Record;
 import com.clay.entity.User;
 import com.clay.pojo.PagePojo;
 import com.clay.service.RecordService;
+import com.clay.tools.Constants;
 
 @Service("recordService")
 public class RecordServiceImpl implements RecordService{
@@ -24,6 +29,8 @@ public class RecordServiceImpl implements RecordService{
 	private RecordDao recordDao;
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private BlogDao blogDao;
 	
 	@Override
 	public Record queryById(int id) {
@@ -120,35 +127,187 @@ public class RecordServiceImpl implements RecordService{
 		return recordDao.updateRecord(record);
 	}
 	/***
-	 * 实现订单交易
-	 * @param user_id   交易客户
-	 * @param record_id 交易订单编号
+	 * 瀹㈡埛鎺ュ彈浜ゆ槗
+	 * @param record_id  
 	 * @throws Exception 
-	 * @return{@link boolean} 交易是否成功
+	 * @return{@link boolean}
 	 * @
 	 */
 	@Override
-	//@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
-	public boolean dealRecord(int user_id, int record_id) throws Exception {
-		//查询用户博客币
-		User user =userDao.queryById(user_id);
-		Integer user_money = user.getUser_money();
-		//查询订单博客比
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean dealRecord(int record_id) throws Exception {
 		Record record = recordDao.queryById(record_id);
+		User user =record.getUser_id();
+		Integer user_money = user.getUser_money();
 		Integer record_money = record.getRecord_money();
 		if(record_money > user_money){
 			return false;
 		}else{
-			//扣钱
 			user.setUser_money(user_money-record_money);
-			//修改订单状态  为1，订单执行中
  			record.setRecord_status(1);
- 			//提交修改
+ 			record.setRecord_starttime(new Date());
 			if(!(recordDao.updateRecord(record)&&userDao.updateUser(user))){
 				throw new Exception();
 			}
 			return true;
 		}
 	}
+	/***
+	 * 瀹㈡埛鎷掔粷璁㈠崟
+	 * @param record_id 璁㈠崟ID
+	 * @return link{boolean} 鐢ㄦ埛鏄惁鎷掔粷鎴愬姛
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean dealRecordNot(int record_id) throws Exception {
+		Record record = recordDao.queryById(record_id);
+		record.setRecord_status(-1);
+		if(recordDao.updateRecord(record)){
+			throw new Exception();
+		}
+		return false;
+	}
+	
+	/***
+	 * 瀹㈡埛纭
+	 * @param record_id 璁㈠崟缂栧彿
+	 * @return link{boolean} 瀹㈡埛鏄惁纭鎴愬姛
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean verifyRecordByUser(int record_id) throws Exception {
+		Record record = recordDao.queryById(record_id);
+		if(record.getRecord_ok() == 2){
+			record.setRecord_ok(3);
+			record.setRecord_status(2);
+			record.setRecord_endtime(new Date());
+			int money = (int) (record.getRecord_money()*Constants.RATE);
+			User user = record.getBlog_id().getUser_id();
+			user.setUser_money(user.getUser_money()+ money);
+			user.setUser_credit((int)(user.getUser_credit()+money*Constants.CREDT));
+			Blog blog = record.getBlog_id();
+			blog.setBlog_hot(blog.getBlog_hot()+Constants.DEAL_RECORD_HOT);
+			if(!userDao.updateUser(user)||!recordDao.updateRecord(record)||!blogDao.updateBlog(blog)){
+				throw new Exception();
+			}
+			return true;
+		}
+		if(record.getRecord_ok() == 0){
+			record.setRecord_ok(1);
+			if(!recordDao.updateRecord(record)){
+				throw new Exception();
+			}
+			return true;
+		}
+		return false;
+	}
 
+	/***
+	 * 鍗氫富纭
+	 * @param record_id 璁㈠崟缂栧彿
+	 * @return link{boolean} 纭鏄惁鎴愬姛
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean verifyRecordByBlog(int record_id) throws Exception {
+		Record record = recordDao.queryById(record_id);
+		if(record.getRecord_ok() == 1){
+			record.setRecord_ok(3);
+			record.setRecord_status(2);
+			int money = (int) (record.getRecord_money()*Constants.RATE);
+			User user = record.getBlog_id().getUser_id();
+			user.setUser_money(user.getUser_money()+ money);
+			user.setUser_credit((int)(user.getUser_credit()+money*(Constants.CREDT+1)));
+			Blog blog = record.getBlog_id();
+			blog.setBlog_hot(blog.getBlog_hot()+Constants.DEAL_RECORD_HOT);
+			if(!userDao.updateUser(user)||!recordDao.updateRecord(record)||!blogDao.updateBlog(blog)){
+				throw new Exception();
+			}
+			return true;
+		}
+		if(record.getRecord_ok() == 0){
+			record.setRecord_ok(2);
+			if(!recordDao.updateRecord(record)){
+				throw new Exception();
+			}
+			return true;
+		}
+		return false;
+	}
+
+	/***
+	 * 鐢ㄦ埛姣佺害
+	 * @param record_id 璁㈠崟缂栧彿
+	 * @return link{boolean} 鏄惁姣佺害鎴愬姛
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean cancelRecordByUser(int record_id) throws Exception {
+		Record record = recordDao.queryById(record_id);
+		record.setRecord_status(3);
+		int money = (int)(record.getRecord_money()*Constants.BAD);
+		User user = record.getUser_id();
+		user.setUser_money(user.getUser_money()+ money);
+		User blog = record.getBlog_id().getUser_id();
+		blog.setUser_money(blog.getUser_money() + (int)(money * Constants.RATE));
+		if(!recordDao.updateRecord(record)||!userDao.updateUser(user)||!userDao.updateUser(blog)){
+			throw new Exception();
+			
+		}else{
+			return  true;
+		}
+	}
+
+	/***
+	 * 鍗氫富姣佺害
+	 * @param record_id 璁㈠崟缂栧彿
+	 * @return link{boolean} 鏄惁姣佺害鎴愬姛
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean cancelRecordByBlog(int record_id) throws Exception {
+		Record record = recordDao.queryById(record_id);
+		record.setRecord_status(4);
+		int money = (int)(record.getRecord_money()*Constants.BAD);
+		int credit = (int)(record.getRecord_money()*Constants.CREDT);
+		int user_money = (int)((1+Constants.BAD)*record.getRecord_money());
+		User blog = record.getBlog_id().getUser_id();
+		blog.setUser_money(blog.getUser_money()- money);
+		blog.setUser_credit(blog.getUser_credit()- credit);
+		User user = record.getUser_id();
+		user.setUser_money(user.getUser_money()+ user_money);
+		if(!recordDao.updateRecord(record)||!userDao.updateUser(user)||!userDao.updateUser(blog)){
+			throw new Exception();
+			
+		}else{
+			return  true;
+		}
+	}
+
+	@Override
+	public PagePojo<Record> queryByPageAndBlogUserId(int id, int page, int size) {
+		if(page<=0||size<=0){
+			return null;
+		}
+		PagePojo<Record> pp = new PagePojo<Record>();
+		List<Record> data = recordDao.queryByPageAndBlogUserId(id, new RowBounds((page-1)*size, size));
+		int count = recordDao.getCountByBlogUserId(id);
+		if(count%size!=0||count==0){
+			count = (count/size)+1;
+		}else{
+			count = count/size;
+		}
+		pp.setCount(count);
+		pp.setData(data);
+		pp.setPage(page);
+		pp.setSize(size);
+		return pp;
+	}
+
+	@Override
+	public int getCountByBlogUserId(int id) {
+		return recordDao.getCountByBlogUserId(id);
+	}
+
+	
 }

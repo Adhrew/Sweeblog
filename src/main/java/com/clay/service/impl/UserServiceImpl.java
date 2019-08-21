@@ -1,11 +1,17 @@
 ﻿package com.clay.service.impl;
+import java.beans.ExceptionListener;
 import java.util.List;
 
 import javax.annotation.Resource;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.clay.dao.IdentityDao;
 import com.clay.dao.UserDao;
+import com.clay.entity.Identity;
 import com.clay.entity.User;
 import com.clay.pojo.PagePojo;
 import com.clay.pojo.UserVo;
@@ -16,6 +22,8 @@ public class UserServiceImpl implements UserService {
 
 	@Resource
 	private UserDao userDao;
+	@Resource
+	private IdentityDao identityDao;
 	
 
 	@Override
@@ -75,4 +83,58 @@ public class UserServiceImpl implements UserService {
 	public User queryById(int id) {
 		return userDao.queryById(id);
 	}
+	/**
+	 * 实现用户认证
+	 * @param id
+	 * @return
+	 * @throws Exception 
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean identifyUser(int id) throws Exception {
+		//将用户认证标识赋值为2,已认证
+		User user = userDao.queryById(id);
+		user.setUser_identity(2);
+		if(!userDao.updateUser(user)){
+			throw new Exception();
+		}
+		return true;
+	}
+	/**
+	 * 实现拒绝用户认证
+	 * @param id
+	 * @return
+	 * @throws Exception 
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean identifyUserNot(int id) throws Exception {
+		//将用户认证标识赋值为0,未认证
+		User user = userDao.queryById(id);
+		user.setUser_identity(0);
+		if(!userDao.updateUser(user)){
+			throw new Exception();
+		}
+		return true;
+	}
+	
+	/**
+	 * 用户发起认证
+	 * @param id
+	 * @return
+	 * @throws Exception 
+	 */
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean doIdentify(int id,Identity identity) throws Exception {
+		//将用户认证标识赋值为1,认证中
+		User user = userDao.queryById(id);
+		user.setUser_identity(1);
+		//将认证信息插入认证表中
+		if(!userDao.updateUser(user)||!identityDao.insertIdentity(identity)){
+			throw new Exception();
+		}
+		return true;
+	}
+	
 }

@@ -1,6 +1,6 @@
 package com.clay.entity;
 
-import java.sql.Date;
+import java.util.Date;
 
 public class Record {
 	private Integer record_id;
