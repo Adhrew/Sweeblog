@@ -36,7 +36,7 @@ public class NeedController {
 		  response.setContentType("text/html;charset=UTF-8");
 		  PrintWriter out=response.getWriter();
 		  BlogVo vo=new BlogVo();
-		  vo.setType_id(1);
+		  vo.setStatus(1);
 		  PagePojo<Blog> list=blogService.queryByPage(vo, 1, 3);
 		  Gson g=new Gson();
 		  String str=g.toJson(list);

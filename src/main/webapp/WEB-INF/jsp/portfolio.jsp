@@ -54,11 +54,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			            console.log(a);
 			            var str1="";
 			            var str2="";
-			            for(var i;i<a.length;i++)
+			            for(var i=0;i<a.data.length;i++)
 			            {
-			              
+			                str1+="<div class='portfolio' style='max-width: 300px;'><div class='portfolio-wrapper'><a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/><div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt='' /></h2></div></a></div><div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></div><div class='clearfix'></div>";
 			            }
-			       
+			            console.log(str1);
+			          $("#portfoliolist").html(str1); 
 			       
 			       
 			       });
@@ -159,13 +160,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</a>
 					</div>
 					<div class="bottom-header" style="width: auto;">
-						<h5>某机电行业电商平台即将开放分享</h5>
-						<!---<p>机电行业</p>---->
+						<h5>某机电行业电商平台即将开放分享</h5>	
 					</div>
 				</div>
-				
-				<!-------cs---->
 				<div class="clearfix"></div>
+					
 			</div>
 
 
