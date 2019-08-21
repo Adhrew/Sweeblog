@@ -18,11 +18,10 @@ import com.clay.tools.Constants;
 
 @Controller
 public class UserController {
-
 	@Resource
 	private UserService userService;
 
-	/** Ä¬ÈÏ½øÈëµÇÂ¼ÊÓÍ¼ */
+	/** Ä¬ï¿½Ï½ï¿½ï¿½ï¿½ï¿½Â¼ï¿½ï¿½Í¼ */
 	@RequestMapping("/index.html")
 	public String index(HttpSession session, HttpServletRequest request) {
 		if(session.getAttribute(Constants.USER_SESSION)!=null){
@@ -61,18 +60,18 @@ public class UserController {
 	}
 	
 
-	/** µÇÂ¼¿ØÖÆÆ÷ */
+	/** ï¿½ï¿½Â¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ */
 	@RequestMapping("/login.action")
 	public String login(@RequestParam("username") String user_name, @RequestParam("password") String user_pwd,
 			HttpSession session, HttpServletRequest request) {
 		User user = userService.userLogin(user_name, user_pwd);
 		if(user!=null){
-			//Èç¹ûµÇÂ½³É¹¦,½øÈëÖ÷Ò³¡£
+			//ï¿½ï¿½ï¿½ï¿½ï¿½Â½ï¿½É¹ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò³ï¿½ï¿½
 			session.setAttribute(Constants.USER_SESSION, user);
 			return "redirect:/index.html";
 			
 		}else{
-			//Èç¹ûµÇÈëÊ§°Ü£¬·µ»ØµÇÂ½Ò³Ãæ¸ø³öÌáÊ¾
+			//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê§ï¿½Ü£ï¿½ï¿½ï¿½ï¿½Øµï¿½Â½Ò³ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾
 			session.setAttribute(Constants.SYS_MESSAGE, -1);
 			return "redirect:/login.html";
 		}
