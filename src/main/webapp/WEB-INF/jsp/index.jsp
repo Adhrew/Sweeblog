@@ -7,7 +7,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>ååºå¼htmléæä¼ä¸ç½ç«æ¨¡æ¿ - æç±æ¨¡æ¿ç½ www.5imoban.net</title>
+<title>响应式html静态企业网站模板 - 我爱模板网 www.5imoban.net</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -53,9 +53,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 <body>
 
-<!----å¤æ­æµè§å¨çæ¬----->
+<!----判断浏览器版本----->
 <!--[if lte IE 11]> 
-<div id="ie6-warning">æ¨æ­£å¨ä½¿ç¨ Internet Explorer ä½çæ¬æµè§å¨ï¼å¨æ¬é¡µé¢çæ¾ç¤ºææå¯è½æå·®å¼ãå»ºè®®æ¨åçº§å°IE11æèä½¿ç¨éIEæµè§å¨ï¼ä¾å¦QQæµè§å¨ã360æµè§å¨ãé¨æ¸¸äºæµè§å¨ç­ä»¥ä¾¿è·å¾æ´å¥½çä½éª
+<div id="ie6-warning">您正在使用 Internet Explorer 低版本浏览器，在本页面的显示效果可能有差异。建议您升级到IE11或者使用非IE浏览器，例如QQ浏览器、360浏览器、遨游云浏览器等以便获得更好的体验
 </div> 
 <script type="text/javascript"> 
 function position_fixed(el, eltop, elleft){ 
@@ -70,7 +70,7 @@ else el.style.position = "fixed";
 position_fixed(document.getElementById("ie11-warning"),0, 0); 
 </script> 
 <![endif]--> 
-<!----å¤æ­æµè§å¨çæ¬----->
+<!----判断浏览器版本----->
 <div class="header" id="home">
 			<div class="header-top">
 				<div class="container">
@@ -86,8 +86,8 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 					</div>
 					<div class="social-icons">
 						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -3px;">
-							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">ç»å½</button>
-							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">æ³¨å</button>
+							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">登录</button>
+							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">注册</button>
 						</div>
 					</div>
 				</div>
@@ -104,13 +104,13 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 						<span class="menu"><img src="images/nav-icon.png" alt="" /></span>
 						<ul>
 							<nav class="cl-effect-5">
-								<li><a href="index.html"><span data-hover="é¦é¡µ">é¦é¡µ</span></a></li>
-								<li><a href="portfolio.html"><span data-hover="éæ±åº">éæ±åº</span></a></li>
-								<!--<li><a href="portfolio1.html"><span data-hover="è§£å³æ¹æ¡2">è§£å³æ¹æ¡2</span></a></li>-->
-								<li><a href="blog.html"><span data-hover="ææ¯åº">ææ¯åº</span></a></li>
-								<li><a href="personal.html"><span data-hover="ä¸ªäººä¸­å¿">ä¸ªäººä¸­å¿</span></a></li>
-								<li><a href="features.html"><span data-hover="å³äºæä»¬">å³äºæä»¬</span></a></li>
-								<li><a href="contact.html"><span data-hover="èç³»æä»¬">èç³»æä»¬</span></a></li>
+								<li><a href="index.html"><span data-hover="首页">首页</span></a></li>
+								<li><a href="portfolio.html"><span data-hover="需求区">需求区</span></a></li>
+								<!--<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>-->
+								<li><a href="blog.html"><span data-hover="技术区">技术区</span></a></li>
+								<li><a href="personal.html"><span data-hover="个人中心">个人中心</span></a></li>
+								<li><a href="features.html"><span data-hover="关于我们">关于我们</span></a></li>
+								<li><a href="contact.html"><span data-hover="联系我们">联系我们</span></a></li>
 							</nav>
 						</ul>
 						<div class="clearfix"></div>
@@ -133,14 +133,14 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 				  <img src="images/banner.jpg" alt="">
 				  <div class="caption">
 					<h3>Sweeblog</h3>
-                    <h3>åååäº«ç«</h3>
+                    <h3>博友分享站</h3>
 				  </div>
 				</li>
 				<li>
 				  <img src="images/banner1.jpg" alt="">
 					<div class="caption">
 					<h3>Sweeblog</h3>
-					<h3>èæ¬å®åç«</h3>
+					<h3>脚本售卖站</h3>
 				</div>
 				</li>
 			</ul>
@@ -158,8 +158,8 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 					
 						<div class="container">
 							<div class="checkout-header">
-							<h4>ä¼äº«</h4>
-							<p>ä¼éåå®¢/æç»­æ´æ°/è°¨ä»¥åè</p>
+							<h4>优享</h4>
+							<p>优选博客/持续更新/谨以参考</p>
 							</div>
 							<div id="portfoliolist">
 					<div class="portfolio">
@@ -169,7 +169,7 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 							</div></a>
 		                </div>
 							<div class="bottom-header">
-							<h5>ææºçµè¡ä¸çµåå¹³å°å³å°å¼æ¾åäº«</h5>
+							<h5>某机电行业电商平台即将开放分享</h5>
 								
 							</div>
 					</div>	
@@ -180,7 +180,7 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 						  	</div></a>
 		                </div>
 							<div class="bottom-header">
-							<h5>æé¶å®è¿éè¡ä¸çµåå¹³å°å³å°å¼æ¾åäº«</h5>
+							<h5>某零售连锁行业电商平台即将开放分享</h5>
 								
 								</div>
 					</div>		
@@ -252,13 +252,13 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 			<div id="small-dialog" class="mfp-hide">
 						<div class="image-top">
 							<img src="images/pic1.jpg" alt="" />
-							<p>ææºçµè¡ä¸å¬å¸ï¼ä»äºæºçµä¼ ç»è¡ä¸å åå¹´ï¼åå·²è½¬åäºèç½ï¼å©åä¼ä¸åæ¬¡åå±. </p>
+							<p>某机电行业公司，从事机电传统行业几十年，先已转型互联网，助力企业再次发展. </p>
 						</div>
 					</div>
 					<div id="small-dialog1" class="mfp-hide">
 						<div class="image-top">
 							<img src="images/pic2.jpg" alt="" />
-							<p>æåè´¸æµéè¡ä¸ï¼ä»äºä¼ ç»åè´¸è¡ä¸ï¼ç°å¼éçµåå¹³å°ï¼å¼ææ°åéå®æ¸ éï¼ä¸çº¿3æéå®æ¯æå¢é10%.</p>
+							<p>某商贸流通行业，从事传统商贸行业，现开通电商平台，开拓新型销售渠道，上线3月销售每月增量10%.</p>
 						</div>
 					</div>
 					
@@ -397,17 +397,17 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 					<div class="container">
 						<div class="contact-grids">
 							<div class="col-md-3 contact-grid">
-									<h5>å³äºæä»¬</h5>
-									<p>æç±æ¨¡æ¿ç½ç²¾éåç§ç½é¡µæ¨¡æ¿ï¼cssæ¨¡æ¿ï¼ç½é¡µç¹æï¼å¹¿åä»£ç ï¼å¼æºç½ç«æºç ï¼å»ºç«ç´ æï¼ç²¾ç¾ç½ç«æ¬£èµï¼å¨é¨åè´¹ä¸è½½ãå¹¶æä¾åç§å»ºç«æç¨ï¼åå¾å¸®å©æ°æè§£å³å»ºç«å°é¾ãæ¾æ¨¡æ¿ï¼æ¾ç´ æï¼æ¾æç¨ï¼å°±æ¥æç±æ¨¡æ¿ç½ã</p>
+									<h5>关于我们</h5>
+									<p>我爱模板网精选各种网页模板，css模板，网页特效，广告代码，开源网站源码，建站素材，精美网站欣赏，全部免费下载。并提供各种建站教程，力图帮助新手解决建站困难。找模板，找素材，找教程，就来我爱模板网。</p>
 									<a href="features.html" class="more">more about us<img src="images/arrow.png"></a>
 								</div>
 								<div class="col-md-3 contact-grid">
-									<h5>èç³»æä»¬</h5>
-										<p>æç±æ¨¡æ¿ç½</p>
+									<h5>联系我们</h5>
+										<p>我爱模板网</p>
 										<div class="icon2">
 											<ul>
 												<li><i class="indicate"></i></li>
-													<li><p class="label1">åè¥å¸xxè·¯xxå·xxå¤§å¦</p></li>
+													<li><p class="label1">合肥市xx路xx号xx大厦</p></li>
 													</ul>
 														<ul>
 														<li><i class="phone"></i></li>
@@ -420,7 +420,7 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 															</div>
 								</div>
 								<div class="col-md-3 contact-grid">
-									<h5>å¸åæ¡ä¾åäº«</h5>
+									<h5>典型案例分享</h5>
 									<div class="cont">
 										<div class="contact-leftgrid">
 										<div class="img-grid1">
@@ -444,9 +444,9 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 										</div>
 										</div>
 								<div class="col-md-3 contact-grid">
-									<h5>ç½é¡µæ¨¡æ¿</h5>
+									<h5>网页模板</h5>
 											<img src="images/ewm.jpg">
-                                             <p>æ«æäºç»´ç ï¼ææåå¦ï¼</p>
+                                             <p>扫描二维码，有惊喜哦！</p>
 											</div>
 									</div>
 									<div class="clearfix"></div>
@@ -456,16 +456,16 @@ position_fixed(document.getElementById("ie11-warning"),0, 0);
 				<div class="footer-section">
 					<div class="container">
 						<div class="footer-left">
-							<p>æç±æ¨¡æ¿ç½ çæææ çICPå¤13019395å· Copyright Â© 2013 5imoban.net All Rights Reserved.</p>
+							<p>我爱模板网 版权所有 皖ICP备13019395号 Copyright © 2013 5imoban.net All Rights Reserved.</p>
 						</div>
 							<div class="bottom-menu">
 								<ul>
-									<li><a href="index.html"><span data-hover="é¦é¡µ">é¦é¡µ</span></a></li>
-									<li><a href="portfolio.html"><span data-hover="è§£å³æ¹æ¡">è§£å³æ¹æ¡</span></a></li>
-									<li><a href="portfolio1.html"><span data-hover="è§£å³æ¹æ¡2">è§£å³æ¹æ¡2</span></a></li>
-									<li><a href="blog.html"><span data-hover="æç« åè¡¨">æç« åè¡¨</span></a></li> 
-									<li><a href="features.html"><span data-hover="å³äºæä»¬">å³äºæä»¬</span></a></li>
-									<li><a href="contact.html"><span data-hover="èç³»æä»¬">èç³»æä»¬</span></a></li>
+									<li><a href="index.html"><span data-hover="首页">首页</span></a></li>
+									<li><a href="portfolio.html"><span data-hover="解决方案">解决方案</span></a></li>
+									<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>
+									<li><a href="blog.html"><span data-hover="文章列表">文章列表</span></a></li> 
+									<li><a href="features.html"><span data-hover="关于我们">关于我们</span></a></li>
+									<li><a href="contact.html"><span data-hover="联系我们">联系我们</span></a></li>
 								</ul>
 							</div>
 							<div class="clearfix"></div>

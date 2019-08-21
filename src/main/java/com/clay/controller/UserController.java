@@ -32,6 +32,11 @@ public class UserController {
 		}
 	}
 	
+	@RequestMapping("/blog.html")
+	public String blog(HttpSession session, HttpServletRequest request) {
+		return "blog";
+	}
+	
 	@RequestMapping("/login.html")
 	public String login(HttpSession session, HttpServletRequest request) {
 		return "login";

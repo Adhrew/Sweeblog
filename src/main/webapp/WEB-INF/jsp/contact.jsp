@@ -1,4 +1,4 @@
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8" contentType="text/html; charset=utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -6,12 +6,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>ååºå¼htmléæä¼ä¸ç½ç«æ¨¡æ¿ - æç±æ¨¡æ¿ç½ www.5imoban.net</title>
+<title>响应式html静态企业网站模板 - 我爱模板网 www.5imoban.net</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="èç³»æä»¬" />
+<meta name="keywords" content="联系我们" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
@@ -66,8 +66,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					</div>
 					<div class="social-icons">
 						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -3px;">
-							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">ç»å½</button>
-							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">æ³¨å</button>
+							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">登录</button>
+							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">注册</button>
 						</div>
 					</div>
 				</div>
@@ -84,13 +84,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<span class="menu"><img src="images/nav-icon.png" alt="" /></span>
 						<ul>
 							<nav class="cl-effect-5">
-								<li><a href="index.jsp"><span data-hover="é¦é¡µ">é¦é¡µ</span></a></li>
-								<li><a href="portfolio.jsp"><span data-hover="éæ±åº">éæ±åº</span></a></li>
-								<!--<li><a href="portfolio1.html"><span data-hover="è§£å³æ¹æ¡2">è§£å³æ¹æ¡2</span></a></li>-->
-								<li><a href="blog.jsp"><span data-hover="ææ¯åº">ææ¯åº</span></a></li>
-								<li><a href="personal.jsp"><span data-hover="ä¸ªäººä¸­å¿">ä¸ªäººä¸­å¿</span></a></li>
-								<li><a href="features.jsp"><span data-hover="å³äºæä»¬">å³äºæä»¬</span></a></li>
-								<li><a href="contact.jsp"><span data-hover="èç³»æä»¬">èç³»æä»¬</span></a></li>
+								<li><a href="index.html"><span data-hover="首页">首页</span></a></li>
+								<li><a href="portfolio.html"><span data-hover="需求区">需求区</span></a></li>
+								<!--<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>-->
+								<li><a href="blog.html"><span data-hover="技术区">技术区</span></a></li>
+								<li><a href="personal.html"><span data-hover="个人中心">个人中心</span></a></li>
+								<li><a href="features.html"><span data-hover="关于我们">关于我们</span></a></li>
+								<li><a href="contact.html"><span data-hover="联系我们">联系我们</span></a></li>
 							</nav>
 						</ul>
 						<div class="clearfix"></div>
@@ -109,20 +109,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <div class="container">
         <div class="wrapper">
 	       <div class="contact">
-	       		<h3>èç³»æä»¬</h3>
+	       		<h3>联系我们</h3>
 		     <div class="section group">				
 				<div class="col span_1_of_2">
 					<div class="contact_info">
 			    	 		<div class="contact-map">
-<!---å°å¾å¼å§----->    
+<!---地图开始----->    
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<meta name="keywords" content="ç¾åº¦å°å¾,ç¾åº¦å°å¾APIï¼ç¾åº¦å°å¾èªå®ä¹å·¥å·ï¼ç¾åº¦å°å¾æè§å³æå¾å·¥å·" />
-<meta name="description" content="ç¾åº¦å°å¾APIèªå®ä¹å°å¾ï¼å¸®å©ç¨æ·å¨å¯è§åæä½ä¸çæç¾åº¦å°å¾" />
-<title>ç¾åº¦å°å¾APIèªå®ä¹å°å¾</title>
-<!--å¼ç¨ç¾åº¦å°å¾API-->
+<meta name="keywords" content="百度地图,百度地图API，百度地图自定义工具，百度地图所见即所得工具" />
+<meta name="description" content="百度地图API自定义地图，帮助用户在可视化操作下生成百度地图" />
+<title>百度地图API自定义地图</title>
+<!--引用百度地图API-->
 <style type="text/css">
     html,body{margin:0;padding:0;}
     .iw_poi_title {color:#CC5522;font-size:14px;font-weight:bold;overflow:hidden;padding-right:13px;white-space:nowrap}
@@ -132,49 +132,49 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 </head>
 
 <body>
-  <!--ç¾åº¦å°å¾å®¹å¨-->
+  <!--百度地图容器-->
   <div style="width:697px;height:178px;border:#ccc solid 1px;" id="dituContent"></div>
 </body>
 <script type="text/javascript">
-    //åå»ºååå§åå°å¾å½æ°ï¼
+    //创建和初始化地图函数：
     function initMap(){
-        createMap();//åå»ºå°å¾
-        setMapEvent();//è®¾ç½®å°å¾äºä»¶
-        addMapControl();//åå°å¾æ·»å æ§ä»¶
-        addMarker();//åå°å¾ä¸­æ·»å marker
+        createMap();//创建地图
+        setMapEvent();//设置地图事件
+        addMapControl();//向地图添加控件
+        addMarker();//向地图中添加marker
     }
-    //åå»ºå°å¾å½æ°ï¼
+    //创建地图函数：
     function createMap(){
-        var map = new BMap.Map("dituContent");//å¨ç¾åº¦å°å¾å®¹å¨ä¸­åå»ºä¸ä¸ªå°å¾
-        var point = new BMap.Point(117,31);//å®ä¹ä¸ä¸ªä¸­å¿ç¹åæ 
-        map.centerAndZoom(point,17);//è®¾å®å°å¾çä¸­å¿ç¹ååæ å¹¶å°å°å¾æ¾ç¤ºå¨å°å¾å®¹å¨ä¸­
-        window.map = map;//å°mapåéå­å¨å¨å¨å±
+        var map = new BMap.Map("dituContent");//在百度地图容器中创建一个地图
+        var point = new BMap.Point(117,31);//定义一个中心点坐标
+        map.centerAndZoom(point,17);//设定地图的中心点和坐标并将地图显示在地图容器中
+        window.map = map;//将map变量存储在全局
     }
-    //å°å¾äºä»¶è®¾ç½®å½æ°ï¼
+    //地图事件设置函数：
     function setMapEvent(){
-        map.enableDragging();//å¯ç¨å°å¾ææ½äºä»¶ï¼é»è®¤å¯ç¨(å¯ä¸å)
-        map.enableScrollWheelZoom();//å¯ç¨å°å¾æ»è½®æ¾å¤§ç¼©å°
-        map.enableDoubleClickZoom();//å¯ç¨é¼ æ åå»æ¾å¤§ï¼é»è®¤å¯ç¨(å¯ä¸å)
-        map.enableKeyboard();//å¯ç¨é®çä¸ä¸å·¦å³é®ç§»å¨å°å¾
+        map.enableDragging();//启用地图拖拽事件，默认启用(可不写)
+        map.enableScrollWheelZoom();//启用地图滚轮放大缩小
+        map.enableDoubleClickZoom();//启用鼠标双击放大，默认启用(可不写)
+        map.enableKeyboard();//启用键盘上下左右键移动地图
     }
     
-    //å°å¾æ§ä»¶æ·»å å½æ°ï¼
+    //地图控件添加函数：
     function addMapControl(){
-        //åå°å¾ä¸­æ·»å ç¼©æ¾æ§ä»¶
+        //向地图中添加缩放控件
 	var ctrl_nav = new BMap.NavigationControl({anchor:BMAP_ANCHOR_TOP_LEFT,type:BMAP_NAVIGATION_CONTROL_LARGE});
 	map.addControl(ctrl_nav);
-        //åå°å¾ä¸­æ·»å ç¼©ç¥å¾æ§ä»¶
+        //向地图中添加缩略图控件
 	var ctrl_ove = new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:1});
 	map.addControl(ctrl_ove);
-        //åå°å¾ä¸­æ·»å æ¯ä¾å°ºæ§ä»¶
+        //向地图中添加比例尺控件
 	var ctrl_sca = new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT});
 	map.addControl(ctrl_sca);
     }
     
-    //æ æ³¨ç¹æ°ç»
-    var markerArr = [{title:"å¤åéç½ç»ç§ææéå¬å¸",content:"TELï¼0551-65118915",point:"117|31",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
+    //标注点数组
+    var markerArr = [{title:"多元速网络科技有限公司",content:"TEL：0551-65118915",point:"117|31",isOpen:0,icon:{w:21,h:21,l:0,t:0,x:6,lb:5}}
 		 ];
-    //åå»ºmarker
+    //创建marker
     function addMarker(){
         for(var i=0;i<markerArr.length;i++){
             var json = markerArr[i];
@@ -216,29 +216,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			})()
         }
     }
-    //åå»ºInfoWindow
+    //创建InfoWindow
     function createInfoWindow(i){
         var json = markerArr[i];
         var iw = new BMap.InfoWindow("<b class='iw_poi_title' title='" + json.title + "'>" + json.title + "</b><div class='iw_poi_content'>"+json.content+"</div>");
         return iw;
     }
-    //åå»ºä¸ä¸ªIcon
+    //创建一个Icon
     function createIcon(json){
         var icon = new BMap.Icon("http://app.baidu.com/map/images/us_mk_icon.png", new BMap.Size(json.w,json.h),{imageOffset: new BMap.Size(-json.l,-json.t),infoWindowOffset:new BMap.Size(json.lb+5,1),offset:new BMap.Size(json.x,json.h)})
         return icon;
     }
     
-    initMap();//åå»ºååå§åå°å¾
+    initMap();//创建和初始化地图
 </script>
 </html>
-<!---å°å¾ç»æ----->  
+<!---地图结束----->  
                                 
                                 <br><small><a href="#" style="color: #C9C9C9;text-align:left;font-size:13px"> </a></small>
 					   		</div>
       				</div>
       			<div class="company_address">
-				     	<h2>å¬å¸å°å </h2>
-						<p>åè¥å¸xxè·¯xxå·xxå¤§å¦</p>
+				     	<h2>公司地址 </h2>
+						<p>合肥市xx路xx号xx大厦</p>
 				   		<p>Phone:+86-0551-88888888</p>
 				 	 	<p>Email: <a href="mailto:admin@admin.com">admin@admin.com</a></p>
 				   		<p>Follow on: <a href="#">Facebook</a> , <a href="#">Twitter</a></p>
@@ -259,17 +259,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div class="container">
 						<div class="contact-grids">
 							<div class="col-md-3 contact-grid">
-									<h5>å³äºæä»¬</h5>
-									<p>æç±æ¨¡æ¿ç½ç²¾éåç§ç½é¡µæ¨¡æ¿ï¼cssæ¨¡æ¿ï¼ç½é¡µç¹æï¼å¹¿åä»£ç ï¼å¼æºç½ç«æºç ï¼å»ºç«ç´ æï¼ç²¾ç¾ç½ç«æ¬£èµï¼å¨é¨åè´¹ä¸è½½ãå¹¶æä¾åç§å»ºç«æç¨ï¼åå¾å¸®å©æ°æè§£å³å»ºç«å°é¾ãæ¾æ¨¡æ¿ï¼æ¾ç´ æï¼æ¾æç¨ï¼å°±æ¥æç±æ¨¡æ¿ç½ã</p>
+									<h5>关于我们</h5>
+									<p>我爱模板网精选各种网页模板，css模板，网页特效，广告代码，开源网站源码，建站素材，精美网站欣赏，全部免费下载。并提供各种建站教程，力图帮助新手解决建站困难。找模板，找素材，找教程，就来我爱模板网。</p>
 									<a href="features.html" class="more">more about us<img src="images/arrow.png"></a>
 								</div>
 								<div class="col-md-3 contact-grid">
-									<h5>èç³»æä»¬</h5>
-										<p>æç±æ¨¡æ¿ç½</p>
+									<h5>联系我们</h5>
+										<p>我爱模板网</p>
 										<div class="icon2">
 											<ul>
 												<li><i class="indicate"></i></li>
-													<li><p class="label1">åè¥å¸xxè·¯xxå·xxå¤§å¦</p></li>
+													<li><p class="label1">合肥市xx路xx号xx大厦</p></li>
 													</ul>
 														<ul>
 														<li><i class="phone"></i></li>
@@ -282,7 +282,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 															</div>
 								</div>
 								<div class="col-md-3 contact-grid">
-									<h5>å¸åæ¡ä¾åäº«</h5>
+									<h5>典型案例分享</h5>
 									<div class="cont">
 										<div class="contact-leftgrid">
 										<div class="img-grid1">
@@ -306,11 +306,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										</div>
 								<div class="col-md-3 contact-grid">
-									<h5>ç½é¡µæ¨¡æ¿</h5>
+									<h5>网页模板</h5>
 										
 											
 											<img src="images/ewm.jpg">
-                                            <p>æ«æäºç»´ç ï¼ææåå¦ï¼</p>
+                                            <p>扫描二维码，有惊喜哦！</p>
 
 											</div>
 									</div>
@@ -321,16 +321,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="footer-section">
 					<div class="container">
 						<div class="footer-left">
-							<p>æç±æ¨¡æ¿ç½ çæææ çICPå¤13019395å· Copyright Â© 2013 5imoban.net All Rights Reserved.</p>
+							<p>我爱模板网 版权所有 皖ICP备13019395号 Copyright © 2013 5imoban.net All Rights Reserved.</p>
 						</div>
 							<div class="bottom-menu">
 								<ul>
-									<li><a href="index.html"><span data-hover="é¦é¡µ">é¦é¡µ</span></a></li>
-									<li><a href="portfolio.html"><span data-hover="è§£å³æ¹æ¡">è§£å³æ¹æ¡</span></a></li>
-									<li><a href="portfolio1.html"><span data-hover="è§£å³æ¹æ¡2">è§£å³æ¹æ¡2</span></a></li>
-									<li><a href="blog.html"><span data-hover="æç« åè¡¨">æç« åè¡¨</span></a></li> 
-									<li><a href="features.html"><span data-hover="å³äºæä»¬">å³äºæä»¬</span></a></li>
-									<li><a href="contact.html"><span data-hover="èç³»æä»¬">èç³»æä»¬</span></a></li>
+									<li><a href="index.html"><span data-hover="首页">首页</span></a></li>
+									<li><a href="portfolio.html"><span data-hover="解决方案">解决方案</span></a></li>
+									<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>
+									<li><a href="blog.html"><span data-hover="文章列表">文章列表</span></a></li> 
+									<li><a href="features.html"><span data-hover="关于我们">关于我们</span></a></li>
+									<li><a href="contact.html"><span data-hover="联系我们">联系我们</span></a></li>
 								</ul>
 							</div>
 							<div class="clearfix"></div>
