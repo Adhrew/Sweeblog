@@ -1,12 +1,17 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE HTML>
 <html>
 <head>
-<title>响应式html静态企业网站模板关于我们页面 - 我爱模板网 www.5imoban.net</title>
+<title>ååºå¼htmléæä¼ä¸ç½ç«æ¨¡æ¿å³äºæä»¬é¡µé¢ - æç±æ¨¡æ¿ç½ www.5imoban.net</title>
 <link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 <link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="keywords" content="关于我们" />
+<meta name="keywords" content="å³äºæä»¬" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
@@ -61,8 +66,8 @@
 					</div>
 					<div class="social-icons">
 						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -3px;">
-							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">登录</button>
-							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">注册</button>
+							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">ç»å½</button>
+							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">æ³¨å</button>
 						</div>
 					</div>
 				</div>
@@ -79,13 +84,13 @@
 						<span class="menu"><img src="images/nav-icon.png" alt="" /></span>
 						<ul>
 							<nav class="cl-effect-5">
-								<li><a href="index.jsp"><span data-hover="首页">首页</span></a></li>
-								<li><a href="portfolio.jsp"><span data-hover="需求区">需求区</span></a></li>
-								<!--<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>-->
-								<li><a href="blog.jsp"><span data-hover="技术区">技术区</span></a></li>
-								<li><a href="personal.jsp"><span data-hover="个人中心">个人中心</span></a></li>
-								<li><a href="features.jsp"><span data-hover="关于我们">关于我们</span></a></li>
-								<li><a href="contact.jsp"><span data-hover="联系我们">联系我们</span></a></li>
+								<li><a href="index.jsp"><span data-hover="é¦é¡µ">é¦é¡µ</span></a></li>
+								<li><a href="portfolio.jsp"><span data-hover="éæ±åº">éæ±åº</span></a></li>
+								<!--<li><a href="portfolio1.html"><span data-hover="è§£å³æ¹æ¡2">è§£å³æ¹æ¡2</span></a></li>-->
+								<li><a href="blog.jsp"><span data-hover="ææ¯åº">ææ¯åº</span></a></li>
+								<li><a href="personal.jsp"><span data-hover="ä¸ªäººä¸­å¿">ä¸ªäººä¸­å¿</span></a></li>
+								<li><a href="features.jsp"><span data-hover="å³äºæä»¬">å³äºæä»¬</span></a></li>
+								<li><a href="contact.jsp"><span data-hover="èç³»æä»¬">èç³»æä»¬</span></a></li>
 							</nav>
 						</ul>
 						<div class="clearfix"></div>
@@ -102,9 +107,9 @@
 		  <div class="features-section">
          
 			<div class="container">
-             <h3>关于我们</h3>
+             <h3>å³äºæä»¬</h3>
              <div style="margin-top:20px;">
-				<p>我爱模板网精选各种网页模板，css模板，网页特效，广告代码，开源网站源码，建站素材，精美网站欣赏，全部免费下载。并提供各种建站教程，力图帮助新手解决建站困难。找模板，找素材，找教程，就来我爱模板网。
+				<p>æç±æ¨¡æ¿ç½ç²¾éåç§ç½é¡µæ¨¡æ¿ï¼cssæ¨¡æ¿ï¼ç½é¡µç¹æï¼å¹¿åä»£ç ï¼å¼æºç½ç«æºç ï¼å»ºç«ç´ æï¼ç²¾ç¾ç½ç«æ¬£èµï¼å¨é¨åè´¹ä¸è½½ãå¹¶æä¾åç§å»ºç«æç¨ï¼åå¾å¸®å©æ°æè§£å³å»ºç«å°é¾ãæ¾æ¨¡æ¿ï¼æ¾ç´ æï¼æ¾æç¨ï¼å°±æ¥æç±æ¨¡æ¿ç½ã
 				</p>
 			</div>
 		</div>
@@ -113,17 +118,17 @@
 					<div class="container">
 						<div class="contact-grids">
 							<div class="col-md-3 contact-grid">
-									<h5>关于我们</h5>
-									<p>我爱模板网精选各种网页模板，css模板，网页特效，广告代码，开源网站源码，建站素材，精美网站欣赏，全部免费下载。并提供各种建站教程，力图帮助新手解决建站困难。找模板，找素材，找教程，就来我爱模板网。</p>
+									<h5>å³äºæä»¬</h5>
+									<p>æç±æ¨¡æ¿ç½ç²¾éåç§ç½é¡µæ¨¡æ¿ï¼cssæ¨¡æ¿ï¼ç½é¡µç¹æï¼å¹¿åä»£ç ï¼å¼æºç½ç«æºç ï¼å»ºç«ç´ æï¼ç²¾ç¾ç½ç«æ¬£èµï¼å¨é¨åè´¹ä¸è½½ãå¹¶æä¾åç§å»ºç«æç¨ï¼åå¾å¸®å©æ°æè§£å³å»ºç«å°é¾ãæ¾æ¨¡æ¿ï¼æ¾ç´ æï¼æ¾æç¨ï¼å°±æ¥æç±æ¨¡æ¿ç½ã</p>
 									<a href="features.html" class="more">more about us<img src="images/arrow.png"></a>
 								</div>
 								<div class="col-md-3 contact-grid">
-									<h5>联系我们</h5>
-										<p>我爱模板网</p>
+									<h5>èç³»æä»¬</h5>
+										<p>æç±æ¨¡æ¿ç½</p>
 										<div class="icon2">
 											<ul>
 												<li><i class="indicate"></i></li>
-													<li><p class="label1">合肥市xx路xx号xx大厦</p></li>
+													<li><p class="label1">åè¥å¸xxè·¯xxå·xxå¤§å¦</p></li>
 													</ul>
 														<ul>
 														<li><i class="phone"></i></li>
@@ -136,7 +141,7 @@
 															</div>
 								</div>
 								<div class="col-md-3 contact-grid">
-									<h5>典型案例分享</h5>
+									<h5>å¸åæ¡ä¾åäº«</h5>
 									<div class="cont">
 										<div class="contact-leftgrid">
 										<div class="img-grid1">
@@ -160,11 +165,11 @@
 										</div>
 										</div>
 								<div class="col-md-3 contact-grid">
-									<h5>网页模板</h5>
+									<h5>ç½é¡µæ¨¡æ¿</h5>
 										
 											
 											<img src="images/ewm.jpg">
-                                            <p>扫描二维码，有惊喜哦！</p>
+                                            <p>æ«æäºç»´ç ï¼ææåå¦ï¼</p>
 
 											</div>
 									</div>
@@ -175,16 +180,16 @@
 				<div class="footer-section">
 					<div class="container">
 						<div class="footer-left">
-							<p>我爱模板网 版权所有 皖ICP备13019395号 Copyright © 2013 5imoban.net All Rights Reserved.</p>
+							<p>æç±æ¨¡æ¿ç½ çæææ çICPå¤13019395å· Copyright Â© 2013 5imoban.net All Rights Reserved.</p>
 						</div>
 							<div class="bottom-menu">
 								<ul>
-									<li><a href="index.html"><span data-hover="首页">首页</span></a></li>
-									<li><a href="portfolio.html"><span data-hover="解决方案">解决方案</span></a></li>
-									<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>
-									<li><a href="blog.html"><span data-hover="文章列表">文章列表</span></a></li> 
-									<li><a href="features.html"><span data-hover="关于我们">关于我们</span></a></li>
-									<li><a href="contact.html"><span data-hover="联系我们">联系我们</span></a></li>
+									<li><a href="index.html"><span data-hover="é¦é¡µ">é¦é¡µ</span></a></li>
+									<li><a href="portfolio.html"><span data-hover="è§£å³æ¹æ¡">è§£å³æ¹æ¡</span></a></li>
+									<li><a href="portfolio1.html"><span data-hover="è§£å³æ¹æ¡2">è§£å³æ¹æ¡2</span></a></li>
+									<li><a href="blog.html"><span data-hover="æç« åè¡¨">æç« åè¡¨</span></a></li> 
+									<li><a href="features.html"><span data-hover="å³äºæä»¬">å³äºæä»¬</span></a></li>
+									<li><a href="contact.html"><span data-hover="èç³»æä»¬">èç³»æä»¬</span></a></li>
 								</ul>
 							</div>
 							<div class="clearfix"></div>

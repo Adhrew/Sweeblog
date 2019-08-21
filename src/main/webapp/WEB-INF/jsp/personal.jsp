@@ -1,3 +1,8 @@
+<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -6,7 +11,7 @@
 		<link rel="stylesheet" href="css/layui.css" type="text/css" media="all">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<meta name="keywords" content="个人中心" />
+		<meta name="keywords" content="ä¸ªäººä¸­å¿" />
 		<script type="application/x-javascript">
 			addEventListener("load", function() {
 				setTimeout(hideURLbar, 0);
@@ -23,7 +28,7 @@
 		<link rel="shortcut icon" href="http://www.5imoban.net/favicon.ico" />
 		<script src="http://www.5imoban.net/download/jquery/jquery-1.8.3.min.js"></script>
 		<script src="js/responsiveslides.min.js"></script>
-		<title>个人中心</title>
+		<title>ä¸ªäººä¸­å¿</title>
 		<script type="text/javascript" src="layui.all.js"></script>
 		<script type="text/javascript" src="layui.js"></script>
 		<script type="text/javascript" src="js/move-top.js"></script>
@@ -34,28 +39,28 @@
 		<!-- Jquery -->
 		<script src="js/jquery-simple-validator.min.js"></script>
 		<script>
-			layui.use('layer', function() { //独立版的layer无需执行这一句
+			layui.use('layer', function() { //ç¬ç«ççlayeræ éæ§è¡è¿ä¸å¥
 				var $ = layui.jquery,
-					layer = layui.layer; //独立版的layer无需执行这一句
+					layer = layui.layer; //ç¬ç«ççlayeræ éæ§è¡è¿ä¸å¥
 
 				var str =
-					"<div class='container'>	<div class='row clearfix'>		<div class='col-md-12 column' style='margin:30px'>		<form role='form'>				<div class='form-group'>					 <label for='exampleInputEmail1'>手机号码</label><input type='text' class='form-control' id='exampleInputEmail1' />				</div>				<div class='form-group'>					 <label for='exampleInputPassword1'>密码</label><input type='password' class='form-control' id='exampleInputPassword1' />				</div>			</form>		</div>	</div></div>";
-				//触发事件
+					"<div class='container'>	<div class='row clearfix'>		<div class='col-md-12 column' style='margin:30px'>		<form role='form'>				<div class='form-group'>					 <label for='exampleInputEmail1'>ææºå·ç </label><input type='text' class='form-control' id='exampleInputEmail1' />				</div>				<div class='form-group'>					 <label for='exampleInputPassword1'>å¯ç </label><input type='password' class='form-control' id='exampleInputPassword1' />				</div>			</form>		</div>	</div></div>";
+				//è§¦åäºä»¶
 				var active = {
 					notice: function() {
-						//示范一个公告层
+						//ç¤ºèä¸ä¸ªå¬åå±
 						layer.open({
 							type: 1,
-							title: false //不显示标题栏
+							title: false //ä¸æ¾ç¤ºæ é¢æ 
 								,
 							closeBtn: false,
 							area: '300px;',
 							shade: 0.8,
-							id: 'LAY_layuipro' //设定一个id，防止重复弹出
+							id: 'LAY_layuipro' //è®¾å®ä¸ä¸ªidï¼é²æ­¢éå¤å¼¹åº
 								,
-							btn: ['登录', '返回'],
+							btn: ['ç»å½', 'è¿å'],
 							btnAlign: 'c',
-							moveType: 1 //拖拽模式，0或者1
+							moveType: 1 //ææ½æ¨¡å¼ï¼0æè1
 								,
 							content: str,
 							success: function(layero) {
@@ -103,8 +108,8 @@
 					</div>
 					<div class="social-icons">
 						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -3px;">
-							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">登录</button>
-							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">注册</button>
+							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">ç»å½</button>
+							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">æ³¨å</button>
 						</div>
 					</div>
 				</div>
@@ -121,13 +126,13 @@
 						<span class="menu"><img src="images/nav-icon.png" alt="" /></span>
 						<ul>
 							<nav class="cl-effect-5">
-								<li><a href="index.jsp"><span data-hover="首页">首页</span></a></li>
-								<li><a href="portfolio.jsp"><span data-hover="需求区">需求区</span></a></li>
-								<!--<li><a href="portfolio1.html"><span data-hover="解决方案2">解决方案2</span></a></li>-->
-								<li><a href="blog.jsp"><span data-hover="技术区">技术区</span></a></li>
-								<li><a href="personal.jsp"><span data-hover="个人中心">个人中心</span></a></li>
-								<li><a href="features.jsp"><span data-hover="关于我们">关于我们</span></a></li>
-								<li><a href="contact.jsp"><span data-hover="联系我们">联系我们</span></a></li>
+								<li><a href="index.jsp"><span data-hover="é¦é¡µ">é¦é¡µ</span></a></li>
+								<li><a href="portfolio.jsp"><span data-hover="éæ±åº">éæ±åº</span></a></li>
+								<!--<li><a href="portfolio1.html"><span data-hover="è§£å³æ¹æ¡2">è§£å³æ¹æ¡2</span></a></li>-->
+								<li><a href="blog.jsp"><span data-hover="ææ¯åº">ææ¯åº</span></a></li>
+								<li><a href="personal.jsp"><span data-hover="ä¸ªäººä¸­å¿">ä¸ªäººä¸­å¿</span></a></li>
+								<li><a href="features.jsp"><span data-hover="å³äºæä»¬">å³äºæä»¬</span></a></li>
+								<li><a href="contact.jsp"><span data-hover="èç³»æä»¬">èç³»æä»¬</span></a></li>
 							</nav>
 						</ul>
 						<div class="clearfix"></div>
@@ -146,67 +151,67 @@
 				<div class="layui-col-xs3" style="max-width: 300px;height: 100%;">
 					<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="height:100%;width: 100%; margin-right: 10px;">
 						<li class="layui-nav-item active">
-							<a href="javascript:;" style="text-decoration: none;">首页</a>
+							<a href="javascript:;" style="text-decoration: none;">é¦é¡µ</a>
 						</li>
 						<li class="layui-nav-item">
-							<a href="javascript:;" style="text-decoration: none;">交易</a>
+							<a href="javascript:;" style="text-decoration: none;">äº¤æ</a>
 							<dl class="layui-nav-child">
-								<dd><a href="javascript:;" style="text-decoration: none;">发起交易</a></dd>
-								<dd><a href="javascript:;" style="text-decoration: none;">接收交易</a></dd>
+								<dd><a href="javascript:;" style="text-decoration: none;">åèµ·äº¤æ</a></dd>
+								<dd><a href="javascript:;" style="text-decoration: none;">æ¥æ¶äº¤æ</a></dd>
 							</dl>
 						</li>
-						<li class="layui-nav-item"><a href="javascript:;" style="text-decoration: none;">个人订单</a></li>
-						<li class="layui-nav-item"><a href="javascript:;" style="text-decoration: none;">博客</a></li>
+						<li class="layui-nav-item"><a href="javascript:;" style="text-decoration: none;">ä¸ªäººè®¢å</a></li>
+						<li class="layui-nav-item"><a href="javascript:;" style="text-decoration: none;">åå®¢</a></li>
 					</ul>
 				</div>
 				<div class="layui-col-xs9" id="rig">
 					<div style="padding: 20px; background-color: #F2F2F2;">
 						<div class="layui-card">
-							<div class="layui-card-header">简介</div>
+							<div class="layui-card-header">ç®ä»</div>
 							<div class="layui-card-body">
 								<form class="layui-form" action="">
 									<div class="layui-form-item">
-										<label class="layui-form-label">用户名</label>
+										<label class="layui-form-label">ç¨æ·å</label>
 										<div class="layui-input-block">
 											<input id="username" type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input"
 											 disabled="disabled" style="max-width:450px">
 										</div>
 									</div>
 									<div class="layui-upload" id="sctx" style="">
-										<label class="layui-form-label">头像</label>
-										<!-- <button type="button" class="layui-btn" id="test1" style="float:left; margin-top:35px; margin-left:30px; margin-right:30px">上传图片</button> -->
+										<label class="layui-form-label">å¤´å</label>
+										<!-- <button type="button" class="layui-btn" id="test1" style="float:left; margin-top:35px; margin-left:30px; margin-right:30px">ä¸ä¼ å¾ç</button> -->
 										<div class="layui-upload-list" style="">
 											<img class="layui-upload-img" id="demo1" width="150px" src="logo.png">
 											<p id="demoText"></p>
 										</div>
 									</div>
 									<div class="layui-form-item">
-										<label class="layui-form-label">性别</label>
+										<label class="layui-form-label">æ§å«</label>
 										<div class="layui-input-block">
-											<input id="nan" type="radio" name="sex" value="男" title="男" checked="checked" disabled>
-											<input id="nv" type="radio" name="sex" value="女" title="女" disabled>
+											<input id="nan" type="radio" name="sex" value="ç·" title="ç·" checked="checked" disabled>
+											<input id="nv" type="radio" name="sex" value="å¥³" title="å¥³" disabled>
 										</div>
 									</div>
 									<div class="layui-form-item">
-										<label class="layui-form-label" style="width:auto;">电话号码</label>
-										<label class="layui-form-label" id="telephone">无</label>
-										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">取消绑定</a>
+										<label class="layui-form-label" style="width:auto;">çµè¯å·ç </label>
+										<label class="layui-form-label" id="telephone">æ </label>
+										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">åæ¶ç»å®</a>
 									</div>
 									<div class="layui-form-item">
-										<label class="layui-form-label" style="width:auto;">认证状态</label>
+										<label class="layui-form-label" style="width:auto;">è®¤è¯ç¶æ</label>
 										<label class="layui-form-label" id="rz">0</label>
-										<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">前往认证>></button>
+										<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">åå¾è®¤è¯>></button>
 									</div>
 									<div class="layui-form-item">
-										<label class="layui-form-label">邮箱</label>
-										<label class="layui-form-label" id="telephone">无</label>
-										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">取消绑定</a>
+										<label class="layui-form-label">é®ç®±</label>
+										<label class="layui-form-label" id="telephone">æ </label>
+										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">åæ¶ç»å®</a>
 									</div>
 									<div class="layui-form-item">
 										<div class="layui-input-block" id="bj">
-											<button class="layui-btn" onclick="bj()">编辑</button>
-											<!-- <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-											<button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+											<button class="layui-btn" onclick="bj()">ç¼è¾</button>
+											<!-- <button class="layui-btn" lay-submit lay-filter="formDemo">ç«å³æäº¤</button>
+											<button type="reset" class="layui-btn layui-btn-primary">éç½®</button> -->
 										</div>
 									</div>
 								</form>
@@ -224,7 +229,7 @@
 					$("#username").removeAttr("disabled");
 					$("#nan").removeAttr("disabled");
 					$("#nv").removeAttr("disabled");
-					$("#bj").html("<button class='layui-btn' lay-submit lay-filter='formDemo'>立即提交</button><button type='reset' class='layui-btn layui-btn-primary'>重置</button>");
+					$("#bj").html("<button class='layui-btn' lay-submit lay-filter='formDemo'>ç«å³æäº¤</button><button type='reset' class='layui-btn layui-btn-primary'>éç½®</button>");
 					$("#sctx").html("")
 					form.render(); 
 				});
@@ -238,7 +243,7 @@
 			layui.use('form', function() {
 				var form = layui.form;
 
-				//监听提交
+				//çå¬æäº¤
 				form.on('submit(formDemo)', function(data) {
 					layer.msg(JSON.stringify(data.field));
 					return false;
@@ -251,28 +256,28 @@
 				var $ = layui.jquery,
 					upload = layui.upload;
 
-				//普通图片上传
+				//æ®éå¾çä¸ä¼ 
 				var uploadInst = upload.render({
 					elem: '#test1',
 					url: '/upload/',
 					before: function(obj) {
-						//预读本地文件示例，不支持ie8
+						//é¢è¯»æ¬å°æä»¶ç¤ºä¾ï¼ä¸æ¯æie8
 						obj.preview(function(index, file, result) {
-							$('#demo1').attr('src', result); //图片链接（base64）
+							$('#demo1').attr('src', result); //å¾çé¾æ¥ï¼base64ï¼
 						});
 					},
 					done: function(res) {
-						//如果上传失败
+						//å¦æä¸ä¼ å¤±è´¥
 						if (res.code > 0) {
-							return layer.msg('上传失败');
+							return layer.msg('ä¸ä¼ å¤±è´¥');
 						}
-						//上传成功
+						//ä¸ä¼ æå
 					},
 					error: function() {
-						//演示失败状态，并实现重传
+						//æ¼ç¤ºå¤±è´¥ç¶æï¼å¹¶å®ç°éä¼ 
 						var demoText = $('#demoText');
 						demoText.html(
-							'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+							'<span style="color: #FF5722;">ä¸ä¼ å¤±è´¥</span> <a class="layui-btn layui-btn-xs demo-reload">éè¯</a>');
 						demoText.find('.demo-reload').on('click', function() {
 							uploadInst.upload();
 						});
@@ -283,9 +288,9 @@
 
 		<script>
 			layui.use('element', function() {
-				var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+				var element = layui.element; //å¯¼èªçhoverææãäºçº§èåç­åè½ï¼éè¦ä¾èµelementæ¨¡å
 
-				//监听导航点击
+				//çå¬å¯¼èªç¹å»
 			});
 		</script>
 
@@ -293,18 +298,18 @@
 			<div class="container">
 				<div class="contact-grids">
 					<div class="col-md-3 contact-grid">
-						<h5>关于我们</h5>
+						<h5>å³äºæä»¬</h5>
 						<p></p>
 						<a href="features.html" class="more">more about us<img src="images/arrow.png"></a>
 					</div>
 					<div class="col-md-3 contact-grid">
-						<h5>联系我们</h5>
+						<h5>èç³»æä»¬</h5>
 						<p>Sweeblog</p>
 						<div class="icon2">
 							<ul>
 								<li><i class="indicate"></i></li>
 								<li>
-									<p class="label1">厦门市软件园二期2号楼</p>
+									<p class="label1">å¦é¨å¸è½¯ä»¶å­äºæ2å·æ¥¼</p>
 								</li>
 							</ul>
 							<ul>
@@ -325,7 +330,7 @@
 
 
 						<img src="images/ewm.jpg">
-						<p>扫描二维码，有惊喜哦！</p>
+						<p>æ«æäºç»´ç ï¼ææåå¦ï¼</p>
 
 					</div>
 				</div>
@@ -336,7 +341,7 @@
 		<div class="footer-section">
 			<div class="container">
 				<div class="footer-left">
-					<p>Sweeblog 版权所有 皖ICP备13019395号 Copyright © 2013 5imoban.net All Rights Reserved.</p>
+					<p>Sweeblog çæææ çICPå¤13019395å· Copyright Â© 2013 5imoban.net All Rights Reserved.</p>
 				</div>
 				<div class="clearfix"></div>
 				<script type="text/javascript">
