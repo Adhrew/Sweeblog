@@ -54,9 +54,9 @@
 	});
 
 	//加载需求的博客函数
-	function enterajax() {
+	function enterajax(key) {
 		$.ajaxSetup({async:false});
-		$.getJSON("Neajax", function(a) {
+		$.getJSON("Neajax",{key:key}, function(a) {
 			console.log(a);
 			var str1 = "";
 			var str2 = "";
@@ -165,9 +165,9 @@
 	<div class="container">
 		<form class="navbar-form navbar-right" role="search">
 			<div class="form-group" style="float: right;clear: both;">
-				<input type="text" class="form-control" />
+				<input type="text" class="form-control" id="text"/>
 			</div>
-			<button type="submit" class="btn btn-default" style="float:right;">搜索</button>
+			<button type="button" class="btn btn-default" style="float:right;" onclick="enterajax(document.getElementById('text').value)">搜索</button>
 		</form>
 		<div class="clearfix"></div>
 		<br />
@@ -283,8 +283,8 @@
 		<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
 		<link href="css/popuo-box.css" rel="stylesheet" type="text/css"
 			media="all" />
-		<link rel="stylesheet" href="layui/css/layui.css" media="all">
-        <script src="layui/layui.js" charset="utf-8"></script>
+		<!-- <link rel="stylesheet" href="layui/css/layui.css" media="all">
+        <script src="layui/layui.js" charset="utf-8"></script> -->
 		
 		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 		<!-- //pop-up-box -->
@@ -305,11 +305,12 @@
 		</div>
 
 				<script>
+				
 					layui.use([ 'laypage', 'layer' ], function() {
 						var laypage = layui.laypage;
 						var layer = layui.layer;
 						var data = [
-							'1'
+							"1"
 						];
 				
 						//调用分页
@@ -331,20 +332,19 @@
 				
 					});
 					
-					/* layui.use(['laypage', 'layer'], function(){
-                    var laypage = layui.laypage
-                    ,layer = layui.layer;
+/* 					layui.use(['laypage', 'layer'], function(){
+                    var laypage = layui.laypage,layer = layui.layer;
 
                     //完整功能
                      laypage.render({
                        elem: 'demo20'
-                      ,count: ${pd.count},
-                       curr:${pd.page}
-                       ,limit:${pd.size}
+                      ,count: ${sessionScope.pd.count}
+                      ,curr:${sessionScope.pd.page}
+                       ,limit:${sessionScope.pd.size}
                        ,layout: ['count', 'prev', 'page','limit','next', 'skip']
                        ,jump: function(obj,first){
-                       // console.log(obj);
-                       // console.log(first);
+                        console.log(obj);
+                        console.log(first);
                        //首次不执行
                        if(!first){
                       //跳页的实现
@@ -352,9 +352,9 @@
     	                location.href="Neajax?page="+obj.curr+"&pageSize="+obj.limit;
       }
     }
-  });
+  }); 
  
-}); */
+/* }); */
 					
 				</script>
 				<div id="demo20" align="center"></div>

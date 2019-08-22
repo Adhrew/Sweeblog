@@ -6,6 +6,7 @@ import java.io.PrintWriter;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,10 +34,10 @@ public class NeedController {
 	}
 	
 	@RequestMapping("/Neajax")
-	public void Neblog(HttpServletRequest request,HttpServletResponse response) throws IOException{
+	public void Neblog(HttpServletRequest request,HttpServletResponse response,String key) throws IOException{
 		  response.setContentType("text/html;charset=UTF-8");
 		  PrintWriter out=response.getWriter();
-		  Integer page;
+		 /* Integer page;
 		  Integer pageSize;
 		  if(request.getParameter("page")!=null){
 		   page=Integer.valueOf(request.getParameter("page"));
@@ -49,17 +50,19 @@ public class NeedController {
 			  }
 		  else{
 			   pageSize=3;
-		  }
-	    BlogVo vo=new BlogVo();
+		  }*/
+		  System.out.println(key);
+	      BlogVo vo=new BlogVo();
 		  vo.setStatus(1);
+		  
 		  PagePojo<Blog> list=blogService.queryByPage(vo,1, 3);
-		  request.setAttribute("pd", list);
 		  Gson g=new Gson();
 		  String str=g.toJson(list);
 		  System.out.println(g);
 		  out.print(str);
 		  out.flush();
 		  out.close();
-		  
 	}
-}
+	}
+	
+	
