@@ -1,5 +1,7 @@
 package com.clay.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -19,6 +21,7 @@ import com.clay.entity.Blog;
 import com.clay.entity.Record;
 import com.clay.entity.User;
 import com.clay.pojo.PagePojo;
+import com.clay.pojo.RecordVo;
 import com.clay.service.RecordService;
 import com.clay.tools.Constants;
 
@@ -35,81 +38,6 @@ public class RecordServiceImpl implements RecordService{
 	@Override
 	public Record queryById(int id) {
 		return recordDao.queryById(id);
-	}
-
-	@Override
-	public int getCount() {
-		return recordDao.getCount();
-	}
-
-	@Override
-	public int getCountByUserId(int id) {
-		return recordDao.getCountByUserId(id);
-	}
-
-	@Override
-	public PagePojo<Record> queryByPage(int page, int size) {
-		if(page<0||size<0){
-			return null;
-		}
-		PagePojo<Record> pp = new PagePojo<Record>();
-		List<Record> data = recordDao.queryByPage( new RowBounds((page-1)*size, size));
-		int count = recordDao.getCount();
-		if(count%size!=0||count==0){
-			count = (count/size)+1;
-		}else{
-			count = count/size;
-		}
-		pp.setCount(count);
-		pp.setData(data);
-		pp.setPage(page);
-		pp.setSize(size);
-		return pp;
-	}
-
-	@Override
-	public PagePojo<Record> queryByPageAndUserId(int id, int page, int size) {
-		if(page<=0||size<=0){
-			return null;
-		}
-		PagePojo<Record> pp = new PagePojo<Record>();
-		List<Record> data = recordDao.queryByPageAndUserId( id,new RowBounds((page-1)*size, size));
-		int count = recordDao.getCountByUserId(id);
-		if(count%size!=0||count==0){
-			count = (count/size)+1;
-		}else{
-			count = count/size;
-		}
-		pp.setCount(count);
-		pp.setData(data);
-		pp.setPage(page);
-		pp.setSize(size);
-		return pp;
-	}
-
-	@Override
-	public PagePojo<Record> queryByPageAndBlogId(int id, int page, int size) {
-		if(page<=0||size<=0){
-			return null;
-		}
-		PagePojo<Record> pp = new PagePojo<Record>();
-		List<Record> data = recordDao.queryByPageAndBlogId( id,new RowBounds((page-1)*size, size));
-		int count = recordDao.getCountByBlogId(id);
-		if(count%size!=0||count==0){
-			count = (count/size)+1;
-		}else{
-			count = count/size;
-		}
-		pp.setCount(count);
-		pp.setData(data);
-		pp.setPage(page);
-		pp.setSize(size);
-		return pp;
-	}
-
-	@Override
-	public int getCountByBlogId(int id) {
-		return recordDao.getCountByBlogId(id);
 	}
 
 	@Override
@@ -145,7 +73,8 @@ public class RecordServiceImpl implements RecordService{
 		}else{
 			user.setUser_money(user_money-record_money);
  			record.setRecord_status(1);
- 			record.setRecord_starttime(new Date());
+ 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ 			record.setRecord_starttime(df.format(new Date()));
 			if(!(recordDao.updateRecord(record)&&userDao.updateUser(user))){
 				throw new Exception();
 			}
@@ -180,7 +109,8 @@ public class RecordServiceImpl implements RecordService{
 		if(record.getRecord_ok() == 2){
 			record.setRecord_ok(3);
 			record.setRecord_status(2);
-			record.setRecord_endtime(new Date());
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			record.setRecord_endtime(df.format(new Date()));
 			int money = (int) (record.getRecord_money()*Constants.RATE);
 			User user = record.getBlog_id().getUser_id();
 			user.setUser_money(user.getUser_money()+ money);
@@ -285,13 +215,14 @@ public class RecordServiceImpl implements RecordService{
 	}
 
 	@Override
-	public PagePojo<Record> queryByPageAndBlogUserId(int id, int page, int size) {
-		if(page<=0||size<=0){
+	public PagePojo<Record> queryByPage(RecordVo rv, int page, int size) {
+		if(page<0||size<0){
 			return null;
 		}
 		PagePojo<Record> pp = new PagePojo<Record>();
-		List<Record> data = recordDao.queryByPageAndBlogUserId(id, new RowBounds((page-1)*size, size));
-		int count = recordDao.getCountByBlogUserId(id);
+		List<Record> data = recordDao.queryByPage(rv, new RowBounds((page-1)*size, size));
+		int count = recordDao.getCount(rv);
+		
 		if(count%size!=0||count==0){
 			count = (count/size)+1;
 		}else{
@@ -305,8 +236,8 @@ public class RecordServiceImpl implements RecordService{
 	}
 
 	@Override
-	public int getCountByBlogUserId(int id) {
-		return recordDao.getCountByBlogUserId(id);
+	public int getCount(RecordVo rv) {
+		return recordDao.getCount(rv);
 	}
 
 	

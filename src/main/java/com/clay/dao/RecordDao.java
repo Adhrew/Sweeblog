@@ -5,17 +5,12 @@ import java.util.List;
 import org.apache.ibatis.session.RowBounds;
 
 import com.clay.entity.Record;
+import com.clay.pojo.RecordVo;
 
 public interface RecordDao {
-	List<Record> queryByPage(RowBounds rb);
-	List<Record> queryByPageAndUserId(int id, RowBounds rb);
-	List<Record> queryByPageAndBlogId(int id, RowBounds rb);
-	List<Record> queryByPageAndBlogUserId(int id, RowBounds rb);
+	List<Record> queryByPage(RecordVo rv,RowBounds rb);
 	Record queryById(int id);
-	int getCount();
-	int getCountByUserId(int id);
-	int getCountByBlogId(int id);
-	int getCountByBlogUserId(int id);
+	int getCount(RecordVo rv);
 	boolean insertRecord(Record record);
 	boolean deleteRecord(int id);
 	boolean updateRecord(Record record);

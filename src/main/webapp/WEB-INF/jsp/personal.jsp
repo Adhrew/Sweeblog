@@ -185,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										<!-- <button type="button" class="layui-btn" id="test1" style="float:left; margin-top:35px; margin-left:30px; margin-right:30px">上传图片</button> -->
 										<div class="layui-upload-list" style="">
-											<img class="layui-upload-img" id="demo1" width="150px" src="logo.png">
+											<img class="layui-upload-img" id="demo1" width="150px" src="images/logo.png">
 											<p id="demoText"></p>
 										</div>
 									</div>
@@ -275,7 +275,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#nv").prop("disabled","disabled");
 					$("#bj").html("<button class='layui-btn' onclick='bj()'>编辑</button>");
 					$("#sctx").html("")
-					$("#demo1").attr("src","logo.png")
+					$("#demo1").attr("src","images/logo.png")
 					$("#demoText").html("");
 					form.render(); 
 				});

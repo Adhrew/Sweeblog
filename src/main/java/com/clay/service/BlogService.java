@@ -10,14 +10,14 @@ import com.clay.pojo.BlogVo;
 import com.clay.pojo.PagePojo;
 
 public interface BlogService {
-	PagePojo<Blog> queryByPage(BlogVo bv, int page,int size);//²©¿Í·ÖÒ³²éÑ¯
-	List<Blog> queryAll();				//²éÑ¯ËùÓĞ²©¿Í
-	Blog queryById(int blog_id);		//¸ù¾İ²©¿ÍId²éÑ¯²©¿Í
-	int getCount(BlogVo bv);
-	boolean insertBlog(Blog blog);		//ĞÂÔö²©¿Í
-	boolean updateBlog(Blog blog);		//ĞŞ¸Ä²©¿Í
-	boolean deleteBlog(int id);			//É¾³ı²©¿Í
-	boolean writeBlog(Blog blog)throws Exception; //·¢±í²©¿Í¼Ó»ı·Ö
+	PagePojo<Blog> queryByPage(BlogVo bv, int page,int size); //æ ¹æ®bvæ¡ä»¶åˆ†é¡µæŸ¥è¯¢blogï¼Œæ¡ä»¶å†…å®¹çœ‹BlogVoä¸­æ³¨é‡Šè¯¦æƒ…
+	List<Blog> queryAll();				//æŸ¥è¯¢æ‰€æœ‰åšå®¢
+	Blog queryById(int blog_id);		//æ ¹æ®åšå®¢idæŸ¥è¯¢åšå®¢
+	int getCount(BlogVo bv);			//æ ¹æ®æ¡ä»¶æŸ¥è¯¢åšå®¢æ•°é‡
+	boolean insertBlog(Blog blog);		//å¢åˆ æ”¹
+	boolean updateBlog(Blog blog);		
+	boolean deleteBlog(int id)throws Exception;;		//åˆ é™¤åšå®¢æ˜¯ä¸€ä¸ªäº‹åŠ¡ï¼Œåˆ é™¤åšå®¢åŒæ—¶åˆ é™¤ç›¸å…³å›¾ç‰‡å’Œè®¢å•
+	boolean writeBlog(Blog blog)throws Exception;//å†™åšå®¢çš„äº‹åŠ¡ï¼Œå†™åšå®¢ï¼Œæ·»åŠ åšå®¢çš„åŒæ—¶å¢åŠ ç”¨æˆ·ç§¯åˆ†
 	
 	
 }

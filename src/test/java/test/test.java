@@ -20,9 +20,13 @@ import com.clay.entity.Record;
 import com.clay.entity.Type;
 import com.clay.entity.User;
 import com.clay.pojo.BlogVo;
+import com.clay.pojo.IdentityVo;
 import com.clay.pojo.PagePojo;
+import com.clay.pojo.RecordVo;
 import com.clay.pojo.UserVo;
 import com.clay.service.BlogService;
+import com.clay.service.IdentityService;
+import com.clay.service.RecordService;
 import com.clay.service.UserService;
 import com.clay.service.impl.AdminServiceImpl;
 import com.clay.service.impl.BlogServiceImpl;
@@ -37,18 +41,14 @@ public class test {
 	@Test
 	public  void test1(){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-mybatis.xml");
-		UserService us = (UserService) ctx.getBean("userService");
+		BlogService is = (BlogService) ctx.getBean("blogService");
 		try {
-			Identity identity = new Identity();
-			User user = new User();
-			user.setUser_id(1);
-			identity.setUser_id(user);
-			identity.setIdentity_idcard("10000");
-			us.doIdentify(1, identity);
+			is.deleteBlog(2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 		
 	}
 }

@@ -6,10 +6,10 @@ import com.clay.pojo.PagePojo;
 
 public interface TypeService {
 	List<Type> queryAll();
-	PagePojo<Type> queryByPage(int page, int size);
+	PagePojo<Type> queryByPage(int page, int size); //分页查询
 	int getCount();
-	Type queryById(int id);
-	boolean insertType(Type type);
+	Type queryById(int id);      
+	boolean insertType(Type type);//增删改
 	boolean updateType(Type type);
 	boolean deleteType(int id);
 }
