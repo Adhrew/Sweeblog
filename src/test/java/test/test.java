@@ -23,6 +23,7 @@ import com.clay.pojo.BlogVo;
 import com.clay.pojo.PagePojo;
 import com.clay.pojo.UserVo;
 import com.clay.service.BlogService;
+import com.clay.service.IdentityService;
 import com.clay.service.UserService;
 import com.clay.service.impl.AdminServiceImpl;
 import com.clay.service.impl.BlogServiceImpl;
@@ -37,18 +38,15 @@ public class test {
 	@Test
 	public  void test1(){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-mybatis.xml");
-		UserService us = (UserService) ctx.getBean("userService");
+		IdentityService is = (IdentityService) ctx.getBean("identityService");
 		try {
-			Identity identity = new Identity();
-			User user = new User();
-			user.setUser_id(1);
-			identity.setUser_id(user);
-			identity.setIdentity_idcard("10000");
-			us.doIdentify(1, identity);
+			PagePojo<Identity> pp =  is.queryByPage(2, 1, 10);
+			System.out.println(pp.getData().size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 		
 	}
 }
