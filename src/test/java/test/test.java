@@ -43,7 +43,9 @@ public class test {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-mybatis.xml");
 		BlogService is = (BlogService) ctx.getBean("blogService");
 		try {
-			is.deleteBlog(2);
+			BlogVo bv = new BlogVo();
+			bv.setType_name("需求");
+			System.out.println(is.queryByPage(bv, 1, 10).getData().size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

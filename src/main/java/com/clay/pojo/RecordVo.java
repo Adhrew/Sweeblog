@@ -7,7 +7,18 @@ public class RecordVo {
 	private Integer user_id;//根据客户ID查询
 	private Integer blog_id;//根据博客ID查询
 	private Integer blog_user_id;//根据博主ID查询
+	private String record_str_like;//模糊查询
 	
+	
+	
+	public String getRecord_str_like() {
+		return record_str_like;
+	}
+
+	public void setRecord_str_like(String record_str_like) {
+		this.record_str_like = record_str_like;
+	}
+
 	public Integer getUser_id() {
 		return user_id;
 	}

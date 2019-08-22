@@ -8,6 +8,7 @@ public class BlogVo {
 	private Integer min_hot;     //根据热度范围最小值
 	private Integer max_hot;	//根据热度范围最大值
 	private Integer status;		//0查询技术类博客，1查询需求类博客
+	private String type_name;	//类型名字
 	
 	
 	
@@ -53,6 +54,12 @@ public class BlogVo {
 	}
 	public void setTitle_str_like(String title_str_like) {
 		this.title_str_like = title_str_like;
+	}
+	public String getType_name() {
+		return type_name;
+	}
+	public void setType_name(String type_name) {
+		this.type_name = type_name;
 	}
 	
 	
