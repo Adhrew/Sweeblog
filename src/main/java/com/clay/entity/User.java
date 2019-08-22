@@ -10,14 +10,14 @@ public class User {
 	private String user_sex;
 	private String user_tel;
 	private Integer user_identity;
-	private Date user_register;
+	private String user_register;
 	private Integer user_money;
 	private Integer user_credit;
 	public User(){
 		
 	}
 	public User(Integer user_id, String user_name, String user_pwd, String user_img, String user_sex, String user_tel,
-			Integer user_identity, Date user_register, Integer user_money, Integer user_credit) {
+			Integer user_identity, String user_register, Integer user_money, Integer user_credit) {
 		super();
 		this.user_id = user_id;
 		this.user_name = user_name;
@@ -72,10 +72,10 @@ public class User {
 	public void setUser_identity(Integer user_identity) {
 		this.user_identity = user_identity;
 	}
-	public Date getUser_register() {
+	public String getUser_register() {
 		return user_register;
 	}
-	public void setUser_register(Date user_register) {
+	public void setUser_register(String user_register) {
 		this.user_register = user_register;
 	}
 	public Integer getUser_money() {

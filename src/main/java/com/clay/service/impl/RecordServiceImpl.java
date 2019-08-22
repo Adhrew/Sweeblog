@@ -1,5 +1,7 @@
 package com.clay.service.impl;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -71,7 +73,8 @@ public class RecordServiceImpl implements RecordService{
 		}else{
 			user.setUser_money(user_money-record_money);
  			record.setRecord_status(1);
- 			record.setRecord_starttime(new Date());
+ 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+ 			record.setRecord_starttime(df.format(new Date()));
 			if(!(recordDao.updateRecord(record)&&userDao.updateUser(user))){
 				throw new Exception();
 			}
@@ -106,7 +109,8 @@ public class RecordServiceImpl implements RecordService{
 		if(record.getRecord_ok() == 2){
 			record.setRecord_ok(3);
 			record.setRecord_status(2);
-			record.setRecord_endtime(new Date());
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			record.setRecord_endtime(df.format(new Date()));
 			int money = (int) (record.getRecord_money()*Constants.RATE);
 			User user = record.getBlog_id().getUser_id();
 			user.setUser_money(user.getUser_money()+ money);
