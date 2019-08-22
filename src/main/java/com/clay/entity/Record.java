@@ -8,8 +8,8 @@ public class Record {
 	private User user_id;
 	private Integer record_status;
 	private Integer record_ok;
-	private Date record_starttime;
-	private Date record_endtime;
+	private String record_starttime;
+	private String record_endtime;
 	private Integer record_money;
 	public Integer getRecord_id() {
 		return record_id;
@@ -41,16 +41,16 @@ public class Record {
 	public void setRecord_ok(Integer record_ok) {
 		this.record_ok = record_ok;
 	}
-	public Date getRecord_starttime() {
+	public String getRecord_starttime() {
 		return record_starttime;
 	}
-	public void setRecord_starttime(Date record_starttime) {
+	public void setRecord_starttime(String record_starttime) {
 		this.record_starttime = record_starttime;
 	}
-	public Date getRecord_endtime() {
+	public String getRecord_endtime() {
 		return record_endtime;
 	}
-	public void setRecord_endtime(Date record_endtime) {
+	public void setRecord_endtime(String record_endtime) {
 		this.record_endtime = record_endtime;
 	}
 	public Integer getRecord_money() {

@@ -26,7 +26,7 @@ public class IdentityServiceImpl implements IdentityService{
 		}
 		PagePojo<Identity> pp = new PagePojo<Identity>();
 		List<Identity> data = identityDao.queryByPage(iv, new RowBounds((page-1)*size, size));
-		int count = identityDao.getCount();
+		int count = identityDao.getCount(iv);
 		if(count%size!=0||count==0){
 			count = (count/size)+1;
 		}else{
@@ -50,8 +50,8 @@ public class IdentityServiceImpl implements IdentityService{
 	}
 
 	@Override
-	public int getCount() {
-		return identityDao.getCount();
+	public int getCount(IdentityVo iv) {
+		return identityDao.getCount(iv);
 	}
 
 	@Override
@@ -62,6 +62,11 @@ public class IdentityServiceImpl implements IdentityService{
 	@Override
 	public boolean deleteIdentity(int id) {
 		return identityDao.deleteIdentity(id);
+	}
+
+	@Override
+	public boolean updateIdentity(Identity identity) {
+		return identityDao.updateIdentity(identity);
 	}
 	
 }

@@ -28,6 +28,9 @@
 			<if test="status!=null">
 				and u.user_identity = #{status}
 			</if>
+			<if test="identity_str_like!=null">
+				and u.user_name like concat("%",#{identity_str_like},"%")
+			</if>
 		</where>
 	</select>
 	
@@ -45,8 +48,17 @@
 		</where>
 	</select>
 	
-	<select id="getCount" resultType="java.lang.Integer">
-		select count(*) from identity_info
+	<select id="getCount" resultType="java.lang.Integer" parameterType="com.clay.pojo.IdentityVo">
+		select count(*) from identity_info i, user_info u
+		<where>
+			u.user_id = i.user_id
+			<if test="status!=null">
+				and u.user_identity = #{status}
+			</if>
+			<if test="identity_str_like!=null">
+				and u.user_name like concat("%",#{identity_str_like},"%")
+			</if>
+		</where>
 	</select>
 	
 	<insert id="insertIdentity" parameterType="com.clay.entity.Identity">
@@ -56,5 +68,11 @@
 	<delete id="deleteIdentity" parameterType="java.lang.Integer">
 		delete from identity_info where identity_id = #{id}
 	</delete>
-
+	
+	<update id="updateIdentity" parameterType="com.clay.entity.Identity">
+		update identity_info set identity_idcard = #{identity_idcard},
+								 identity_img = #{identity_img},
+								 identity_name=#{identity_name}
+		where identity_id = #{identity_id}
+	</update>
 </mapper>

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Identity {
 	private Integer identity_id;
 	private String identity_idcard;
-	private Date identity_time;
+	private String identity_time;
 	private String identity_name;
 	private String identity_img;
 	private User user_id;
@@ -21,10 +21,10 @@ public class Identity {
 	public void setIdentity_idcard(String identity_idcard) {
 		this.identity_idcard = identity_idcard;
 	}
-	public Date getIdentity_time() {
+	public String getIdentity_time() {
 		return identity_time;
 	}
-	public void setIdentity_time(Date identity_time) {
+	public void setIdentity_time(String identity_time) {
 		this.identity_time = identity_time;
 	}
 	public String getIdentity_name() {

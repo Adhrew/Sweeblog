@@ -7,6 +7,11 @@
 			and user_identity = #{user_identity}
 		</if>
 	</sql>
+	<sql id="queryByStrLike">
+		<if test="user_str_like!=null">
+			and user_name like concat("%",#{user_str_like},"%")
+		</if>
+	</sql>
 	<select id="userLogin" resultType="com.clay.entity.User">
 		select * from user_info where user_name=#{0} and user_pwd =#{1}
 	</select>
@@ -19,6 +24,7 @@
 		select * from user_info 
 		<where>
 			<include refid="queryByUserIdentity"></include>
+			<include refid="queryByStrLike"></include>
 		</where>
 	</select>
 	
@@ -34,7 +40,8 @@
 	<select id="getCount" resultType="java.lang.Integer">
 		select count(*) from user_info
 		<where>
-			<include refid="queryByUserIdentity"></include> 
+			<include refid="queryByUserIdentity"></include>
+			<include refid="queryByStrLike"></include> 
 		</where>
 	</select>
 	
