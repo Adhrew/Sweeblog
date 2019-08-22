@@ -21,10 +21,13 @@
 			<result property="user_credit" column="user_credit"/>
 		</association>
 	</resultMap>
-	<select id="queryByPage" resultMap="iden">
+	<select id="queryByPage" resultMap="iden" parameterType="com.clay.pojo.IdentityVo">
 		select *  from identity_info i, user_info u
 		<where>
-			u.user_id = i.user_id and u.user_identity = 1
+			u.user_id = i.user_id
+			<if test="status!=null">
+				and u.user_identity = #{status}
+			</if>
 		</where>
 	</select>
 	

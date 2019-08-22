@@ -206,11 +206,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<label class="layui-form-label" id="rz">0</label>
 										<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">前往认证>></button>
 									</div>
-									<div class="layui-form-item">
-										<label class="layui-form-label">邮箱</label>
-										<label class="layui-form-label" id="telephone">无</label>
-										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">取消绑定</a>
-									</div>
+									
 									<div class="layui-form-item">
 										<div class="layui-input-block" id="bj">
 											<button class="layui-btn" onclick="bj()">编辑</button>
