@@ -33,108 +33,10 @@ import com.clay.tools.Constants;
 @Controller
 public class UserController {
 
-	//²úÆ·Ãû³Æ:ÔÆÍ¨ĞÅ¶ÌĞÅAPI²úÆ·,¿ª·¢ÕßÎŞĞèÌæ»»
-    //static final String product = "Dysmsapi";
-    //²úÆ·ÓòÃû,¿ª·¢ÕßÎŞĞèÌæ»»
-    //static final String domain = "dysmsapi.aliyuncs.com";
-
-    // TODO ´Ë´¦ĞèÒªÌæ»»³É¿ª·¢Õß×Ô¼ºµÄAK(ÔÚ°¢ÀïÔÆ·ÃÎÊ¿ØÖÆÌ¨Ñ°ÕÒ)
-//    static final String accessKeyId = "LTAIR96drgLD5lHz";
-//    static final String accessKeySecret = "e0PY5NzJQY5eu8klmiEjtKBhZbxhKO";
-//    static String phone;
-//    static String random;
-    
-    /**
-     * @Éú³ÉÒ»¸ö6Î»µÄËæ»úÂë  
-     */
-//    public static String createRandNum() {
-//        Random random = new Random();
-//        StringBuffer sb = new StringBuffer();
-//        for(int i = 0; i <= 5; i++) {
-//            String s = random.nextInt(10) + "";
-//            sb.append(s);
-//        }
-//        return sb.toString();
-//    }
-
-    
-//    public static SendSmsResponse sendSms(String phone) throws Exception {
-//
-//        //¿É×ÔÖúµ÷Õû³¬Ê±Ê±¼ä
-//        System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
-//        System.setProperty("sun.net.client.defaultReadTimeout", "10000");
-//
-//        //³õÊ¼»¯acsClient,Ôİ²»Ö§³Öregion»¯
-//        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
-//        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
-//        IAcsClient acsClient = new DefaultAcsClient(profile);
-//
-//        //×é×°ÇëÇó¶ÔÏó-¾ßÌåÃèÊö¼û¿ØÖÆÌ¨-ÎÄµµ²¿·ÖÄÚÈİ
-//        SendSmsRequest request = new SendSmsRequest();
-//        //±ØÌî:´ı·¢ËÍÊÖ»úºÅ
-//        request.setPhoneNumbers(phone);
-//        //±ØÌî:¶ÌĞÅÇ©Ãû-¿ÉÔÚ¶ÌĞÅ¿ØÖÆÌ¨ÖĞÕÒµ½
-//        request.setSignName("sweeblog");
-//        //±ØÌî:¶ÌĞÅÄ£°å-¿ÉÔÚ¶ÌĞÅ¿ØÖÆÌ¨ÖĞÕÒµ½
-//        request.setTemplateCode("SMS_172603764");
-//        //¿ÉÑ¡:Ä£°åÖĞµÄ±äÁ¿Ìæ»»JSON´®,ÈçÄ£°åÄÚÈİÎª"Ç×°®µÄ${name},ÄúµÄÑéÖ¤ÂëÎª${code}"Ê±,´Ë´¦µÄÖµÎª
-//        request.setTemplateParam("{\"code\":\""+createRandNum()+"\"}");//Ä¬ÈÏÎª6Î»Ëæ»úÊı
-//
-//        //Ñ¡Ìî-ÉÏĞĞ¶ÌĞÅÀ©Õ¹Âë(ÎŞÌØÊâĞèÇóÓÃ»§ÇëºöÂÔ´Ë×Ö¶Î)
-//        //request.setSmsUpExtendCode("90997");
-//
-//        //¿ÉÑ¡:outIdÎªÌá¹©¸øÒµÎñ·½À©Õ¹×Ö¶Î,×îÖÕÔÚ¶ÌĞÅ»ØÖ´ÏûÏ¢ÖĞ½«´ËÖµ´ø»Ø¸øµ÷ÓÃÕß
-//        //request.setOutId("yourOutId");
-//
-//        //hint ´Ë´¦¿ÉÄÜ»áÅ×³öÒì³££¬×¢Òâcatch
-//        SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
-//
-//        return sendSmsResponse;
-//    }
-
-
-//    public static QuerySendDetailsResponse querySendDetails(String bizId) throws ClientException {
-//
-//        //¿É×ÔÖúµ÷Õû³¬Ê±Ê±¼ä
-//        System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
-//        System.setProperty("sun.net.client.defaultReadTimeout", "10000");
-//
-//        //³õÊ¼»¯acsClient,Ôİ²»Ö§³Öregion»¯
-//        IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
-//        DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
-//        IAcsClient acsClient = new DefaultAcsClient(profile);
-//
-//        //×é×°ÇëÇó¶ÔÏó
-//        QuerySendDetailsRequest request = new QuerySendDetailsRequest();
-//        //±ØÌî-ºÅÂë
-//        request.setPhoneNumber("15976458285");
-//        //¿ÉÑ¡-Á÷Ë®ºÅ
-//        request.setBizId(bizId);
-//        //±ØÌî-·¢ËÍÈÕÆÚ Ö§³Ö30ÌìÄÚ¼ÇÂ¼²éÑ¯£¬¸ñÊ½yyyyMMdd
-//        SimpleDateFormat ft = new SimpleDateFormat("yyyyMMdd");
-//        request.setSendDate(ft.format(new Date()));
-//        //±ØÌî-Ò³´óĞ¡
-//        request.setPageSize(10L);
-//        //±ØÌî-µ±Ç°Ò³Âë´Ó1¿ªÊ¼¼ÆÊı
-//        request.setCurrentPage(1L);
-//
-//        //hint ´Ë´¦¿ÉÄÜ»áÅ×³öÒì³££¬×¢Òâcatch
-//        QuerySendDetailsResponse querySendDetailsResponse = acsClient.getAcsResponse(request);
-//
-//        return querySendDetailsResponse;
-//    }
-
-    
-    
-    
-    
-    
-    
-    
 	@Resource
 	private UserService userService;
 
-	/** Ä¬ÈÏ½øÈëµÇÂ¼ÊÓÍ¼ */
+	/** é»˜é”Ÿè¾ƒæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿé“°ç¡·æ‹·é”Ÿé…µï¿½ */
 	@RequestMapping("/index.html")
 	public String index(HttpSession session, HttpServletRequest request) {
 		if(session.getAttribute(Constants.USER_SESSION)!=null){
@@ -185,18 +87,18 @@ public class UserController {
 	}
 	
 
-	/** µÇÂ¼¿ØÖÆÆ÷ */
+	/** é”Ÿæ–¤æ‹·å½•é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹· */
 	@RequestMapping("/login.action")
 	public String login(@RequestParam("username") String user_name, @RequestParam("password") String user_pwd,
 			HttpSession session, HttpServletRequest request) {
 		User user = userService.userLogin(user_name, user_pwd);
 		if(user!=null){
-			//Èç¹ûµÇÂ½³É¹¦,½øÈëÖ÷Ò³¡£
+			//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿé“°æ–¤æ‹·æ™’é”Ÿï¿½,é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é¡µé”Ÿæ–¤æ‹·
 			session.setAttribute(Constants.USER_SESSION, user);
 			return "redirect:/index.html";
 			
 		}else{
-			//Èç¹ûµÇÈëÊ§°Ü£¬·µ»ØµÇÂ½Ò³Ãæ¸ø³öÌáÊ¾
+			//é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿç»Ñæ‹·åŸ½é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·æ°é”Ÿé“°æ­ç­¹æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·é”Ÿæ–¤æ‹·ç¤º
 			session.setAttribute(Constants.SYS_MESSAGE, -1);
 			return "redirect:/login.html";
 		}

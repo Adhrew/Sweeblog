@@ -8,18 +8,25 @@ import javax.annotation.Resource;
 
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.clay.dao.BlogDao;
+import com.clay.dao.UserDao;
 import com.clay.entity.Blog;
+import com.clay.entity.User;
 import com.clay.pojo.BlogVo;
 import com.clay.pojo.PagePojo;
 import com.clay.service.BlogService;
+import com.clay.tools.Constants;
 
 @Service("blogService")
 public class BlogServiceImpl implements BlogService{
 	
 	@Resource
 	private BlogDao blogDao;
+	@Resource
+	private UserDao userDao;
 
 	@Override
 	public PagePojo<Blog> queryByPage(BlogVo bv, int page,int size) {
@@ -69,6 +76,19 @@ public class BlogServiceImpl implements BlogService{
 	@Override
 	public boolean deleteBlog(int id) {
 		return blogDao.deleteBlog(id);
+	}
+
+	@Override
+	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	public boolean writeBlog(Blog blog) throws Exception {
+		//增加个人积分
+		int user_id = blog.getUser_id().getUser_id();
+		User user = userDao.queryById(user_id);
+		user.setUser_credit(user.getUser_credit()+ (int)Constants.CREDT);
+		if(!userDao.updateUser(user)||!blogDao.insertBlog(blog)){
+			throw new Exception();
+		}
+		return true;
 	}
 
 }

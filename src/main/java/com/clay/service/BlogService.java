@@ -17,5 +17,7 @@ public interface BlogService {
 	boolean insertBlog(Blog blog);		//新增博客
 	boolean updateBlog(Blog blog);		//修改博客
 	boolean deleteBlog(int id);			//删除博客
+	boolean writeBlog(Blog blog)throws Exception; //发表博客加积分
+	
 	
 }

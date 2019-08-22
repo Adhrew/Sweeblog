@@ -7,6 +7,7 @@ import java.util.List;
 
 
 
+
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -21,6 +22,8 @@ import com.clay.entity.User;
 import com.clay.pojo.BlogVo;
 import com.clay.pojo.PagePojo;
 import com.clay.pojo.UserVo;
+import com.clay.service.BlogService;
+import com.clay.service.UserService;
 import com.clay.service.impl.AdminServiceImpl;
 import com.clay.service.impl.BlogServiceImpl;
 import com.clay.service.impl.IdentityServiceImpl;
@@ -34,9 +37,14 @@ public class test {
 	@Test
 	public  void test1(){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-mybatis.xml");
-		RecordServiceImpl bs = (RecordServiceImpl)ctx.getBean("recordService");
+		UserService us = (UserService) ctx.getBean("userService");
 		try {
-			System.out.println(bs.dealRecord(1, 1));
+			Identity identity = new Identity();
+			User user = new User();
+			user.setUser_id(1);
+			identity.setUser_id(user);
+			identity.setIdentity_idcard("10000");
+			us.doIdentify(1, identity);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
