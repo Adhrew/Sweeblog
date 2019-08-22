@@ -283,6 +283,9 @@
 		<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
 		<link href="css/popuo-box.css" rel="stylesheet" type="text/css"
 			media="all" />
+		<link rel="stylesheet" href="layui/css/layui.css" media="all">
+        <script src="layui/layui.js" charset="utf-8"></script>
+		
 		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
 		<!-- //pop-up-box -->
 		<div class="needtext">
@@ -302,7 +305,7 @@
 		</div>
 
 				<script>
-					layui.use([ 'laypage', 'layer' ], function() {
+				/* 	layui.use([ 'laypage', 'layer' ], function() {
 						var laypage = layui.laypage;
 						var layer = layui.layer;
 						var data = [
@@ -326,7 +329,33 @@
 							}
 						});
 				
-					});
+					}); */
+					
+					layui.use(['laypage', 'layer'], function(){
+                    var laypage = layui.laypage
+                    ,layer = layui.layer;
+
+                    //完整功能
+                     laypage.render({
+                       elem: 'demo20'
+                      ,count: ${pd.count},
+                       curr:${pd.page}
+                       ,limit:${pd.size}
+                       ,layout: ['count', 'prev', 'page','limit','next', 'skip']
+                       ,jump: function(obj,first){
+                       // console.log(obj);
+                       // console.log(first);
+                       //首次不执行
+                       if(!first){
+                      //跳页的实现
+                       //uc?op=queryByPage&page=1&pageSize=10
+    	                location.href="Neajax?page="+obj.curr+"&pageSize="+obj.limit;
+      }
+    }
+  });
+ 
+});
+					
 				</script>
 				<div id="demo20" align="center"></div>
 				<ul id="biuuu_city_list"></ul>
