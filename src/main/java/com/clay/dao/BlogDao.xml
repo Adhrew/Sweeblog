@@ -60,8 +60,19 @@
 			and blog_hot &gt;= #{min_hot} 
 		</if>
 	</sql>
+
 	
+	<sql id="queryBlogTec">
+		<if test="status==0">
+			and t.type_id &lt;&gt;  1
+		</if>
+	</sql>
 	
+	<sql id="queryBlogReq">
+		<if test="status==1">
+			and t.type_id = 1
+		</if>
+	</sql>
 	<select id="queryByPage" resultMap="myblog">
 		select * from blog_info b, user_info u, type_info t
 		<where>
@@ -72,27 +83,29 @@
 			<include refid="queryByTextStr"></include>
 			<include refid="queryByMaxHot"></include>
 			<include refid="queryByMinHot"></include>
+			<include refid="queryBlogTec"></include>
+			<include refid="queryBlogReq"></include>
 		</where>
 	</select>
-	
 	<select id="queryAll" resultMap="myblog">
 		select * from blog_info b, user_info u, type_info t where b.user_id = u.user_id and t.type_id = b.type_id
 	</select>
-	
 	<select id="queryById" resultMap="myblog" parameterType="java.lang.Integer">
 		select * from blog_info b, user_info u, type_info t where b.user_id = u.user_id and t.type_id = b.type_id and blog_id = #{blog_id}
 	</select>
-	
 	<select id="getCount" resultType="java.lang.Integer" parameterType="com.clay.pojo.BlogVo">
-		select count(*) from blog_info b, user_info u  
+		select count(*) from blog_info b, user_info u, type_info t  
 		<where>
 			b.user_id = u.user_id 
+			and t.type_id = b.type_id
 			<include refid="queryByTypeId"></include>
 			<include refid="queryByUserId"></include>
 			<include refid="queryByTitleStr"></include>
 			<include refid="queryByTextStr"></include>
 			<include refid="queryByMaxHot"></include>
 			<include refid="queryByMinHot"></include>
+			<include refid="queryBlogTec"></include>
+			<include refid="queryBlogReq"></include>
 		</where>
 	</select>
 	

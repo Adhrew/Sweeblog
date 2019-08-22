@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.clay.dao.IdentityDao;
 import com.clay.entity.Identity;
+import com.clay.pojo.IdentityVo;
 import com.clay.pojo.PagePojo;
 import com.clay.service.IdentityService;
 
@@ -19,13 +20,13 @@ public class IdentityServiceImpl implements IdentityService{
 	private IdentityDao identityDao;
 	
 	@Override
-	public PagePojo<Identity> queryByPage(int page, int size) {
+	public PagePojo<Identity> queryByPage(IdentityVo iv,int page, int size) {
 		if(page<0||size<0){
 			return null;
 		}
 		PagePojo<Identity> pp = new PagePojo<Identity>();
-		List<Identity> data = identityDao.queryByPage(new RowBounds((page-1)*size, size));
-		int count = identityDao.getCount();
+		List<Identity> data = identityDao.queryByPage(iv, new RowBounds((page-1)*size, size));
+		int count = identityDao.getCount(iv);
 		if(count%size!=0||count==0){
 			count = (count/size)+1;
 		}else{
@@ -49,8 +50,8 @@ public class IdentityServiceImpl implements IdentityService{
 	}
 
 	@Override
-	public int getCount() {
-		return identityDao.getCount();
+	public int getCount(IdentityVo iv) {
+		return identityDao.getCount(iv);
 	}
 
 	@Override
@@ -61,6 +62,11 @@ public class IdentityServiceImpl implements IdentityService{
 	@Override
 	public boolean deleteIdentity(int id) {
 		return identityDao.deleteIdentity(id);
+	}
+
+	@Override
+	public boolean updateIdentity(Identity identity) {
+		return identityDao.updateIdentity(identity);
 	}
 	
 }

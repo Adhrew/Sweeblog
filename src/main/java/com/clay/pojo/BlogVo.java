@@ -1,13 +1,22 @@
 package com.clay.pojo;
 
 public class BlogVo {
-	private Integer type_id;
-	private String title_str_like;
-	private String text_str_like;
-	private Integer user_id;
-	private Integer min_hot;
-	private Integer max_hot;
+	private Integer type_id;      //根据类型查询条件
+	private String title_str_like;//根据博客标题模糊查询
+	private String text_str_like;//根据博客内容模糊查询
+	private Integer user_id;     //根据作者ID查询
+	private Integer min_hot;     //根据热度范围最小值
+	private Integer max_hot;	//根据热度范围最大值
+	private Integer status;		//0查询技术类博客，1查询需求类博客
 	
+	
+	
+	public Integer getStatus() {
+		return status;
+	}
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 	public Integer getType_id() {
 		return type_id;
 	}
