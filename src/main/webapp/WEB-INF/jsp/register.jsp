@@ -3,7 +3,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
+<%@ page language="java" import="java.util.*" contentType="text/html; charset=UTF-8" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -79,24 +79,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<form validate="true" action="#" method="post">
 				<div class="form-group">
 					<label for="exampleInputText">昵称</label>
-					<input type="text" class="form-control" name="name" id="exampleInputText" placeholder="请输入昵称" required>
+					<input type="text" class="form-control" name="username" id="exampleInputText" placeholder="请输入昵称" required>
 				</div>
 				<div class="form-group">
 					<label for="exampleInputPassword1">密码</label>
-					<input maxlength="16" minlength="5" type="password" name="name" class="form-control" id="exampleInputPassword1" placeholder="请输入密码" required>
+					<input maxlength="16" minlength="5" type="password" name="pwd" class="form-control" id="exampleInputPassword1" placeholder="请输入密码" required>
 				</div>
 				<div class="form-group">
 					<label for="exampleConfirmPassword1">确认密码</label>
-					<input type="password" class="form-control" id="exampleConfirmPassword1" name="name" placeholder="确认密码" required data-match="password" data-match-field="#exampleInputPassword1">
+					<input type="password" class="form-control" id="exampleConfirmPassword1" name="confirmpwd" placeholder="确认密码" required data-match="password" data-match-field="#exampleInputPassword1">
 				</div>
 				<div class="form-group">
 					<label for="exampleMobile1">手机号</label>
-					<input type="mobile" class="form-control" name="name" id="exampleMobile1" placeholder="请输入手机号" required>
+					<input type="mobile" class="form-control" name="phone" id="exampleMobile1" placeholder="请输入手机号" required>
 				</div>
 				<div class="form-group">
 					<div class="myyanzhengma">
 						<label for="exampleInputEmail1">验证码</label><br/>
-						<input type="text" class="form-control" style="width: 300px;" name="name" id="" aria-describedby="emailHelp" placeholder="请输入验证码" required>
+						<input type="text" class="form-control" style="width: 300px;" name="identifyingcode" id="" aria-describedby="emailHelp" placeholder="请输入验证码" required>
 						<div class="search">
 							<button class="yanzhengma" style="height: 45px;padding-top:8px;padding-left:8px;padding-right:8px;width: auto;white-space:nowrap;">获取验证码</button>
 						</div>
@@ -124,7 +124,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	</body>
 	<script>
 		var times = 60;
-
+        var ss = '${sessionScope.yy}'
 		function roof() {
 			if(times == 0) {
 				$('.yanzhengma').prop('disabled', false);
@@ -141,6 +141,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			$(this).prop('disabled', true);
 			roof();
 		});
+		
+		
+		
+		
 	</script>
 
 </html>
