@@ -28,6 +28,9 @@
 			<if test="status!=null">
 				and u.user_identity = #{status}
 			</if>
+			<if test="identity_str_like!=null">
+				and u.user_name like concat("%",#{identity_str_like},"%")
+			</if>
 		</where>
 	</select>
 	
@@ -51,6 +54,9 @@
 			u.user_id = i.user_id
 			<if test="status!=null">
 				and u.user_identity = #{status}
+			</if>
+			<if test="identity_str_like!=null">
+				and u.user_name like concat("%",#{identity_str_like},"%")
 			</if>
 		</where>
 	</select>

@@ -40,6 +40,12 @@
 		</if>
 	</sql>
 	
+	<sql id="queryByStrLike">
+		<if test="record_str_like!=null">
+			and b.blog_title like concat("%",#{record_str_like},"%")
+		</if>
+	</sql>
+	
 	
 	
 	<select id="queryByPage" resultMap="reco" parameterType="com.clay.pojo.RecordVo">
@@ -51,6 +57,7 @@
 			<include refid="queryByBlogId"/>
 			<include refid="queryByBlogUserId"/>
 			<include refid="queryByOk"/>
+			<include refid="queryByStrLike"/>
 		</where>
 	</select>
 	
@@ -63,6 +70,7 @@
 			<include refid="queryByBlogId"/>
 			<include refid="queryByBlogUserId"/>
 			<include refid="queryByOk"/>
+			<include refid="queryByStrLike"/>
 		</where>
 	</select>
 	
