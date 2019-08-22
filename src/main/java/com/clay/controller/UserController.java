@@ -10,10 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.clay.entity.Blog;
 import com.clay.entity.User;
 import com.clay.service.UserService;
-import com.clay.service.impl.BlogServiceImpl;
 import com.clay.tools.Constants;
 
 @Controller
