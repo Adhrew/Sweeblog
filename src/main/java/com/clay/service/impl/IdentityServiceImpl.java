@@ -20,13 +20,11 @@ public class IdentityServiceImpl implements IdentityService{
 	private IdentityDao identityDao;
 	
 	@Override
-	public PagePojo<Identity> queryByPage(Integer status,int page, int size) {
+	public PagePojo<Identity> queryByPage(IdentityVo iv,int page, int size) {
 		if(page<0||size<0){
 			return null;
 		}
 		PagePojo<Identity> pp = new PagePojo<Identity>();
-		IdentityVo iv = new IdentityVo();
-		iv.setStatus(status);
 		List<Identity> data = identityDao.queryByPage(iv, new RowBounds((page-1)*size, size));
 		int count = identityDao.getCount();
 		if(count%size!=0||count==0){

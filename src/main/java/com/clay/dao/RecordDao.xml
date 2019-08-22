@@ -11,51 +11,65 @@
 		<result property="record_endtime" column="record_endtime"/>
 		<result property="record_money" column="record_money"/>
 		<association property="blog_id" javaType="com.clay.entity.Blog" column="blog_id" select="com.clay.dao.BlogDao.queryById"/>
-		<association property="user_id" javaType="com.clay.entity.User" column="user_id" select="com.clay.dao.UserDao.queryById"/>
+		<association property="user_id" javaType="com.clay.entity.User" column="r.user_id" select="com.clay.dao.UserDao.queryById"/>
 	</resultMap>
 	
-	<select id="queryByPage" resultMap="reco">
-		select * from record_info 
+	<sql id="queryByStatus">
+		<if test="status!=null">
+			and record_status = #{status}
+		</if>
+	</sql>
+	<sql id="queryByUserId">
+		<if test="user_id!=null">
+			and r.user_id = #{user_id}
+		</if>
+	</sql>
+	<sql id="queryByBlogId">
+		<if test="blog_id!=null">
+			and r.blog_id = #{blog_id}
+		</if>
+	</sql>
+	<sql id="queryByBlogUserId">
+		<if test="ok!=null">
+			and record_ok = #{ok}
+		</if>
+	</sql>
+	<sql id="queryByOk">
+		<if test="blog_user_id!=null">
+			and u.user_id = #{blog_user_id}
+		</if>
+	</sql>
+	
+	
+	
+	<select id="queryByPage" resultMap="reco" parameterType="com.clay.pojo.RecordVo">
+		select * from record_info r, blog_info b, user_info u
+		<where> 
+			r.blog_id = b.blog_id and b.user_id = u.user_id
+			<include refid="queryByStatus"/>
+			<include refid="queryByUserId"/>
+			<include refid="queryByBlogId"/>
+			<include refid="queryByBlogUserId"/>
+			<include refid="queryByOk"/>
+		</where>
 	</select>
 	
-	<select id="getCount" resultType="java.lang.Integer">
-		select count(*) from record_info
+	<select id="getCount" resultType="java.lang.Integer" parameterType="com.clay.pojo.RecordVo">
+		select count(*) from record_info r, blog_info b, user_info u
+		<where> 
+			r.blog_id = b.blog_id and b.user_id = u.user_id
+			<include refid="queryByStatus"/>
+			<include refid="queryByUserId"/>
+			<include refid="queryByBlogId"/>
+			<include refid="queryByBlogUserId"/>
+			<include refid="queryByOk"/>
+		</where>
 	</select>
 	
 	<select id="queryById" resultMap="reco" parameterType="java.lang.Integer">
 		select * from record_info where   record_id = #{id}
 	</select>
-	
-	<select id="getCountByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-		select count(*) from record_info where user_id = #{id}
-	</select>
-	
-	<select id="queryByPageAndUserId" resultMap="reco" parameterType="java.lang.Integer">
-		select * from record_info where  user_id = #{id}
-	</select>
-	
-	<select id="getCountByBlogId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-		select count(*) from record_info where blog_id = #{id}
-	</select>
-	
-	<select id="queryByPageAndBlogId" resultMap="reco" parameterType="java.lang.Integer">
-		select * from record_info where  blog_id = #{id}
-	</select>
-	
-	<select id="queryByPageAndBlogUserId" resultMap="reco" parameterType="java.lang.Integer">
-		select * 
-		from record_info i, blog_info b, user_info u 
-		where b.user_id = u.user_id and b.blog_id = i.blog_id
-		 		and u.user_id = #{id}
-	</select>
-	
-	<select id="getCountByBlogUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-		select count(*)
-		from record_info i, blog_info b, user_info u 
-		where b.user_id = u.user_id and b.blog_id = i.blog_id
-		 		and u.user_id = #{id}
-	</select>
-	
+
 	<insert id="insertRecord" parameterType="com.clay.entity.Record">
 		insert into record_info(blog_id,user_id,record_status,record_ok,record_starttime,record_money)
 		values(#{blog_id.blog_id},#{user_id.user_id},0,0,now(),#{record_money})

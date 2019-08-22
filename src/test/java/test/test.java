@@ -20,10 +20,13 @@ import com.clay.entity.Record;
 import com.clay.entity.Type;
 import com.clay.entity.User;
 import com.clay.pojo.BlogVo;
+import com.clay.pojo.IdentityVo;
 import com.clay.pojo.PagePojo;
+import com.clay.pojo.RecordVo;
 import com.clay.pojo.UserVo;
 import com.clay.service.BlogService;
 import com.clay.service.IdentityService;
+import com.clay.service.RecordService;
 import com.clay.service.UserService;
 import com.clay.service.impl.AdminServiceImpl;
 import com.clay.service.impl.BlogServiceImpl;
@@ -40,7 +43,9 @@ public class test {
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-mybatis.xml");
 		IdentityService is = (IdentityService) ctx.getBean("identityService");
 		try {
-			PagePojo<Identity> pp =  is.queryByPage(2, 1, 10);
+			IdentityVo rv = new IdentityVo();
+			rv.setStatus(1);
+			PagePojo<Identity> pp =  is.queryByPage(rv, 1, 10);
 			System.out.println(pp.getData().size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
