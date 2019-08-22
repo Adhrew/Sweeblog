@@ -41,12 +41,9 @@ public class test {
 	@Test
 	public  void test1(){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-mybatis.xml");
-		IdentityService is = (IdentityService) ctx.getBean("identityService");
+		BlogService is = (BlogService) ctx.getBean("blogService");
 		try {
-			IdentityVo rv = new IdentityVo();
-			rv.setStatus(1);
-			PagePojo<Identity> pp =  is.queryByPage(rv, 1, 10);
-			System.out.println(pp.getData().size());
+			is.deleteBlog(2);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

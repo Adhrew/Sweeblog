@@ -11,7 +11,8 @@ public interface IdentityDao {
 	List<Identity> queryByPage(IdentityVo identity, RowBounds rb);
 	Identity queryByUserId(int id);
 	Identity queryByIdentityId(int id);
-	int getCount();
+	int getCount(IdentityVo iv);
 	boolean insertIdentity(Identity identity);
 	boolean deleteIdentity(int id);
+	boolean updateIdentity(Identity identity);
 }
