@@ -35,7 +35,8 @@ public class NeedController {
 	
 	@RequestMapping("/Neajax")
 	public void Neblog(HttpServletRequest request,HttpServletResponse response,String key) throws IOException{
-		  response.setContentType("text/html;charset=UTF-8");
+		request.setCharacterEncoding("UTF-8");  
+		response.setContentType("text/html;charset=UTF-8");
 		  PrintWriter out=response.getWriter();
 		 /* Integer page;
 		  Integer pageSize;

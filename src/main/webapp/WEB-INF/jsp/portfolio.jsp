@@ -63,8 +63,8 @@
 			for (var i = 0; i < a.data.length; i++) {
 					if(i==0)
 					{
-					str1+="<a href='#small-dialog"+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></a>"; 
-				        str2+="<div id='small-dialog"+"' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+a.data[i].blog_text+"</p></div></div>";
+					str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></a>"; 
+				        str2+="<div id='small-dialog' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+a.data[i].blog_text+"</p></div></div>";
 			
 					}else{
 				        str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></a>"; 
