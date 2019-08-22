@@ -50,6 +50,12 @@
 			and blog_text like concat("%",#{text_str_like},"%")
 		</if>
 	</sql>
+	
+	<sql id="queryByTypeStr">
+		<if test="type_name!=null">
+			and t.type_name = #{type_name}
+		</if>
+	</sql>
 	<sql id="queryByMaxHot">
 		<if test="max_hot!=null">
 			and blog_hot &lt;= #{max_hot} 
@@ -85,6 +91,7 @@
 			<include refid="queryByMinHot"></include>
 			<include refid="queryBlogTec"></include>
 			<include refid="queryBlogReq"></include>
+			<include refid="queryByTypeStr"></include>
 		</where>
 	</select>
 	<select id="queryAll" resultMap="myblog">
@@ -106,6 +113,7 @@
 			<include refid="queryByMinHot"></include>
 			<include refid="queryBlogTec"></include>
 			<include refid="queryBlogReq"></include>
+			<include refid="queryByTypeStr"></include>
 		</where>
 	</select>
 	
