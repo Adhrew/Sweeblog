@@ -1,3 +1,5 @@
+<%@page import="com.clay.entity.User"%>
+<%@page import="com.clay.tools.Constants"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -24,7 +26,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic'
 		 rel='stylesheet' type='text/css'>
 		<link href='http://fonts.googleapis.com/css?family=Fugaz+One' rel='stylesheet' type='text/css'>
-		<link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
 		<link rel="shortcut icon" href="http://www.5imoban.net/favicon.ico" />
 		<script src="http://www.5imoban.net/download/jquery/jquery-1.8.3.min.js"></script>
 		<script src="js/responsiveslides.min.js"></script>
@@ -34,6 +35,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="js/move-top.js"></script>
 		<script type="text/javascript" src="js/easing.js"></script>
 		<script src="js/jquery-2.2.3.min.js"></script>
+		
+		<% 
+			User user = new User();
+			user.setUser_name("Andrew");
+			user.setUser_img("images/1.jpg");
+			user.setUser_sex("男");
+			user.setUser_tel("13290982796");
+			user.setUser_identity(999);
+			session.setAttribute(Constants.USER_SESSION, user); 
+		%>
 
 		<!-- //Jquery -->
 		<!-- Jquery -->
@@ -174,8 +185,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div class="layui-form-item">
 										<label class="layui-form-label">用户名</label>
 										<div class="layui-input-block">
-											<input id="username" type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input"
-											 disabled="disabled" style="max-width:450px">
+											<input id="username" type="text" name="username" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input"
+											 disabled="disabled" style="max-width:450px" value=${sessionScope.userSession.user_name }>
 										</div>
 									</div>
 									<div class="layui-upload"  style="">
@@ -185,28 +196,45 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										<!-- <button type="button" class="layui-btn" id="test1" style="float:left; margin-top:35px; margin-left:30px; margin-right:30px">上传图片</button> -->
 										<div class="layui-upload-list" style="">
-											<img class="layui-upload-img" id="demo1" width="150px" src="images/logo.png">
+											<img class="layui-upload-img" id="demo1" width="150px" src=${sessionScope.userSession.user_img } >
 											<p id="demoText"></p>
 										</div>
 									</div>
 									<div class="layui-form-item">
 										<label class="layui-form-label">性别</label>
 										<div class="layui-input-block">
-											<input id="nan" type="radio" name="sex" value="男" title="男" checked="checked" disabled>
+											<script>
+												$(document).ready(function() {
+													if("${sessionScope.userSession.user_sex }"=="男")
+														$("#nan").attr("checked","checked");
+													else{
+														$("#nv").attr("checked","checked");
+													}
+												})
+											</script>
+											<input id="nan" type="radio" name="sex" value="男" title="男" disabled>
 											<input id="nv" type="radio" name="sex" value="女" title="女" disabled>
 										</div>
 									</div>
 									<div class="layui-form-item">
 										<label class="layui-form-label" style="width:auto;">电话号码</label>
-										<label class="layui-form-label" id="telephone">无</label>
+										<label class="layui-form-label" id="telephone" style="margin-right:30px;margin-left:20px">${sessionScope.userSession.user_tel }</label>
 										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">取消绑定</a>
 									</div>
+									<script>
+									$(document).ready(function() {
+										if(${sessionScope.userSession.user_identity }==999){
+											$("#qwrz").html("");
+										}
+									})
+									</script>
 									<div class="layui-form-item">
 										<label class="layui-form-label" style="width:auto;">认证状态</label>
-										<label class="layui-form-label" id="rz">0</label>
-										<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">前往认证>></button>
+										<label class="layui-form-label" id="rz">${sessionScope.userSession.user_identity }</label>
+										<div id="qwrz">
+											<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">前往认证>></button>
+										</div>
 									</div>
-									
 									<div class="layui-form-item">
 										<div class="layui-input-block" id="bj">
 											<button class="layui-btn" onclick="bj()">编辑</button>
@@ -275,7 +303,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#nv").prop("disabled","disabled");
 					$("#bj").html("<button class='layui-btn' onclick='bj()'>编辑</button>");
 					$("#sctx").html("")
-					$("#demo1").attr("src","images/logo.png")
+					$("#demo1").attr("src","${sessionScope.userSession.user_img }")
 					$("#demoText").html("");
 					form.render(); 
 				});

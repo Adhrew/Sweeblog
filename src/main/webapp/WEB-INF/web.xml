@@ -54,6 +54,14 @@
         <servlet-name>default</servlet-name> 
         <url-pattern>*.jpg</url-pattern> 
     </servlet-mapping>
+    <servlet-mapping> 
+        <servlet-name>default</servlet-name> 
+        <url-pattern>*.woff</url-pattern> 
+    </servlet-mapping>
+    <servlet-mapping> 
+        <servlet-name>default</servlet-name> 
+        <url-pattern>*.woff2</url-pattern> 
+    </servlet-mapping>
 
 	<!-- springMVC自带字符编码过滤器 -->
 	<filter>

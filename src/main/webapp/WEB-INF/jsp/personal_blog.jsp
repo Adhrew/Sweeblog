@@ -153,7 +153,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="layui-col-xs3" style="max-width: 300px;height: 100%;">
 					<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="height:100%;width: 100%; margin-right: 10px;">
 						<li class="layui-nav-item">
-							<a href="javascript:;" style="text-decoration: none;">首页</a>
+							<a href="personal.html" style="text-decoration: none;">首页</a>
 						</li>
 						<li class="layui-nav-item">
 							<a href="javascript:;" style="text-decoration: none;">交易</a>
