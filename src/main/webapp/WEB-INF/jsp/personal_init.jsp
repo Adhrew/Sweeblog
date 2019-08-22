@@ -91,7 +91,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 	</head>
 
-	<body style="min-width: 500px;">
+	<body style="min-width: 700px;">
 
 		<div class="header" id="home">
 			<div class="header-top">
@@ -148,16 +148,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 
 		<div class="container">
-			<div class="layui-row" style="height:570px;" id="lef">
+			<div class="layui-row" style="height:388px;" id="lef">
 				<div class="layui-col-xs3" style="max-width: 300px;height: 100%;">
 					<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="height:100%;width: 100%; margin-right: 10px;">
-						<li class="layui-nav-item layui-this">
-							<a href="javascript:;" style="text-decoration: none;" >首页</a>
-						</li>
 						<li class="layui-nav-item">
+							<a href="personal.html" style="text-decoration: none;">首页</a>
+						</li>
+						<li class="layui-nav-item layui-nav-itemed">
 							<a href="javascript:;" style="text-decoration: none;">交易</a>
 							<dl class="layui-nav-child">
-								<dd><a href="personal_init.html" style="text-decoration: none;">发起交易</a></dd>
+								<dd><a class="layui-this" href="personal_init.html" style="text-decoration: none;">发起交易</a></dd>
 								<dd><a href="personal_acc.html" style="text-decoration: none;">接收交易</a></dd>
 							</dl>
 						</li>
@@ -168,54 +168,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<div class="layui-col-xs9" id="rig">
 					<div style="padding: 20px; background-color: #F2F2F2;">
 						<div class="layui-card">
-							<div class="layui-card-header">简介</div>
+							<div class="layui-card-header">发起交易</div>
 							<div class="layui-card-body">
 								<form class="layui-form" action="">
-									<div class="layui-form-item">
-										<label class="layui-form-label">用户名</label>
+									<div class="layui-form-item" style="max-width: 400px;">
+										<label class="layui-form-label">项目名</label>
 										<div class="layui-input-block">
-											<input id="username" type="text" name="title" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input"
-											 disabled="disabled" style="max-width:450px">
+											<input type="text" name="title" required lay-verify="required" placeholder="请输入项目名" autocomplete="off" class="layui-input">
 										</div>
 									</div>
-									<div class="layui-upload"  style="">
-										<label class="layui-form-label">头像</label>
-										<div id="sctx">
-											
-										</div>
-										<!-- <button type="button" class="layui-btn" id="test1" style="float:left; margin-top:35px; margin-left:30px; margin-right:30px">上传图片</button> -->
-										<div class="layui-upload-list" style="">
-											<img class="layui-upload-img" id="demo1" width="150px" src="logo.png">
-											<p id="demoText"></p>
-										</div>
-									</div>
-									<div class="layui-form-item">
-										<label class="layui-form-label">性别</label>
+									<div class="layui-form-item" style="max-width: 400px;">
+										<label class="layui-form-label">客户id</label>
 										<div class="layui-input-block">
-											<input id="nan" type="radio" name="sex" value="男" title="男" checked="checked" disabled>
-											<input id="nv" type="radio" name="sex" value="女" title="女" disabled>
+											<input type="text" name="title" required lay-verify="required" placeholder="请输入客户id" autocomplete="off" class="layui-input">
+										</div>
+									</div>
+									
+									<div class="layui-form-item" style="max-width: 400px;">
+										<label class="layui-form-label">博客id</label>
+										<div class="layui-input-block">
+											<select name="city" lay-verify="required">
+												<option value=""></option>
+												<option value="0">北京</option>
+											</select>
+										</div>
+									</div>
+									<div class="layui-form-item" style="max-width: 400px;">
+										<label class="layui-form-label">金额</label>
+										<div class="layui-input-block">
+											<input type="text" name="title" required lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
 										</div>
 									</div>
 									<div class="layui-form-item">
-										<label class="layui-form-label" style="width:auto;">电话号码</label>
-										<label class="layui-form-label" id="telephone">无</label>
-										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">取消绑定</a>
-									</div>
-									<div class="layui-form-item">
-										<label class="layui-form-label" style="width:auto;">认证状态</label>
-										<label class="layui-form-label" id="rz">0</label>
-										<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">前往认证>></button>
-									</div>
-									<div class="layui-form-item">
-										<label class="layui-form-label">邮箱</label>
-										<label class="layui-form-label" id="telephone">无</label>
-										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">取消绑定</a>
-									</div>
-									<div class="layui-form-item">
-										<div class="layui-input-block" id="bj">
-											<button class="layui-btn" onclick="bj()">编辑</button>
-											<!-- <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-											<button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
+										<div class="layui-input-block">
+											<button class="layui-btn" lay-submit lay-filter="formDemo">发起</button>
+											<button type="reset" class="layui-btn layui-btn-primary">重置</button>
 										</div>
 									</div>
 								</form>
@@ -225,68 +212,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 			</div>
 		</div>
+
 		
-		<script>
-			function bj(){
-				layui.use('form', function() {
-					var form = layui.form;
-					$("#username").removeAttr("disabled");
-					$("#nan").removeAttr("disabled");
-					$("#nv").removeAttr("disabled");
-					$("#bj").html("<button class='layui-btn' lay-submit lay-filter='formDemo'>修改</button><button class='layui-btn layui-btn-primary' onclick='qx()'>取消</button>");
-					$("#sctx").html("<button type='button' class='layui-btn' id='test1' style='float:left; margin-top:35px; margin-left:30px; margin-right:30px'>上传图片</button>")
-					layui.use('upload', function() {
-						var $ = layui.jquery,
-							upload = layui.upload;
-					
-						//普通图片上传
-						var uploadInst = upload.render({
-							elem: '#test1',
-							url: '/upload/',
-							before: function(obj) {
-								//预读本地文件示例，不支持ie8
-								obj.preview(function(index, file, result) {
-									$('#demo1').attr('src', result); //图片链接（base64）
-								});
-							},
-							done: function(res) {
-								//如果上传失败
-								if (res.code > 0) {
-									return layer.msg('上传失败');
-								}
-								//上传成功
-							},
-							error: function() {
-								//演示失败状态，并实现重传
-								var demoText = $('#demoText');
-								demoText.html(
-									'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-								demoText.find('.demo-reload').on('click', function() {
-									uploadInst.upload();
-								});
-							}
-						});
-					});
-					form.render(); 
-				});
-			}
-			
-			function qx(){
-				layui.use('form', function() {
-					var form = layui.form;
-					$("#username").prop("disabled","disabled");
-					$("#nan").prop("disabled","disabled");
-					$("#nv").prop("disabled","disabled");
-					$("#bj").html("<button class='layui-btn' onclick='bj()'>编辑</button>");
-					$("#sctx").html("")
-					$("#demo1").attr("src","logo.png")
-					$("#demoText").html("");
-					form.render(); 
-				});
-			}
-			
-			
-		</script>
 
 		<script>
 			//Demo
@@ -297,41 +224,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				form.on('submit(formDemo)', function(data) {
 					layer.msg(JSON.stringify(data.field));
 					return false;
-				});
-			});
-		</script>
-
-		<script>
-			layui.use('upload', function() {
-				var $ = layui.jquery,
-					upload = layui.upload;
-
-				//普通图片上传
-				var uploadInst = upload.render({
-					elem: '#test1',
-					url: '/upload/',
-					before: function(obj) {
-						//预读本地文件示例，不支持ie8
-						obj.preview(function(index, file, result) {
-							$('#demo1').attr('src', result); //图片链接（base64）
-						});
-					},
-					done: function(res) {
-						//如果上传失败
-						if (res.code > 0) {
-							return layer.msg('上传失败');
-						}
-						//上传成功
-					},
-					error: function() {
-						//演示失败状态，并实现重传
-						var demoText = $('#demoText');
-						demoText.html(
-							'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-						demoText.find('.demo-reload').on('click', function() {
-							uploadInst.upload();
-						});
-					}
 				});
 			});
 		</script>
@@ -394,7 +286,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<p>Sweeblog 版权所有 皖ICP备13019395号 Copyright © 2013 5imoban.net All Rights Reserved.</p>
 				</div>
 				<div class="clearfix"></div>
-				
+				<script type="text/javascript">
+					$(document).ready(function() {
+						/*
+									var defaults = {
+							  			containerID: 'toTop', // fading element id
+										containerHoverID: 'toTopHover', // fading element hover id
+										scrollSpeed: 1200,
+										easingType: 'linear' 
+							 		};
+									*/
+						$().UItoTop({
+							easingType: 'easeOutQuart'
+						});
+					});
+				</script>
 				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
 			</div>
 		</div>
@@ -403,3 +309,4 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 </html>
+
