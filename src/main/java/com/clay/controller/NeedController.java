@@ -54,7 +54,7 @@ public class NeedController {
 		  System.out.println(key);
 	      BlogVo vo=new BlogVo();
 		  vo.setStatus(1);
-		  vo.setType_name(key);
+		  vo.setTitle_str_like(key);
 		  PagePojo<Blog> list=blogService.queryByPage(vo,1, 3);
 		  Gson g=new Gson();
 		  String str=g.toJson(list);
