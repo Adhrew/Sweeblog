@@ -305,7 +305,7 @@
 		</div>
 
 				<script>
-				/* 	layui.use([ 'laypage', 'layer' ], function() {
+					layui.use([ 'laypage', 'layer' ], function() {
 						var laypage = layui.laypage;
 						var layer = layui.layer;
 						var data = [
@@ -329,9 +329,9 @@
 							}
 						});
 				
-					}); */
+					});
 					
-					layui.use(['laypage', 'layer'], function(){
+					/* layui.use(['laypage', 'layer'], function(){
                     var laypage = layui.laypage
                     ,layer = layui.layer;
 
@@ -354,7 +354,7 @@
     }
   });
  
-});
+}); */
 					
 				</script>
 				<div id="demo20" align="center"></div>

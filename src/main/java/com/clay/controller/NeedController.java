@@ -36,13 +36,24 @@ public class NeedController {
 	public void Neblog(HttpServletRequest request,HttpServletResponse response) throws IOException{
 		  response.setContentType("text/html;charset=UTF-8");
 		  PrintWriter out=response.getWriter();
-		//  Integer page=Integer.valueOf("page");
-		//  Integer pageSize=Integer.valueOf("pageSize");
-		  BlogVo vo=new BlogVo();
+		  Integer page;
+		  Integer pageSize;
+		  if(request.getParameter("page")!=null){
+		   page=Integer.valueOf(request.getParameter("page"));
+		  }
+		  else{
+			  page=1;
+		  }
+		  if(request.getParameter("pageSize")!=null){
+			   pageSize=Integer.valueOf(request.getParameter("pageSize"));
+			  }
+		  else{
+			   pageSize=3;
+		  }
+	    BlogVo vo=new BlogVo();
 		  vo.setStatus(1);
-	//	  PagePojo<Blog> list=blogService.queryByPage(vo,page, pageSize);
-		  PagePojo<Blog> list=blogService.queryByPage(vo,1, 4);
-	//	  request.setAttribute("pd", list);
+		  PagePojo<Blog> list=blogService.queryByPage(vo,1, 3);
+		  request.setAttribute("pd", list);
 		  Gson g=new Gson();
 		  String str=g.toJson(list);
 		  System.out.println(g);
