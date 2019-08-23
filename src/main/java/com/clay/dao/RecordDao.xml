@@ -13,7 +13,7 @@
 		<association property="blog_id" javaType="com.clay.entity.Blog" column="blog_id" select="com.clay.dao.BlogDao.queryById"/>
 		<association property="user_id" javaType="com.clay.entity.User" column="r.user_id" select="com.clay.dao.UserDao.queryById"/>
 	</resultMap>
-	 
+	  
 	<sql id="queryByStatus">
 		<if test="status!=null">
 			and record_status = #{status}
