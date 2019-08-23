@@ -47,7 +47,7 @@
 	});
 
 	//一进去加载的需求博客
-	$(document).ready(function() {
+/* 	$(document).ready(function() {
 		enterajax();
 
 
@@ -73,19 +73,19 @@
 			}
 			console.log(str1);
 			console.log(str2);
-			    $(".portfolio-wrapper").html(str1); 
-			    $(".needtext").html(str2);
+		    $(".portfolio-wrapper").html(str1); 
+			$(".needtext").html(str2);
 
 
 		});
 
-	}
+	} */
 </script>
 
 <!---- start-smoth-scrolling---->
 <script type="text/javascript" src="js/move-top.js"></script>
 <script type="text/javascript" src="js/easing.js"></script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
 	jQuery(document).ready(function($) {
 		$(".scroll").click(function(event) {
 			event.preventDefault();
@@ -94,9 +94,51 @@
 			}, 1200);
 		});
 	});
-</script>
+</script> -->
 <!---End-smoth-scrolling---->
 
+<script>
+			layui.use('layer', function() { //独立版的layer无需执行这一句
+				var $ = layui.jquery,
+					layer = layui.layer; //独立版的layer无需执行这一句
+
+				var str =
+					"<div class='container'>	<div class='row clearfix'>		<div class='col-md-12 column' style='margin:30px'>		<form role='form'>				<div class='form-group'>					 <label for='exampleInputEmail1'>手机号码</label><input type='text' class='form-control' id='exampleInputEmail1' />				</div>				<div class='form-group'>					 <label for='exampleInputPassword1'>密码</label><input type='password' class='form-control' id='exampleInputPassword1' />				</div>			</form>		</div>	</div></div>";
+				//触发事件
+				var active = {
+					notice: function() {
+						//示范一个公告层
+						layer.open({
+							type: 1,
+							title: false //不显示标题栏
+								,
+							closeBtn: false,
+							area: '300px;',
+							shade: 0.8,
+							id: 'LAY_layuipro' //设定一个id，防止重复弹出
+								,
+							btn: ['登录', '返回'],
+							btnAlign: 'c',
+							moveType: 1 //拖拽模式，0或者1
+								,
+							content: str,
+							
+						});
+					}
+				}
+
+
+				$('#layerDemo #layer_one').on('click', function() {
+					location.href = "tologin.html";
+				});
+
+				$('#layerDemo #layer_two').on('click', function() {
+					location.href = "toregister.html";
+				});
+
+
+			});
+		</script>
 </head>
 
 
@@ -167,7 +209,7 @@
 			<div class="form-group" style="float: right;clear: both;">
 				<input type="text" class="form-control" id="text"/>
 			</div>
-			<button type="button" class="btn btn-default" style="float:right;" onclick="enterajax(document.getElementById('text').value)">搜索</button>
+			<button type="button" class="btn btn-default" style="float:right;" onclick="jj(document.getElementById('text').value)">搜索</button>
 		</form>
 		<div class="clearfix"></div>
 		<br />
@@ -216,7 +258,165 @@
 		</div>
 
 
-		<script type="text/javascript">
+		
+		<!-- Gallery Script Ends -->
+		<!-- pop-up-box -->
+		<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
+		<link href="css/popuo-box.css" rel="stylesheet" type="text/css"
+			media="all" />
+		<!-- <link rel="stylesheet" href="layui/css/layui.css" media="all">
+        <script src="layui/layui.js" charset="utf-8"></script> -->
+		
+		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+		<!-- //pop-up-box -->
+		<div class="needtext">
+			<div id="small-dialog" class="mfp-hide">
+				<div class="image-top">
+					<img src="images/img2.jpg" alt="" />
+					<p>
+					</p>
+				</div>
+			</div>
+			<div id="small-dialog1" class="mfp-hide">
+				<div class="image-top">
+					<img src="images/img2.jpg" alt="" />
+					<p>dadsadasd</p>
+				</div>
+			</div>
+		</div>
+
+				<script>
+				
+					/* layui.use([ 'laypage', 'layer' ], function() {
+						var laypage = layui.laypage;
+						var layer = layui.layer;
+						var data = [
+							"1"
+						];
+				
+						//调用分页
+						laypage.render({
+							elem : 'demo20',
+							count : data.length,
+							jump : function(obj) {
+								//模拟渲染
+								document.getElementById('biuuu_city_list').innerHTML = function() {
+									var arr = [],
+										thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
+									layui.each(thisData, function(index, item) {
+										arr.push('<li>' + item + '</li>');
+									});
+									return arr.join('');
+								}();
+							}
+						});
+				
+					}); */
+					
+/* 					layui.use(['laypage', 'layer'], function(){
+                    var laypage = layui.laypage,layer = layui.layer;
+
+                    //完整功能
+                     laypage.render({
+                       elem: 'demo20'
+                      ,count: ${sessionScope.pd.count}
+                      ,curr:${sessionScope.pd.page}
+                       ,limit:${sessionScope.pd.size}
+                       ,layout: ['count', 'prev', 'page','limit','next', 'skip']
+                       ,jump: function(obj,first){
+                        console.log(obj);
+                        console.log(first);
+                       //首次不执行
+                       if(!first){
+                      //跳页的实现
+                       //uc?op=queryByPage&page=1&pageSize=10
+    	                location.href="Neajax?page="+obj.curr+"&pageSize="+obj.limit;
+      }
+    }
+  }); 
+ 
+/* }); */
+
+     	/* if (datak > 3)
+						//调用分页
+						laypage.render({
+							elem : 'demo20',
+							count : datak,
+							limit : 1,
+							jump : function(obj,first) {
+								//模拟渲染
+								$.getJSON("acc_page.action?curr="+ obj.curr+"&userid="+${sessionScope.userSession.user_id }, function(data) {
+									var str = "";
+									$.each(data.data,function(i,item){
+										console.log(item);
+										str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
+										str+=item.blog_id.user_id.user_name + "</td><td>";
+										str+=item.blog_id.blog_title + "</td><td>";
+										str+=item.record_money + "</td><td>";
+										str+=item.record_starttime + "</td></tr><tr><td>";
+										str+="</td></tr></tbody></table></div><div class='layui-input-block' align='right'><button id='rec" + item.blog_id.blog_id + "' class='layui-btn' onclick=''>接受<tton><button id='rej" + item.blog_id.blog_id + "' class='layui-btn layui-btn-primary' onclick=''>拒绝<tton></div></div></div></div>";
+									})
+									$("#my_data").html(str);
+								})
+							}
+						}); */
+						
+				$(document).ready(function(){
+				      console.log(1111);
+				      jj();
+				     
+				});
+				
+						
+			    function jj(key){
+			    $.ajaxSetup({async:false});
+			    $.getJSON("Neajax",{"key":key} ,function(a) {
+				layui.use([ 'laypage', 'layer' ], function() {
+					var laypage = layui.laypage;
+					var layer = layui.layer;
+					console.log(1111);
+					console.log(a);
+					console.log(a.count);
+					var datak =a.count;
+						//调用分页
+						laypage.render({
+							elem : 'demo20',
+							count : datak,
+							limit : 1,
+							jump : function(obj,first) {
+								//模拟渲染
+								
+								$.getJSON("Neajax",{"page":obj.curr,"key":key}, function(data) {
+									var str1 = "";
+									var str2 = "";
+									$.each(data.data,function(i,item){
+										console.log(item);
+										
+					   if(i==0)
+					 {
+					    str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
+				        str2+="<div id='small-dialog' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+item.blog_text+"</p></div></div>";
+			
+					}else{
+				        str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
+				        str2+="<div id='small-dialog"+i+"' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+item.blog_text+"</p></div></div>";
+					}
+									})
+			                     $(".needtext").html(str2);
+			                     $(".portfolio-wrapper").html(str1); 
+								})
+							}
+						});
+				});
+			})
+		
+		}
+		
+		
+						
+					
+				</script>
+				<script type="text/javascript">
 			jQuery(document).ready(function($) {
 				$(".scroll").click(function(event) {
 					event.preventDefault();
@@ -278,85 +478,9 @@
 		
 			});
 		</script>
-		<!-- Gallery Script Ends -->
-		<!-- pop-up-box -->
-		<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
-		<link href="css/popuo-box.css" rel="stylesheet" type="text/css"
-			media="all" />
-		<!-- <link rel="stylesheet" href="layui/css/layui.css" media="all">
-        <script src="layui/layui.js" charset="utf-8"></script> -->
-		
-		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-		<!-- //pop-up-box -->
-		<div class="needtext">
-			<div id="small-dialog" class="mfp-hide">
-				<div class="image-top">
-					<img src="images/img2.jpg" alt="" />
-					<p>
-					</p>
-				</div>
-			</div>
-			<div id="small-dialog1" class="mfp-hide">
-				<div class="image-top">
-					<img src="images/img2.jpg" alt="" />
-					<p>dadsadasd</p>
-				</div>
-			</div>
-		</div>
-
-				<script>
 				
-					layui.use([ 'laypage', 'layer' ], function() {
-						var laypage = layui.laypage;
-						var layer = layui.layer;
-						var data = [
-							"1"
-						];
 				
-						//调用分页
-						laypage.render({
-							elem : 'demo20',
-							count : data.length,
-							jump : function(obj) {
-								//模拟渲染
-								document.getElementById('biuuu_city_list').innerHTML = function() {
-									var arr = [],
-										thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
-									layui.each(thisData, function(index, item) {
-										arr.push('<li>' + item + '</li>');
-									});
-									return arr.join('');
-								}();
-							}
-						});
 				
-					});
-					
-/* 					layui.use(['laypage', 'layer'], function(){
-                    var laypage = layui.laypage,layer = layui.layer;
-
-                    //完整功能
-                     laypage.render({
-                       elem: 'demo20'
-                      ,count: ${sessionScope.pd.count}
-                      ,curr:${sessionScope.pd.page}
-                       ,limit:${sessionScope.pd.size}
-                       ,layout: ['count', 'prev', 'page','limit','next', 'skip']
-                       ,jump: function(obj,first){
-                        console.log(obj);
-                        console.log(first);
-                       //首次不执行
-                       if(!first){
-                      //跳页的实现
-                       //uc?op=queryByPage&page=1&pageSize=10
-    	                location.href="Neajax?page="+obj.curr+"&pageSize="+obj.limit;
-      }
-    }
-  }); 
- 
-/* }); */
-					
-				</script>
 				<div id="demo20" align="center"></div>
 				<ul id="biuuu_city_list"></ul>
 

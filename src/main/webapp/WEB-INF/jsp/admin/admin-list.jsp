@@ -52,67 +52,53 @@
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                             <button class="layui-btn" onclick="xadmin.open('添加用户','./admin-add.html',600,400)"><i class="layui-icon"></i>添加</button>
                         </div>
-                        <div class="layui-card-body ">
-                            <table class="layui-table layui-form">
-                              <thead>
-                                <tr>
-                                  <th>
-                                    <input type="checkbox" name=""  lay-skin="primary">
-                                  </th>
-                                  <th>ID</th>
-                                  <th>登录名</th>
-                                  <th>手机</th>
-                                  <th>邮箱</th>
-                                  <th>角色</th>
-                                  <th>加入时间</th>
-                                  <th>状态</th>
-                                  <th>操作</th>
-                              </thead>
-                              <tbody>
-                                <tr>
-                                  <td>
-                                    <input type="checkbox" name=""  lay-skin="primary">
-                                  </td>
-                                  <td>1</td>
-                                  <td>admin</td>
-                                  <td>18925139194</td>
-                                  <td>113664000@qq.com</td>
-                                  <td>超级管理员</td>
-                                  <td>2017-01-01 11:11:42</td>
-                                  <td class="td-status">
-                                    <span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span></td>
-                                  <td class="td-manage">
-                                    <a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用">
-                                      <i class="layui-icon">&#xe601;</i>
-                                    </a>
-                                    <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
-                                      <i class="layui-icon">&#xe642;</i>
-                                    </a>
-                                    <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                      <i class="layui-icon">&#xe640;</i>
-                                    </a>
-                                  </td>
-                                </tr>
-                              </tbody>
+                         <div class="layui-card-body ">
+                            <table class="layui-hide" id="demo"  lay-filter="demo">
                             </table>
-                        </div>
-                        <div class="layui-card-body ">
-                            <div class="page">
-                                <div>
-                                  <a class="prev" href="">&lt;&lt;</a>
-                                  <a class="num" href="">1</a>
-                                  <span class="current">2</span>
-                                  <a class="num" href="">3</a>
-                                  <a class="num" href="">489</a>
-                                  <a class="next" href="">&gt;&gt;</a>
-                                </div>
-                            </div>
+                               
                         </div>
                     </div>
                 </div>
             </div>
         </div> 
     </body>
+    <!-- 查询博客内容及状态 -->
+    <script type="text/javascript">
+    layui.use('table', function(){
+    	  var table = layui.table;
+    	  $.getJSON("../allBlog.action",function(data){
+    	  //展示已知数据
+    	  table.render({
+    	    elem: '#demo'
+    	    ,cols: [[//标题栏
+    	    		{type:'numbers' ,title:'编号'}
+    	    		,{type:'checkbox'}
+    	    		,{field:'blog_id',title: '博客id', width:80, sort: true}
+    	      		,{field:'blog_title',title: '博客标题', width:120}
+                    ,{field:'blog_text',title: '博客内容', width:80}
+                    ,{field:'type_id',title: '博客类型', width:80,templet: '<div>{{d.type_id.type_name}}</div>'}
+                    ,{field:'blog_time',title: '创建时间', width: 130}
+                    ,{field:'blog_hot',title: '热度', sort:true, width: 80}
+                    ,{field:'user_name', title: '创建者',width:80,templet: '<div>{{d.user_id.user_name}}</div>'}
+                    ,{field:'blog_grade',title: '博客评分',sort: true,minWidth: 120}
+                    ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+    	    ]]
+    	    ,data: data
+    	    ,skin: 'line' //表格风格
+    	    ,even: true
+    	    ,page: true //是否显示分页
+    	    ,limits: [5, 7, 10]
+    	    ,limit: 10 //每页默认显示的数量
+    	  });
+    	});
+    })
+    </script>
+     <script  type="text/html" id="barDemo">
+    <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
+    <i class="layui-icon">&#xe63c;</i></a>
+	<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+    <i class="layui-icon">&#xe640;</i></a>
+    </script>
     <script>
       layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;

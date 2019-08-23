@@ -13,7 +13,7 @@
 		</if>
 	</sql>
 	<select id="userLogin" resultType="com.clay.entity.User">
-		select * from user_info where user_name=#{0} and user_pwd =#{1}
+		select * from user_info where user_tel=#{0} and user_pwd =#{1}
 	</select>
 	<insert id="insertUser" parameterType="com.clay.entity.User">
 		insert into user_info(user_name, user_pwd, user_img, user_sex, user_tel, user_identity, user_register, user_money, user_credit) 

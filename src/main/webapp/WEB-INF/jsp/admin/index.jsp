@@ -4,16 +4,16 @@
 <html class="x-admin-sm">
     <head>
         <meta charset="UTF-8">
-        <title>SweeBlog 后台</title>
+        <title>欢迎页面进入SweeBlog后台页面</title>
         <meta name="renderer" content="webkit|ie-comp|ie-stand">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <meta http-equiv="Cache-Control" content="no-siteapp" />
-        <link rel="stylesheet" href="statics/css/font.css">
-        <link rel="stylesheet" href="statics/css/xadmin.css">
+        <link rel="stylesheet" href="../statics/css/font.css">
+        <link rel="stylesheet" href="../statics/css/xadmin.css">
         <!-- <link rel="stylesheet" href="./css/theme5.css"> -->
-        <script src="statics/lib/layui/layui.js" charset="utf-8"></script>
-        <script type="text/javascript" src="statics/js/xadmin.js"></script>
+        <script src="../statics/lib/layui/layui.js" charset="utf-8"></script>
+        <script type="text/javascript" src="../statics/js/xadmin.js"></script>
         
         <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
         <!--[if lt IE 9]>
@@ -29,7 +29,7 @@
         <!-- 顶部开始 -->
         <div class="container">
             <div class="logo">
-                <a href="./index.html">X-admin v2.2</a></div>
+                <a href="./index.html">SweeBlog v1.0</a></div>
             <div class="left_open">
                 <a><i title="展开左侧栏" class="iconfont">&#xe699;</i></a>
             </div>
@@ -146,7 +146,7 @@
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="分类管理">&#xe723;</i>
-                            <cite>分类管理</cite>
+                            <cite>实名认证</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
@@ -172,13 +172,13 @@
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="管理员管理">&#xe726;</i>
-                            <cite>管理员管理</cite>
+                            <cite>博客管理</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
                                 <a onclick="xadmin.add_tab('管理员列表','${pageContext.request.contextPath}/sys/admin-list.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>管理员列表</cite></a>
+                                    <cite>博客列表</cite></a>
                             </li>
                             <li>
                                 <a onclick="xadmin.add_tab('角色管理','${pageContext.request.contextPath}/sys/admin-role.html')">
@@ -186,9 +186,9 @@
                                     <cite>角色管理</cite></a>
                             </li>
                             <li>
-                                <a onclick="xadmin.add_tab('权限分类','${pageContext.request.contextPath}/sys/admin-cate.html')">
+                                <a onclick="xadmin.add_tab('权限分类','${pageContext.request.contextPath}/sys/cate.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>权限分类</cite></a>
+                                    <cite>博客分类</cite></a>
                             </li>
                             <li>
                                 <a onclick="xadmin.add_tab('权限管理','${pageContext.request.contextPath}/sys/admin-rule.html')">

@@ -26,12 +26,26 @@ public class TechnoController {
     public void offertech(HttpServletRequest request,HttpServletResponse response,String key) throws IOException{
        request.setCharacterEncoding("UTF-8");
        response.setContentType("text/html;charset=UTF-8");
+          Integer page;
+		  Integer pageSize;
+		  if(request.getParameter("page")!=null){
+		   page=Integer.valueOf(request.getParameter("page"));
+		  }
+		  else{
+			  page=1;
+		  }
+		  if(request.getParameter("pageSize")!=null){
+			   pageSize=Integer.valueOf(request.getParameter("pageSize"));
+			  }
+		  else{
+			   pageSize=3;
+		  }
        System.out.println(key);
        PrintWriter out=response.getWriter();
        BlogVo vo=new BlogVo();
        vo.setStatus(0);
        vo.setTitle_str_like(key);
-       PagePojo<Blog> list=blogService.queryByPage(vo, 1, 3);
+       PagePojo<Blog> list=blogService.queryByPage(vo, page, pageSize);
        Gson g=new Gson();
        String str=g.toJson(list);
        out.print(str);

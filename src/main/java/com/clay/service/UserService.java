@@ -10,7 +10,7 @@ import com.clay.pojo.UserVo;
 
 
 public interface UserService {
-	User userLogin(String user_name, String user_pwd);//登陆验证
+	User userLogin(String user_tel, String user_pwd);//登陆验证
 	User queryById(int id); //根据userid查询
 	boolean inserUser(User user);//插入user
 	PagePojo<User> queryByPage(UserVo uv, int page,int size);//根据UserVo条件分页查询，详情看UserVo注释

@@ -74,22 +74,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							moveType: 1 //拖拽模式，0或者1
 								,
 							content: str,
-							success: function(layero) {
-								var btn = layero.find('.layui-layer-btn');
-								btn.find('.layui-layer-btn0').attr({
-									href: 'http://www.layui.com/',
-									target: '_blank'
-								});
-							}
+							
 						});
 					}
 				}
 
 
 				$('#layerDemo #layer_one').on('click', function() {
-					var othis = $(this),
-						method = othis.data('method');
-					active[method] ? active[method].call(this, othis) : '';
+					location.href = "tologin.html";
 				});
 
 				$('#layerDemo #layer_two').on('click', function() {

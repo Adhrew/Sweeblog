@@ -3,12 +3,17 @@ package com.clay.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.clay.entity.Blog;
+import com.clay.entity.Record;
 import com.clay.entity.User;
+import com.clay.pojo.PagePojo;
+import com.clay.pojo.RecordVo;
 import com.clay.service.BlogService;
 import com.clay.service.RecordService;
 import com.clay.service.UserService;
@@ -61,9 +66,49 @@ public class AdminController {
 	public List<User> getAllUserForAjax() {
 		// user_service.queryAll().forEach(System.out::println);
 		List<User> list = user_service.queryAll();
-		for (User user : list) {
-			System.out.println(user.getUser_register());
-		}
+//		for (User user : list) {
+//			System.out.println(user.getUser_register());
+//		}
 		return user_service.queryAll();
+	}
+	
+	/**
+	 * 模糊查询
+	 * @return
+	 */
+	@RequestMapping(value="/likeUser.action")
+	@ResponseBody
+	public List<User> getUserByLike(){
+		return null;
+	}
+	
+	/**
+	 * 修改用户信息
+	 * @return
+	 */
+	@RequestMapping(value="/updateUser.action")
+	@ResponseBody
+	public boolean updateUser(User user) {
+//		User data = request.getParameter("data");
+		boolean flag = user_service.updateUser(user);
+		if (flag) {
+			return true;
+		}else {
+			return false;
+		}
+	}
+	
+	@RequestMapping(value="/allRecord.action")
+	@ResponseBody
+	public List<Record> queryAllRecord(){
+		PagePojo<Record> pp = record_service.queryByPage(null, 1, 100000);
+		return pp.getData();
+	}
+	
+	@RequestMapping(value="/allBlog.action")
+	@ResponseBody
+	public List<Blog> queryAllBlog(){
+		PagePojo<Blog> pp = blog_service.queryByPage(null, 1, 100000);
+		return pp.getData();
 	}
 }
