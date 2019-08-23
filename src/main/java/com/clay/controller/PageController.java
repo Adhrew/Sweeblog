@@ -9,6 +9,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Controller
 public class PageController {
+	
+	@RequestMapping(value="/sys/index.html")
+	public String loadIndex() {
+		return "admin/index";
+	}
 
 	@RequestMapping(value = "/sys/welcome.html")
 	public String loadWelcome() {

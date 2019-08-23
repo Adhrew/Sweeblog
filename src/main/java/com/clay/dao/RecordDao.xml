@@ -11,9 +11,9 @@
 		<result property="record_endtime" column="record_endtime"/>
 		<result property="record_money" column="record_money"/>
 		<association property="blog_id" javaType="com.clay.entity.Blog" column="blog_id" select="com.clay.dao.BlogDao.queryById"/>
-		<association property="user_id" javaType="com.clay.entity.User" column="r.user_id" select="com.clay.dao.UserDao.queryById"/>
+		<association property="user_id" javaType="com.clay.entity.User" column="user_id" select="com.clay.dao.UserDao.queryById"/>
 	</resultMap>
-	
+	  
 	<sql id="queryByStatus">
 		<if test="status!=null">
 			and record_status = #{status}
@@ -49,7 +49,8 @@
 	
 	
 	<select id="queryByPage" resultMap="reco" parameterType="com.clay.pojo.RecordVo">
-		select * from record_info r, blog_info b, user_info u
+		select * 
+		from record_info r, blog_info b, user_info u
 		<where> 
 			r.blog_id = b.blog_id and b.user_id = u.user_id
 			<include refid="queryByStatus"/>
@@ -75,7 +76,9 @@
 	</select>
 	
 	<select id="queryById" resultMap="reco" parameterType="java.lang.Integer">
-		select * from record_info where   record_id = #{id}
+		select * 
+		from record_info r, blog_info b, user_info u
+		where   r.blog_id = b.blog_id and b.user_id = u.user_id and record_id = #{id}
 	</select>
 
 	<insert id="insertRecord" parameterType="com.clay.entity.Record">

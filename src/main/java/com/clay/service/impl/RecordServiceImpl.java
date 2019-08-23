@@ -91,7 +91,7 @@ public class RecordServiceImpl implements RecordService{
 	public boolean dealRecordNot(int record_id) throws Exception {
 		Record record = recordDao.queryById(record_id);
 		record.setRecord_status(-1);
-		if(recordDao.updateRecord(record)){
+		if(!recordDao.updateRecord(record)){
 			throw new Exception();
 		}
 		return false;

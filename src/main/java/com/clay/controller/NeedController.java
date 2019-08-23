@@ -38,7 +38,7 @@ public class NeedController {
 		request.setCharacterEncoding("UTF-8");  
 		response.setContentType("text/html;charset=UTF-8");
 		  PrintWriter out=response.getWriter();
-		 /* Integer page;
+		  Integer page;
 		  Integer pageSize;
 		  if(request.getParameter("page")!=null){
 		   page=Integer.valueOf(request.getParameter("page"));
@@ -51,12 +51,12 @@ public class NeedController {
 			  }
 		  else{
 			   pageSize=3;
-		  }*/
+		  }
 		  System.out.println(key);
 	      BlogVo vo=new BlogVo();
 		  vo.setStatus(1);
 		  vo.setTitle_str_like(key);
-		  PagePojo<Blog> list=blogService.queryByPage(vo,1, 3);
+		  PagePojo<Blog> list=blogService.queryByPage(vo,page,pageSize);
 		  Gson g=new Gson();
 		  String str=g.toJson(list);
 		  System.out.println(g);
