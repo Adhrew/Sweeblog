@@ -161,7 +161,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<dd><a href="personal_acc.html" style="text-decoration: none;">接收交易</a></dd>
 							</dl>
 						</li>
-						<li class="layui-nav-item"><a href="personal_record.html" style="text-decoration: none;">个人订单</a></li>
+						<li class="layui-nav-item">
+							<a href="javascript:;" style="text-decoration: none;">个人订单</a>
+							<dl class="layui-nav-child">
+								<dd><a href="personal_record.html?status=1" style="text-decoration: none;">发起的订单</a></dd>
+								<dd><a href="personal_record.html?status=2" style="text-decoration: none;">接受的订单</a></dd>
+							</dl>
+						</li>
 						<li class="layui-nav-item"><a href="personal_blog.html" style="text-decoration: none;">博客</a></li>
 					</ul>
 				</div>

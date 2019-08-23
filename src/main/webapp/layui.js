@@ -1,4 +1,4 @@
-/** layui-v2.5.4 MIT License By https://www.layui.com */;
+﻿/** layui-v2.5.4 MIT License By https://www.layui.com */;
 ! function(e) {
 	"use strict";
 	var t = document,

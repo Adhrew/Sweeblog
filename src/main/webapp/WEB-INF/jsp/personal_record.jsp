@@ -1,3 +1,5 @@
+<%@page import="com.clay.entity.User"%>
+<%@page import="com.clay.tools.Constants"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -88,7 +90,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			});
 		</script>
-
+<%
+	User user = new User();
+	user.setUser_id(3);
+	session.setAttribute(Constants.USER_SESSION, user);
+%>
 	</head>
 
 	<body style="min-width: 630px;">
@@ -162,16 +168,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<dd><a href="personal_acc.html" class="" style="text-decoration: none;">接收交易</a></dd>
 							</dl>
 						</li>
-						<li class="layui-nav-item layui-this"><a href="javascript:;" style="text-decoration: none;">个人订单</a></li>
+						<li class="layui-nav-item layui-nav-itemed">
+							<a href="javascript:;" style="text-decoration: none;">订单</a>
+							<dl class="layui-nav-child">
+								<dd><a id="fq" class="" href="personal_record.html?status=1" style="text-decoration: none;">发起的交易</a></dd>
+								<dd><a id="js" class="" href="personal_record.html?status=2" style="text-decoration: none;">接受的交易</a></dd>
+							</dl>
+						</li>
+						<script>
+							if(${param.status } == 1)
+								$("#fq").attr("class","layui-this");
+							else{
+								$("#js").attr("class","layui-this");
+							}
+							
+						</script>
 						<li class="layui-nav-item"><a href="personal_blog.html" style="text-decoration: none;">博客</a></li>
 					</ul>
 				</div>
 				<div class="layui-col-xs9" id="rig" style="">
-					<div style="padding: 20px; background-color: #F2F2F2;height: 800px;">
+					<div style="padding: 20px; background-color: #F2F2F2;height: 800px;" id="my_data">
 						<div class="layui-card">
 							<div class="layui-card-header">订单详细记录</div>
 							<div class="layui-card-body">
-								<div class="layui-form-item">
+								<div class="layui-form-item" id="tabledata">
 									<div class="col-md-12 column">
 										<table class="table">
 											<thead>
@@ -201,33 +221,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 
 		<script>
-			layui.use(['laypage', 'layer'], function() {
-				var laypage = layui.laypage;
-				var layer = layui.layer;
-				var data = [
-					'1'
-				];
-				if (data.length > 5)
-
-					//调用分页
-					laypage.render({
-						elem: 'demo20',
-						count: data.length,
-						limit: 5,
-						jump: function(obj) {
-							//模拟渲染
-							document.getElementById('biuuu_city_list').innerHTML = function() {
-								var arr = [],
-									thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
-								layui.each(thisData, function(index, item) {
-									arr.push('<li>' + item + '</li>');
-								});
-								return arr.join('');
-							}();
-						}
-					});
-
-			});
+			$(document).ready(function() {
+			$.get("record_init.action?userid="+${sessionScope.userSession.user_id }+"&status="+${param.status}, function(datak) {
+				layui.use([ 'laypage', 'layer' ], function() {
+					var laypage = layui.laypage;
+					var layer = layui.layer;
+					console.log(datak)
+					if(datak==0){
+						$("#tabledata").html("<div align='center'><label class='layui-form-label' style='width:auto;'>暂未有订单记录</label></div>");
+						return;
+					}
+					if (datak >= 3)
+						//调用分页
+						laypage.render({
+							elem : 'demo20',
+							count : datak,
+							limit : 3,
+							jump : function(obj,first) {
+								//模拟渲染
+								$.getJSON("record_page.action?curr="+ obj.curr+"&userid="+${sessionScope.userSession.user_id }+"&status="+${param.status }, function(data) {
+									var str = "";
+									$.each(data.data,function(i,item){
+										console.log(item);
+										str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
+										str+=item.blog_id.user_id.user_name + "</td><td>";
+										str+=item.blog_id.blog_title + "</td><td>";
+										str+=item.record_money + "</td><td>";
+										str+=item.record_starttime + "</td></tr><tr><td>";
+										str+="</td></tr></tbody></table></div><div class='layui-input-block' align='right'><button id='rec" + item.record_id + "' class='layui-btn' onclick='rec(this)'>接受</button><button id='rej" + item.record_id + "' class='layui-btn layui-btn-primary' onclick='rej(this)'>拒绝</button></div></div></div></div>";
+									})
+									$("#my_data").html(str);
+								})
+							}
+						});
+					else{
+						$.getJSON("record_page.action?curr=1&userid="+${sessionScope.userSession.user_id }+"&status="+${param.status }, function(data) {
+							var str = "";
+							$.each(data.data,function(i,item){
+							console.log(item);
+							str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
+							str+=item.blog_id.user_id.user_name + "</td><td>";
+							str+=item.blog_id.blog_title + "</td><td>";
+							str+=item.record_money + "</td><td>";
+							str+=item.record_starttime + "</td></tr><tr><td>";
+							str+="</td></tr></tbody></table></div><div class='layui-input-block' align='right'><button id='rec" + item.record_id + "' class='layui-btn' onclick='rec(this)'>接受</button><button id='rej" + item.record_id + "' class='layui-btn layui-btn-primary' onclick='rej(this)'>拒绝</button></div></div></div></div>";
+							})
+							$("#my_data").html(str);
+						})
+					}
+				});
+			})
+		})
 		</script>
 
 		<script>

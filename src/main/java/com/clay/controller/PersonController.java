@@ -107,11 +107,57 @@ public class PersonController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		boolean deal = recordService.dealRecordNot(recordid);
-		if(!deal){
-			out.print("<script>alert('拒绝失败！')</script>");
-		}
 		out.print("<script>window.location.href='personal_acc.html'</script>");
 		out.flush();
 		out.close();
+	}
+	
+	@RequestMapping("/record_init.action")
+	public void personal_record_init(@RequestParam("status")int status,@RequestParam("userid")int userid,HttpServletResponse response, HttpServletRequest request) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		RecordVo vo = new RecordVo();
+		if(status == 1)
+			vo.setBlog_user_id(userid);
+		else {
+			vo.setUser_id(userid);
+		}
+		vo.setStatus(1);
+		int count = recordService.getCount(vo);
+		vo.setStatus(2);
+		count += recordService.getCount(vo);
+		
+		out.print(count);
+		out.flush();
+		out.close();
+		
+	}
+	
+	@RequestMapping("/record_page.action")
+	public void personal_record_page(@RequestParam("status")int status,@RequestParam("userid")int userid,@RequestParam("curr")int curr,HttpServletResponse response, HttpServletRequest request) throws IOException {
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		
+		RecordVo vo = new RecordVo();
+		if(status == 1)
+			vo.setBlog_user_id(userid);
+		else {
+			vo.setUser_id(userid);
+		}
+		vo.setStatus(1);
+		PagePojo<Record> list = recordService.queryByPage(vo, curr, 3);
+		vo.setStatus(2);
+		PagePojo<Record> list2 = recordService.queryByPage(vo, curr, 3);
+		
+		list.getData().addAll(list2.getData());
+
+		Gson gson = new Gson();
+		String str = gson.toJson(list);	
+		
+		out.print(str);
+		out.flush();
+		out.close();
+		
 	}
 }
