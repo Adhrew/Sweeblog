@@ -27,9 +27,9 @@ public class UserServiceImpl implements UserService {
 	
 
 	@Override
-	public User userLogin(String user_name, String user_pwd) {
-		if(user_name!=null && user_pwd!=null){
-			return userDao.userLogin(user_name, user_pwd);
+	public User userLogin(String user_tel, String user_pwd) {
+		if(user_tel!=null && user_pwd!=null){
+			return userDao.userLogin(user_tel, user_pwd);
 		}
 		return null;
 	}
