@@ -133,14 +133,12 @@ public class UserController {
 	@Resource
 	private UserService userService;
 
-	/** 默锟较斤拷锟斤拷锟铰硷拷锟酵� */
+	
 	@RequestMapping("/index.html")
 	public String index(HttpSession session, HttpServletRequest request) {
-		if (session.getAttribute(Constants.USER_SESSION) != null) {
-			return "home/index";
-		} else {
+		
 			return "index";
-		}
+		
 	}
 
 	@RequestMapping("/blog.html")

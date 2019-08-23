@@ -140,6 +140,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  });  
 		} */
        </script>
+       <script>
+			layui.use('layer', function() { //独立版的layer无需执行这一句
+				var $ = layui.jquery,
+					layer = layui.layer; //独立版的layer无需执行这一句
+
 				var str =
 					"<div class='container'>	<div class='row clearfix'>		<div class='col-md-12 column' style='margin:30px'>		<form role='form'>				<div class='form-group'>					 <label for='exampleInputEmail1'>手机号码</label><input type='text' class='form-control' id='exampleInputEmail1' />				</div>				<div class='form-group'>					 <label for='exampleInputPassword1'>密码</label><input type='password' class='form-control' id='exampleInputPassword1' />				</div>			</form>		</div>	</div></div>";
 				//触发事件
@@ -157,8 +162,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								,
 							btn: ['登录', '返回'],
 							btnAlign: 'c',
-							moveType: 1 //拖拽模式，0或者1
-								,
+							moveType: 1 ,//拖拽模式，0或者1
+								
 							content: str,
 							
 						});
