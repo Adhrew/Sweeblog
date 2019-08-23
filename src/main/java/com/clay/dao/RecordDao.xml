@@ -75,7 +75,8 @@
 	</select>
 	
 	<select id="queryById" resultMap="reco" parameterType="java.lang.Integer">
-		select * from record_info where   record_id = #{id}
+		select * from record_info r, blog_info b, user_info u
+		where   r.blog_id = b.blog_id and b.user_id = u.user_id and record_id = #{id}
 	</select>
 
 	<insert id="insertRecord" parameterType="com.clay.entity.Record">
