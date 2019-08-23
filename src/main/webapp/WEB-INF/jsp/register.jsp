@@ -78,7 +78,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<!-- //title -->
 		<!-- content -->
 		<div class="sub-main-w3">
-			<form validate="true" action="#" method="post">
+			<form validate="true" action="${pageContext.request.contextPath}/register.html" method="post">
 				<div class="form-group">
 					<label for="exampleInputText">昵称</label>
 					<input type="text" class="form-control" name="username" id="exampleInputText" placeholder="请输入昵称" required>
@@ -100,7 +100,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<label for="exampleInputEmail1">验证码</label><br/>
 						<input type="text" class="form-control" style="width: 300px;" name="identifyingcode" id="" aria-describedby="emailHelp" placeholder="请输入验证码" required>
 						<div class="search">
-							<button class="yanzhengma" style="height: 45px;padding-top:8px;padding-left:8px;padding-right:8px;width: auto;white-space:nowrap;">获取验证码</button>
+							<button class="yanzhengma" style="height: 45px;padding-top:8px;padding-left:8px;padding-right:8px;width: auto;white-space:nowrap;"onclick="send()">获取验证码</button>
 						</div>
 					</div>
 				</div>
@@ -144,6 +144,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			roof();
 		});
 		
+		
+		function send(){
+			var phone = document.getElementById("exampleMobile1");
+			$.get("${pageContext.request.contextPath}/send.action",{phone:phone.value},function(data){
+				
+			});
+		}
 		
 		
 		
