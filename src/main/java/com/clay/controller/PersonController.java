@@ -55,12 +55,12 @@ public class PersonController {
 	}
 	
 	@RequestMapping("/acc_init.action")
-	public void personal_acc_init(HttpServletResponse response, HttpServletRequest request) throws IOException {
+	public void personal_acc_init(@RequestParam("userid")int userid,HttpServletResponse response, HttpServletRequest request) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		
 		RecordVo vo = new RecordVo();
-		vo.setUser_id(5);
+		vo.setUser_id(userid);
 		int count = recordService.getCount(vo);
 		
 		out.print(count);
@@ -76,7 +76,7 @@ public class PersonController {
 		
 		RecordVo vo = new RecordVo();
 		vo.setUser_id(userid);
-		PagePojo<Record> list = recordService.queryByPage(vo, curr, 5);
+		PagePojo<Record> list = recordService.queryByPage(vo, curr, 3);
 		
 		Gson gson = new Gson();
 		String str = gson.toJson(list);	
@@ -87,4 +87,29 @@ public class PersonController {
 		
 	}
 	
+	@RequestMapping("/acc_record.html")
+	public String personal_acc_record(@RequestParam("recordid")int recordid,HttpServletResponse response, HttpServletRequest request) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		boolean deal = recordService.dealRecord(recordid);
+		if(!deal){
+			out.print("<script>alert('余额不足，请先充值！')</script>");
+		}
+		out.flush();
+		out.close();
+		return "Redirect:personal_acc.html";
+	}
+	
+	@RequestMapping("/rej_record.html")
+	public String personal_rej_record(@RequestParam("recordid")int recordid,HttpServletResponse response, HttpServletRequest request) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		boolean deal = recordService.dealRecordNot(recordid);
+		if(!deal){
+			out.print("<script>alert('拒绝失败！')</script>");
+		}
+		out.flush();
+		out.close();
+		return "Redirect:personal_acc.html";
+	}
 }

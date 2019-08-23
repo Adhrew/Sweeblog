@@ -159,7 +159,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 
 		<div class="container">
-			<div class="layui-row" style="height:570px;" id="lef">
+			<div class="layui-row" style="height:510px;" id="lef">
 				<div class="layui-col-xs3" style="max-width: 300px;height: 100%;">
 					<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="height:100%;width: 100%; margin-right: 10px;">
 						<li class="layui-nav-item layui-this">
@@ -195,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 											
 										</div>
 										<!-- <button type="button" class="layui-btn" id="test1" style="float:left; margin-top:35px; margin-left:30px; margin-right:30px">上传图片</button> -->
-										<div class="layui-upload-list" style="">
+										<div class="layui-upload-list" style="float:left;margin-left:30px">
 											<img class="layui-upload-img" id="demo1" width="150px" src=${sessionScope.userSession.user_img } >
 											<p id="demoText"></p>
 										</div>
@@ -258,7 +258,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#nan").removeAttr("disabled");
 					$("#nv").removeAttr("disabled");
 					$("#bj").html("<button class='layui-btn' lay-submit lay-filter='formDemo'>修改</button><button class='layui-btn layui-btn-primary' onclick='qx()'>取消</button>");
-					$("#sctx").html("<button type='button' class='layui-btn' id='test1' style='float:left; margin-top:35px; margin-left:30px; margin-right:30px'>上传图片</button>")
+					$("#sctx").html("<button type='button' class='layui-btn' id='test1' style='float:left; margin-top:35px; margin-left:30px;'>上传图片</button>")
 					layui.use('upload', function() {
 						var $ = layui.jquery,
 							upload = layui.upload;

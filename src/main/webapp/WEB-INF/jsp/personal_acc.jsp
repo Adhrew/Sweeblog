@@ -93,7 +93,7 @@
 
 <%
 	User user = new User();
-	user.setUser_id(5);
+	user.setUser_id(3);
 	session.setAttribute(Constants.USER_SESSION, user);
 %>
 
@@ -187,36 +187,36 @@
 				</ul>
 			</div>
 			<div class="layui-col-xs9" id="rig" style="">
-				<div style="padding: 20px; background-color: #F2F2F2;height: 800px;"  id="my_data">
-					<div class="layui-card" >
+				<div style="padding: 20px; background-color: #F2F2F2;height: 800px;"
+					id="my_data">
+					<div class="layui-card">
 						<div class="layui-card-header">接收交易</div>
-						<div class="layui-card-body" id="check_this">
-							<div class="layui-form-item">
-								<div class="col-md-12 column">
+						<div class="layui-card-body">
+							<div class="layui-form-item" id="tabledata">
+								<!-- <div class="col-md-12 column">
 									<table class="table">
 										<thead>
 											<tr>
-												<th>项目名</th>
-												<th>发起人id</th>
-												<th>博客id</th>
+												<th>发起人姓名</th>
+												<th>博客名</th>
 												<th>金额</th>
+												<th>发起时间</th>
 											</tr>
 										</thead>
-										<tbody id="tabledata">
+										<tbody>
 
 										</tbody>
 									</table>
 								</div>
 								<div class="layui-input-block" align="right">
-									<button class="layui-btn" onclick="">接受</button>
-									<button class="layui-btn layui-btn-primary" onclick="">拒绝</button>
-								</div>
+									<button id="" class="layui-btn" onclick="">接受</button>
+									<button id="" class="layui-btn layui-btn-primary" onclick="">拒绝</button>
+								</div> -->
 							</div>
 						</div>
 					</div>
-					<div id="demo20" align="center"></div>
-					<ul id="biuuu_city_list"></ul>
 				</div>
+				<div id="demo20" align="center" style="margin-top:-60px"></div>
 			</div>
 		</div>
 	</div>
@@ -224,51 +224,67 @@
 	<script>
 	
 		$(document).ready(function() {
-			$.get("acc_init.action", function(datak) {
+			$.get("acc_init.action?userid="+${sessionScope.userSession.user_id }, function(datak) {
 				layui.use([ 'laypage', 'layer' ], function() {
 					var laypage = layui.laypage;
 					var layer = layui.layer;
-					if(datak==0)
-						$("#tabledata").html("暂未有交易记录");
-					if (datak > 5)
+					console.log(datak)
+					if(datak==0){
+						$("#tabledata").html("<div align='center'><label class='layui-form-label' style='width:auto;'>暂未有交易记录</label></div>");
+						return;
+					}
+					if (datak >= 3)
 						//调用分页
 						laypage.render({
 							elem : 'demo20',
 							count : datak,
-							limit : 1,
+							limit : 3,
 							jump : function(obj,first) {
 								//模拟渲染
 								$.getJSON("acc_page.action?curr="+ obj.curr+"&userid="+${sessionScope.userSession.user_id }, function(data) {
-									var str = "<tr><td>";
+									var str = "";
 									$.each(data.data,function(i,item){
 										console.log(item);
-										str+=item.record_id + "</td><td>";
-										str+=item.user_id + "</td><td>";
-										str+=item.blog_id + "</td><td>";
-										str+=item.record_money + "</td></tr><tr><td>";
+										str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
+										str+=item.blog_id.user_id.user_name + "</td><td>";
+										str+=item.blog_id.blog_title + "</td><td>";
+										str+=item.record_money + "</td><td>";
+										str+=item.record_starttime + "</td></tr><tr><td>";
+										str+="</td></tr></tbody></table></div><div class='layui-input-block' align='right'><button id='rec" + item.record_id + "' class='layui-btn' onclick='rec(this)'>接受</button><button id='rej" + item.record_id + "' class='layui-btn layui-btn-primary' onclick='rej(this)'>拒绝</button></div></div></div></div>";
 									})
-									str+="</td></tr>";
-									$("#tabledata").html(str);
+									$("#my_data").html(str);
 								})
 							}
 						});
 					else{
 						$.getJSON("acc_page.action?curr=1&userid="+${sessionScope.userSession.user_id }, function(data) {
-							var str = "<tr><td>";
+							var str = "";
 							$.each(data.data,function(i,item){
-								console.log(item);
-								str+=item.record_id + "</td><td>";
-								str+=item.user_id + "</td><td>";
-								str+=item.blog_id + "</td><td>";
-								str+=item.record_money + "</td></tr><tr><td>";
+							console.log(item);
+							str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
+							str+=item.blog_id.user_id.user_name + "</td><td>";
+							str+=item.blog_id.blog_title + "</td><td>";
+							str+=item.record_money + "</td><td>";
+							str+=item.record_starttime + "</td></tr><tr><td>";
+							str+="</td></tr></tbody></table></div><div class='layui-input-block' align='right'><button id='rec" + item.record_id + "' class='layui-btn' onclick='rec(this)'>接受</button><button id='rej" + item.record_id + "' class='layui-btn layui-btn-primary' onclick='rej(this)'>拒绝</button></div></div></div></div>";
 							})
-							str+="</td></tr>";
-							$("#tabledata").html(str);
+							$("#my_data").html(str);
 						})
 					}
 				});
 			})
 		})
+		
+		
+		function rec(btn){
+			var id = $(btn).attr("id").substring(3);
+			window.location.href="acc_record.html?recordid="+id;
+		}
+		
+		function rej(btn){
+			var id = $(btn).attr("id").substring(3);
+			window.location.href="rej_record.html?recordid="+id;
+		}
 	</script>
 
 	<script>
