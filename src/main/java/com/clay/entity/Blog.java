@@ -8,7 +8,7 @@ public class Blog {
 	private Integer blog_id;
 	private String blog_title;
 	private String blog_text;
-	private Date blog_time;
+	private String blog_time;
 	private Integer blog_hot;
 	private User user_id;
 	private	Integer blog_grade;
@@ -32,10 +32,10 @@ public class Blog {
 	public void setBlog_text(String blog_context) {
 		this.blog_text = blog_context;
 	}
-	public Date getBlog_time() {
+	public String getBlog_time() {
 		return blog_time;
 	}
-	public void setBlog_time(Date blog_time) {
+	public void setBlog_time(String blog_time) {
 		this.blog_time = blog_time;
 	}
 	public Integer getBlog_hot() {
