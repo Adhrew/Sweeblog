@@ -59,7 +59,60 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<script>
 		//一进去页面加载
+		
 		$(document).ready(function(){
+				      console.log(1111);
+				      enterTec();
+				     
+				});
+				
+						
+			    function enterTec(key){
+			    $.ajaxSetup({async:false});
+			    $.getJSON("Teagax",{"key":key} ,function(a) {
+				layui.use([ 'laypage', 'layer' ], function() {
+					var laypage = layui.laypage;
+					var layer = layui.layer;
+					console.log(1111);
+					console.log(a);
+					console.log(a.count);
+					var datak =a.count;
+						//调用分页
+						laypage.render({
+							elem : 'demo20',
+							count : datak,
+							limit : 1,
+							jump : function(obj,first) {
+								//模拟渲染
+								
+								$.getJSON("Teagax",{"page":obj.curr,"key":key}, function(data) {
+									var str1 = "";
+									
+									$.each(data.data,function(i,a){
+										console.log(a);
+									 str1+="<div class='blog_posts'><div class='blog_date'><figure><span>"+data.data[i].blog_time[3]+data.data[i].blog_time[4]+"</span>"+data.data[i].blog_time[0]+data.data[i].blog_time[1]+"</figure>"
+	              +"</div><div class='blog_desc'><div class='blog_heading'><a href='' target='_blank'>"+data.data[i].blog_title+"</a>"
+				  +"<p>发布于"+data.data[i].blog_time+" by <a href='' target='_blank'>"+data.data[i].user_id.user_name+"</a></p></div>"
+				  +"<div class='section group example'><div class='col blog_1_of_2'><div class='blog_img'><a href='' target='_blank'><img src='http://www.5imoban.net/uploads/allimg/151026/1-1510261K3450-L.gif' alt='image' class='img-responsive zoom-img'></a>"
+				  +"</div></div><div class='col blogdata_1_of_2'><div class='blog_data'><p>"+data.data[i].blog_text+"</p><div class='more'><span><a class='button outline-outward hvr-rectangle-in' href='' target='_blank'>Read More</a></span>"
+				  +"</div></div></div></div><div class='clearfix'></div></div><div class='clearfix'></div></div>"; 	
+					      
+									})
+			                     $("#chuan").html(str1);
+			                  
+								})
+							}
+						});
+				});
+			})
+		
+		}
+		
+		
+		
+		
+		
+		/* $(document).ready(function(){
 		      enterTec();
 		
 		});
@@ -85,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		  
 		  
 		  });  
-		}
+		} */
        </script>
 	</head>
 	<body>
