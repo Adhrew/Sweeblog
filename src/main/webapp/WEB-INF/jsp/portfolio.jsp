@@ -56,7 +56,7 @@
 	//加载需求的博客函数
 	function enterajax(key) {
 		$.ajaxSetup({async:false});
-		$.getJSON("Neajax",{key:key}, function(a) {
+		$.getJSON("Neajax",{"key":key}, function(a) {
 			console.log(a);
 			var str1 = "";
 			var str2 = "";

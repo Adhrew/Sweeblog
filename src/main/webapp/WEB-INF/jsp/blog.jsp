@@ -56,7 +56,37 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			});
 		</script>
 		<!---End-smoth-scrolling------>
-
+		
+		<script>
+		//一进去页面加载
+		$(document).ready(function(){
+		      enterTec();
+		
+		});
+		
+		
+		function enterTec(key){
+		  $.ajaxSetup({async:false});
+		  $.getJSON("Teagax",{"key":key},function(a){
+		         console.log(a);
+		         str1="";
+		         str2="";
+		         for(var i=0;i<a.data.length;i++)
+		         {
+		          str1+="<div class='blog_posts'><div class='blog_date'><figure><span>"+a.data[i].blog_time[3]+a.data[i].blog_time[4]+"</span>"+a.data[i].blog_time[0]+a.data[i].blog_time[1]+"</figure>"
+	              +"</div><div class='blog_desc'><div class='blog_heading'><a href='' target='_blank'>"+a.data[i].blog_title+"</a>"
+				  +"<p>发布于"+a.data[i].blog_time+" by <a href='' target='_blank'>"+a.data[i].user_id.user_name+"</a></p></div>"
+				  +"<div class='section group example'><div class='col blog_1_of_2'><div class='blog_img'><a href='' target='_blank'><img src='http://www.5imoban.net/uploads/allimg/151026/1-1510261K3450-L.gif' alt='image' class='img-responsive zoom-img'></a>"
+				  +"</div></div><div class='col blogdata_1_of_2'><div class='blog_data'><p>"+a.data[i].blog_text+"</p><div class='more'><span><a class='button outline-outward hvr-rectangle-in' href='' target='_blank'>Read More</a></span>"
+				  +"</div></div></div></div><div class='clearfix'></div></div><div class='clearfix'></div></div>";   
+				  console.log(str1); 
+		         }
+		         $("#chuan").html(str1);
+		  
+		  
+		  });  
+		}
+       </script>
 	</head>
 	<body>
 		<!-- header -->
@@ -121,14 +151,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				</div>
 				<form class="navbar-form navbar-right" role="search">
 					<div class="form-group" style="float: right;">
-						<input type="text" class="form-control" />
-					</div> <button type="submit" class="btn btn-default" style="float:right;">搜索</button>
+						<input type="text" class="form-control" id="text"/>
+					</div> <button type="button" class="btn btn-default" style="float:right;" onclick="enterTec(document.getElementById('text').value)">搜索</button>
 				</form>
 				<br />
 				<div class="section group">
 					<div class="blog-grids">
 						<div class="cont span_2_of_3">
-							<div class="col-md-8 blog-grid">
+							<div class="col-md-8 blog-grid" id="chuan">
 								<!-- 文章列表 -->
 								<div class="blog_posts">
 									<div class="blog_date">
