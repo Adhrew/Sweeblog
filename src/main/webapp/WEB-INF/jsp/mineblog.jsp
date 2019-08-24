@@ -21,7 +21,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<![endif]-->
 	<script type="text/javascript">
 	    function fanhui(){
-	       window.local.href="/blog.html";
+	      window.location.href="${pageContext.request.contextPath}/blog.html";
+	   
 	    }
 	</script>
 </head>
@@ -32,10 +33,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<img src="images/img-1.png" alt="article image">
 				<h1>${requestScope.title }</h1>
 			</header>
+		      <p>${requestScope.text}</p>
 			
-			<p>
-				${requestScope.text }
-			</p>
 			<!-- <p>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Corrupti cum quibusdam eaque, autem porro fuga laudantium culpa beatae laboriosam quos.
 			</p>
@@ -134,13 +133,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<aside class="cd-read-more">
 			<ul>
 				<li>
-					<a href="">
+					<a href="javascript:fanhui()">
 					    <em>${requestScope.title}</em>
 						<b>博主  by ${requestScope.name}</b>
-						
 						<svg x="0px" y="0px" width="36px" height="36px" viewBox="0 0 36 36"><circle fill="none" stroke-width="2" cx="18" cy="18" r="16" stroke-dasharray="100 100" stroke-dashoffset="100" transform="rotate(-90 18 18)"></circle></svg>
 					</a>
-					
 				</li>
 
 			<!-- 	<li>
@@ -173,8 +170,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	
 	<script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js" type="text/javascript"></script>
 	<script src="js/main.js"></script> <!-- Resource jQuery -->
-	<script type="text/javascript">
-	   
-	</script>
+	
 </body>
 </html>
