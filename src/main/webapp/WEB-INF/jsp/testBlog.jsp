@@ -19,8 +19,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   </head>  
+  <style>
+  	.w-e-text-container{
+        height: 600px !important;
+        width: 1000px;
+    }
+
+    .w-e-tool-bar{
+        width: 1000px !important;
+    }
+  </style>
  <body>
-    <div id="editor">
+    <div id="editor" >
         <p>欢迎使用 Sweeblog 博客</p>
     </div>
     <button id="button">点击</button>
@@ -53,10 +63,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 insertImg(url)
             }
         }
+        editor.customConfig.zIndex = 600
         editor.create()
+        
         $("#button").click(function () {
-        var a = $("#editor").html();
-        	alert(a);
+        	alert(editor.txt.html());
     	});
     </script>
 </html>
