@@ -18,22 +18,29 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
   </head>  
   <style>
   	.w-e-text-container{
-        height: 600px !important;
-        width: 1000px;
+        height: 300px !important;
+        width: 100%；
     }
 
     .w-e-tool-bar{
-        width: 1000px !important;
+        width: 100% !important;
     }
   </style>
  <body>
-    <div id="editor" >
+    <form action="writedone.html" method="post">
+   <div class="form-group">
+   <input class="form-control" type="text" name="title" placeholder="标题名" id="title">
+  </div>
+   <input type="hidden" name="text" id="text"/>
+    <div id="editor" name="text">
         <p>欢迎使用 Sweeblog 博客</p>
     </div>
-    <button id="button">点击</button>
+    <button id="button" type="submit">点击</button>
+    </form>
 	<script type="text/javascript" src="wangEditor/release/wangEditor.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
     <script type="text/javascript">
@@ -64,10 +71,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             }
         }
         editor.customConfig.zIndex = 600
+        +
         editor.create()
         
         $("#button").click(function () {
-        	alert(editor.txt.html());
+        	alert(editor.txt.html());	
+    	});
+    	
+    	$("#editor").blur(function(){
+    	     alert(1111);
+    	     $("#text").val(editor.txt.html());
     	});
     </script>
+    </body>
 </html>
