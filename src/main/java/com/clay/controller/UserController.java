@@ -146,6 +146,11 @@ public class UserController {
 		return "blog";
 	}
 
+	@RequestMapping("/payindex.html")
+	public String payindex(HttpSession session, HttpServletRequest request) {
+		return "payindex";
+	}
+	
 	@RequestMapping("/toregister.html")
 	public String toregister() {
 		return "register";
