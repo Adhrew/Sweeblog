@@ -67,5 +67,11 @@ public class TypeServiceImpl implements TypeService{
 	public Type queryById(int id) {
 		return typeDao.queryById(id);
 	}
+
+	@Override
+	public List<Type> queryTe() {
+		// TODO Auto-generated method stub
+		return typeDao.queryTe();
+	}
 	
 }

@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'index.jsp' starting page</title>
+    <title>写博客</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -19,6 +19,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
   <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="shortcut icon" href="http://www.5imoban.net/favicon.ico" />
+  <script type="text/javascript">
+       function save(){
+            document.getElementById("text").value=editor.txt.html();
+        	alert(document.getElementById("text").value);
+            }
+    
+  </script>
   </head>  
   <style>
   	.w-e-text-container{
@@ -32,14 +40,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </style>
  <body>
     <form action="writedone.html" method="post">
-   <div class="form-group">
-   <input class="form-control" type="text" name="title" placeholder="标题名" id="title">
-  </div>
-   <input type="hidden" name="text" id="text"/>
-    <div id="editor" name="text">
-        <p>欢迎使用 Sweeblog 博客</p>
-    </div>
-    <button id="button" type="submit">点击</button>
+	   <div class="form-group">
+	   <input class="form-control" type="text" name="title" placeholder="标题名" id="title">
+	  </div>
+	   <input type="hidden" name="text" id="text"/>
+	    <div id="editor" >
+	        <p>欢迎使用 Sweeblog 博客</p>
+	    </div>
+	    <button id="button" type="button" class="btn btn-info" onclick="save()">保存</button>
+	    <button  type="submit" class="btn btn-info">发布</button>
     </form>
 	<script type="text/javascript" src="wangEditor/release/wangEditor.js"></script>
 	<script type="text/javascript" src="js/jquery-3.2.1.min.js"></script>
@@ -74,14 +83,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         +
         editor.create()
         
-        $("#button").click(function () {
-        	alert(editor.txt.html());	
-    	});
+       
     	
-    	$("#editor").blur(function(){
-    	     alert(1111);
-    	     $("#text").val(editor.txt.html());
-    	});
     </script>
     </body>
 </html>

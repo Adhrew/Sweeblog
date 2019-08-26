@@ -14,4 +14,5 @@ public interface TypeDao {
 	boolean insertType(Type type);
 	boolean updateType(Type type);
 	boolean deleteType(int id);
+    List<Type> queryTe();
 }

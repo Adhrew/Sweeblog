@@ -23,4 +23,7 @@
 	<update id="updateType" parameterType="com.clay.entity.Type">
 		update type_info set type_name = #{type_name} where type_id = #{type_id}
 	</update>
+	<select id="queryTe" resultType="com.clay.entity.Type">
+	select * from type_info where type_id!=1
+	</select>
 </mapper>

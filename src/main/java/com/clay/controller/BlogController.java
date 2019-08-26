@@ -72,15 +72,9 @@ public class BlogController {
 		blog.setBlog_text(text);
 		blog.setBlog_title(title);
 		if(blogService.writeBlog(blog)){
-		   	out.print("<script>alert('发布成功');</script>");
-		   	out.flush();
-		   	out.close();
 		   	return "blog";
 		}
 		else{
-			out.print("<script>alert('发布失败');</script>");
-			out.flush();
-		   	out.close();
 		   	return "testBlog";
 		}
 		
