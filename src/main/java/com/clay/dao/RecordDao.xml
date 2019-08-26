@@ -101,9 +101,6 @@
 		<if test="record_money!=null">
 			record_money=#{record_money},
 		</if>
-		<if test="record_starttime!=null">
-			record_starttime = now(),
-		</if>
 		<if test="record_endtime!=null">
 			record_endtime = now(),
 		</if>
