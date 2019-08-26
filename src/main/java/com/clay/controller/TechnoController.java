@@ -61,12 +61,14 @@ public class TechnoController {
     }
 	
 	@RequestMapping("/mineblog.html")
-	public String mine(HttpServletRequest request,HttpServletResponse response,String name,String title,String text) throws UnsupportedEncodingException{
-		 request.setCharacterEncoding("UTF-8");
-	       response.setContentType("text/html;charset=UTF-8");
-	       request.setAttribute("name", name);
-	       request.setAttribute("title", title);
-	       request.setAttribute("text", text);
+	public String mine(HttpServletRequest request,HttpServletResponse response, String blog_id) throws UnsupportedEncodingException{
+	   request.setCharacterEncoding("UTF-8");
+       response.setContentType("text/html;charset=UTF-8");
+	   Integer blogId = Integer.valueOf(blog_id);
+	   Blog blog = blogService.queryById(blogId);
+       request.setAttribute("name", blog.getUser_id().getUser_name());
+       request.setAttribute("title", blog.getBlog_title());
+       request.setAttribute("text", blog.getBlog_text());
 	   return "mineblog";	
 	}
 	
