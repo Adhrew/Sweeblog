@@ -69,9 +69,9 @@
 		
 			<div class="am-u-sm-6">
 				<div id="message-input-nickname" class="am-input-group am-input-group-primary">
-					<span class="am-input-group-label"><i class="am-icon-user"></i></span>
-					<input id="nickname" type="text" class="am-form-field" placeholder="Please enter nickname" value="${sessionScope.user.user_id }"/>
-					<input id="who" type="text" class="am-form-field" placeholder="Please enter who" value="${sessionScope.sender.user_id }"/>
+					<!-- <span class="am-input-group-label"><i class="am-icon-user"></i></span> -->
+					<input id="nickname" type="hidden" class="am-form-field" placeholder="Please enter nickname" value="${sessionScope.user.user_id }"/>
+					<input id="who" type="hidden" class="am-form-field" placeholder="Please enter who" value="${sessionScope.sender.user_id }"/>
 				</div>
 			</div>
 			

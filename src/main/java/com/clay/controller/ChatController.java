@@ -25,6 +25,7 @@ public class ChatController {
 	private MessageService messageService;
 	@RequestMapping("/Chat.html")
 	public String entryChat(HttpSession session,String user_id,String sender_id){
+		System.out.println("yuhaonan");
 		User user = new User();
 		User sender = new User();
 		if(user_id!=null&&sender_id!=null){

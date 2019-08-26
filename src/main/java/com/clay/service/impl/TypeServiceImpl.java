@@ -73,5 +73,11 @@ public class TypeServiceImpl implements TypeService{
 		// TODO Auto-generated method stub
 		return typeDao.queryTe();
 	}
+
+	@Override
+	public Type queryTeByname(String name) {
+		// TODO Auto-generated method stub
+		return typeDao.queryTeByname(name);
+	}
 	
 }

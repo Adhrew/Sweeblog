@@ -46,40 +46,7 @@
 		});
 	});
 
-	//一进去加载的需求博客
-/* 	$(document).ready(function() {
-		enterajax();
 
-
-	});
-
-	//加载需求的博客函数
-	function enterajax(key) {
-		$.ajaxSetup({async:false});
-		$.getJSON("Neajax",{"key":key}, function(a) {
-			console.log(a);
-			var str1 = "";
-			var str2 = "";
-			for (var i = 0; i < a.data.length; i++) {
-					if(i==0)
-					{
-					str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></a>"; 
-				        str2+="<div id='small-dialog' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+a.data[i].blog_text+"</p></div></div>";
-			
-					}else{
-				        str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></a>"; 
-				        str2+="<div id='small-dialog"+i+"' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+a.data[i].blog_text+"</p></div></div>";
-					}
-			}
-			console.log(str1);
-			console.log(str2);
-		    $(".portfolio-wrapper").html(str1); 
-			$(".needtext").html(str2);
-
-
-		});
-
-	} */
 </script>
 
 <!---- start-smoth-scrolling---->

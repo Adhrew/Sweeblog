@@ -26,4 +26,7 @@
 	<select id="queryTe" resultType="com.clay.entity.Type">
 	select * from type_info where type_id!=1
 	</select>
+	<select id="queryTeByname" resultType="com.clay.entity.Type" parameterType="String">
+	   select * from type_info where type_name=#{type_name}
+	</select>
 </mapper>

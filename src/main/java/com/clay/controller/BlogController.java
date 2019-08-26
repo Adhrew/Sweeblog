@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -21,8 +22,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.clay.entity.Blog;
+import com.clay.entity.Type;
 import com.clay.entity.User;
 import com.clay.service.BlogService;
+import com.clay.service.TypeService;
+import com.google.gson.Gson;
 
 @Controller
 public class BlogController {
@@ -30,9 +34,20 @@ public class BlogController {
 	@Resource
 	private BlogService blogService;
 	
+	@Resource
+	private TypeService typeService; 
+	
 	@RequestMapping("writeBlog.html")
-	public String writeBlog(){
-		return "testBlog";
+	public String writeBlog(HttpServletRequest request,HttpServletResponse reponse) throws IOException{
+		 request.setCharacterEncoding("UTF-8");
+	     reponse.setContentType("text/html;charset=UTF-8"); 
+	     PrintWriter out=reponse.getWriter();
+	     List<Type> typelist=typeService.queryAll();
+	     System.out.println("-->");
+	     System.out.println(typelist);
+	     request.setAttribute("typelist",typelist);
+	     return "testBlog";
+		
 	}
 	@RequestMapping(value = "uploadImg",method = RequestMethod.POST)
 	public @ResponseBody Object uploadImg(@RequestParam("FileName")MultipartFile myFileName,HttpSession session,HttpServletRequest request) throws IllegalStateException, IOException{
@@ -59,7 +74,7 @@ public class BlogController {
 	}
 	
 	@RequestMapping(value="/writedone.html",method=RequestMethod.POST)
-	public String writedone(HttpServletRequest request,HttpServletResponse reponse,String title,String text) throws Exception{
+	public String writedone(HttpServletRequest request,HttpServletResponse reponse,String title,String text,String typename) throws Exception{
 		request.setCharacterEncoding("UTF-8");
 		reponse.setContentType("text/html;charset=UTF-8");
 		PrintWriter out=reponse.getWriter();
@@ -71,6 +86,8 @@ public class BlogController {
 		blog.setUser_id(a);
 		blog.setBlog_text(text);
 		blog.setBlog_title(title);
+		Type type=typeService.queryTeByname(typename);
+		blog.setType_id(type);
 		if(blogService.writeBlog(blog)){
 		   	return "blog";
 		}

@@ -15,4 +15,5 @@ public interface TypeDao {
 	boolean updateType(Type type);
 	boolean deleteType(int id);
     List<Type> queryTe();
+    Type queryTeByname(String name);
 }
