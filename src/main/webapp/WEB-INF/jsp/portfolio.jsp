@@ -181,8 +181,8 @@
 		<div class="clearfix"></div>
 		<br />
 		<div id="portfoliolist">
-			<div class="portfolio" style="max-width: 300px;">
-				<div class="portfolio-wrapper">
+			<div class="portfolio" style="max-width: 300px;" >
+				<div class="portfolio-wrapper" >
 					<a href="#small-dialog">
 						class="b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim">
 						<img class="work-img" src="images/img1.jpg" width="300px" alt="" />
@@ -211,7 +211,7 @@
 			<div class="clearfix" id="clearfix"></div>
 			</div>
 	        <div id="div1">
-            <div id="small-dialog" class="mfp-hide">
+           <!--  <div id="small-dialog" class="mfp-hide">
 				<div class="image-top">
 					<img src="images/img2.jpg" alt="" />
 					<p>1111</p>
@@ -222,7 +222,7 @@
 					<img src="images/img2.jpg" alt="" />
 					<p>dadsadasd</p>
 				</div>
-			</div>
+			</div> -->
            </div>
 
 		
@@ -270,11 +270,13 @@
 										
 					   if(i==0)
 					 {
-					    str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
+	/* 				    str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>";  */
+				         str1+="<a href='mineblog.html?blog_id="+item.blog_id+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim' ><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
 				        str2+="<div id='small-dialog' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+item.blog_text+"</p></div></div>";
 			
 					}else{
-				        str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
+				       /*  str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>";  */
+				        str1+="<a href='mineblog.html?blog_id="+item.blog_id+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim' ><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
 				        str2+="<div id='small-dialog"+i+"' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+item.blog_text+"</p></div></div>";
 					}
 									})
