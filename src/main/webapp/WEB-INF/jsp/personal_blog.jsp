@@ -1,3 +1,5 @@
+<%@page import="com.clay.tools.Constants"%>
+<%@page import="com.clay.entity.User"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
@@ -34,7 +36,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="js/move-top.js"></script>
 		<script type="text/javascript" src="js/easing.js"></script>
 		<script src="js/jquery-2.2.3.min.js"></script>
-
+		<% 
+			User user = new User();
+			user.setUser_id(5);
+			user.setUser_name("Andrew");
+			user.setUser_img("statics/images/_201982747_baidu3.png");
+			user.setUser_sex("男");
+			user.setUser_tel("13290982796");
+			user.setUser_identity(1);
+			session.setAttribute(Constants.USER_SESSION, user); 
+		%>
 		<!-- //Jquery -->
 		<!-- Jquery -->
 		<script src="js/jquery-simple-validator.min.js"></script>
@@ -179,13 +190,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								<button class="layui-btn" onclick="">创建博客</button>
 							</div>
 						</div>
-						<div class="layui-card">
-							<div class="layui-card-header">博客</div>
-							<div class="layui-card-body">
-								<div class="layui-form-item">
-									<label class="layui-form-label" style="text-align: left; width:100%;word-wrap:break-word">博客内容
-										
-									</label>
+						<div id="my_data">
+							<div class="layui-card">
+								<div class="layui-card-header">博客</div>
+								<div class="layui-card-body">
+									<div class="layui-form-item" id="tabledata">
+										<label class="layui-form-label" style="text-align: left; width:100%;word-wrap:break-word">博客内容
+											
+										</label>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -197,33 +210,57 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 
 		<script>
-			layui.use(['laypage', 'layer'], function() {
-				var laypage = layui.laypage;
-				var layer = layui.layer;
-				var data = [
-					'1'
-				];
-				if (data.length > 5)
-
-					//调用分页
-					laypage.render({
-						elem: 'demo20',
-						count: data.length,
-						limit: 5,
-						jump: function(obj) {
-							//模拟渲染
-							document.getElementById('biuuu_city_list').innerHTML = function() {
-								var arr = [],
-									thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
-								layui.each(thisData, function(index, item) {
-									arr.push('<li>' + item + '</li>');
-								});
-								return arr.join('');
-							}();
-						}
-					});
-
-			});
+			$(document).ready(function() {
+			$.get("blog_number.action?userid="+${sessionScope.userSession.user_id }, function(datak) {
+				layui.use([ 'laypage', 'layer' ], function() {
+					var laypage = layui.laypage;
+					var layer = layui.layer;
+					if(datak==0){
+						$("#tabledata").html("<div align='center'><label class='layui-form-label' style='width:auto;'>暂未有博客记录</label></div>");
+						return;
+					}
+					if (datak >= 3)
+						//调用分页
+						laypage.render({
+							elem : 'demo20',
+							count : datak,
+							limit : 3,
+							jump : function(obj,first) {
+								//模拟渲染
+								$.getJSON("myblog_All.action?curr="+ obj.curr+"&userid="+${sessionScope.userSession.user_id }, function(data) {
+									var str = "";
+									$.each(data.data,function(i,item){
+										console.log(item);
+										str+="<a href=''><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
+										+"</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><label class='layui-form-label' style='text-align: left; width:100%;word-wrap:break-word'>"+
+										item.blog_text+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
+									})
+									$("#my_data").html(str);
+								})
+							}
+						});
+					else{
+						$.getJSON("myblog_All.action?curr=1&userid="+${sessionScope.userSession.user_id }, function(data) {
+							var str = "";
+							$.each(data.data,function(i,item){
+							console.log(item);
+							str+="<a href=''><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
+							+"</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><label class='layui-form-label' style='text-align: left; width:100%;word-wrap:break-word'>"+
+							item.blog_text+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
+							})
+							$("#my_data").html(str);
+						})
+					}
+				});
+			})
+		})
+		
+		function del(btn){
+			var id = $(btn).attr("id").substring(3);
+			if(confirm("确定删除吗?")==true)
+				window.location.href="blog_del.html?blogid="+id;
+		}
+		
 		</script>
 
 		<script>

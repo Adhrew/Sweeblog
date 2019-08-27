@@ -36,7 +36,7 @@
 	</sql>
 	<sql id="queryByOk">
 		<if test="blog_user_id!=null">
-			and u.user_id = #{blog_user_id}
+			and b.user_id = #{blog_user_id}
 		</if>
 	</sql>
 	

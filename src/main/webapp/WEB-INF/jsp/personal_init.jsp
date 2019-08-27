@@ -1,8 +1,11 @@
+<%@page import="com.clay.tools.Constants"%>
+<%@page import="com.clay.entity.User"%>
 <%@ page language="java" import="java.util.*" pageEncoding="utf-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -88,7 +91,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			});
 		</script>
-
+		
+		<% 
+			User user = new User();
+			user.setUser_id(5);
+			user.setUser_name("Andrew");
+			user.setUser_img("statics/images/_201982747_baidu3.png");
+			user.setUser_sex("男");
+			user.setUser_tel("13290982796");
+			user.setUser_identity(1);
+			session.setAttribute(Constants.USER_SESSION, user); 
+		%>
 	</head>
 
 	<body style="min-width: 700px;">
@@ -148,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 
 		<div class="container">
-			<div class="layui-row" style="height:388px;" id="lef">
+			<div class="layui-row" style="height:400px;" id="lef">
 				<div class="layui-col-xs3" style="max-width: 300px;height: 100%;">
 					<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="height:100%;width: 100%; margin-right: 10px;">
 						<li class="layui-nav-item">
@@ -171,38 +184,40 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<li class="layui-nav-item"><a href="personal_blog.html" style="text-decoration: none;">博客</a></li>
 					</ul>
 				</div>
-				<div class="layui-col-xs9" id="rig">
-					<div style="padding: 20px; background-color: #F2F2F2;">
+				<div class="layui-col-xs9" id="rig" >
+					<div style="padding: 20px; height:400px; background-color: #F2F2F2;">
 						<div class="layui-card">
 							<div class="layui-card-header">发起交易</div>
 							<div class="layui-card-body">
-								<form class="layui-form" action="">
+								<form class="layui-form" action="personal_init_so.html">
+									
 									<div class="layui-form-item" style="max-width: 400px;">
-										<label class="layui-form-label">项目名</label>
-										<div class="layui-input-block">
-											<input type="text" name="title" required lay-verify="required" placeholder="请输入项目名" autocomplete="off" class="layui-input">
-										</div>
+									<label class="layui-form-label">博客id</label>
+									<div class="layui-input-block">
+									<script>
+									  	$.getJSON("personal_init_myblog.html",{userid:${sessionScope.userSession.user_id}},function(data){
+									  		var str = "<option value=''>请选择一个博客id</option>";
+									  		$.each(data.data,function(i,item){
+									  			str +="<option value="+ item.blog_id +">"+ item.blog_id +"</option>"
+									  		});
+									  		$("#blog").html(str);
+									  	})
+									</script>
+										<select name="blogid" id="blog">
+										  
+										</select>    
+									</div>
 									</div>
 									<div class="layui-form-item" style="max-width: 400px;">
 										<label class="layui-form-label">客户id</label>
 										<div class="layui-input-block">
-											<input type="text" name="title" required lay-verify="required" placeholder="请输入客户id" autocomplete="off" class="layui-input">
-										</div>
-									</div>
-									
-									<div class="layui-form-item" style="max-width: 400px;">
-										<label class="layui-form-label">博客id</label>
-										<div class="layui-input-block">
-											<select name="city" lay-verify="required">
-												<option value=""></option>
-												<option value="0">北京</option>
-											</select>
+											<input type="text" name="userid" required lay-verify="required" placeholder="请输入博客id" autocomplete="off" class="layui-input">
 										</div>
 									</div>
 									<div class="layui-form-item" style="max-width: 400px;">
 										<label class="layui-form-label">金额</label>
 										<div class="layui-input-block">
-											<input type="text" name="title" required lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+											<input type="text" name="money" required lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
 										</div>
 									</div>
 									<div class="layui-form-item">
@@ -228,7 +243,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 				//监听提交
 				form.on('submit(formDemo)', function(data) {
-					layer.msg(JSON.stringify(data.field));
+					
+					window.location.href="personal_init_so.html?money="+data.field.money+"&userid="+data.field.userid+"&blogid="+data.field.blogid;
 					return false;
 				});
 			});

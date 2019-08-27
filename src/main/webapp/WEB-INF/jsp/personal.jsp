@@ -38,11 +38,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		
 		<% 
 			User user = new User();
+			user.setUser_id(5);
 			user.setUser_name("Andrew");
-			user.setUser_img("images/1.jpg");
+			user.setUser_img("statics/images/_201982747_baidu3.png");
 			user.setUser_sex("男");
 			user.setUser_tel("13290982796");
-			user.setUser_identity(999);
+			user.setUser_identity(1);
 			session.setAttribute(Constants.USER_SESSION, user); 
 		%>
 
@@ -151,17 +152,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 
 		<div class="container">
-			<div class="layui-row" style="height:510px;" id="lef">
+			<div class="layui-row" style="height:560px;" id="lef">
 				<div class="layui-col-xs3" style="max-width: 300px;height: 100%;">
 					<ul class="layui-nav layui-nav-tree layui-inline" lay-filter="demo" style="height:100%;width: 100%; margin-right: 10px;">
 						<li class="layui-nav-item layui-this">
-							<a href="javascript:;" style="text-decoration: none;" >首页</a>
+							<a href="personal.html" style="text-decoration: none;">首页</a>
 						</li>
 						<li class="layui-nav-item">
 							<a href="javascript:;" style="text-decoration: none;">交易</a>
 							<dl class="layui-nav-child">
 								<dd><a href="personal_init.html" style="text-decoration: none;">发起交易</a></dd>
-								<dd><a href="personal_acc.html" style="text-decoration: none;">接收交易</a></dd>
+								<dd><a href="personal_acc.html" class="" style="text-decoration: none;">接收交易</a></dd>
 							</dl>
 						</li>
 						<li class="layui-nav-item">
@@ -179,7 +180,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						<div class="layui-card">
 							<div class="layui-card-header">简介</div>
 							<div class="layui-card-body">
-								<form class="layui-form" action="">
+								<form class="layui-form" id="sc" action="">
 									<div class="layui-form-item">
 										<label class="layui-form-label">用户名</label>
 										<div class="layui-input-block">
@@ -194,7 +195,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										</div>
 										<!-- <button type="button" class="layui-btn" id="test1" style="float:left; margin-top:35px; margin-left:30px; margin-right:30px">上传图片</button> -->
 										<div class="layui-upload-list" style="float:left;margin-left:30px">
-											<img class="layui-upload-img" id="demo1" width="150px" src=${sessionScope.userSession.user_img } >
+											<img class="layui-upload-img" id="demo1" height="150px" width="150px" src=${sessionScope.userSession.user_img } >
 											<p id="demoText"></p>
 										</div>
 									</div>
@@ -217,7 +218,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									<div class="layui-form-item">
 										<label class="layui-form-label" style="width:auto;">电话号码</label>
 										<label class="layui-form-label" id="telephone" style="margin-right:30px;margin-left:20px">${sessionScope.userSession.user_tel }</label>
-										<a class="layui-form-label" id="" href="javascript:" style="width: auto;color:#E74C3C;text-decoration: none;">取消绑定</a>
 									</div>
 									<script>
 									$(document).ready(function() {
@@ -249,27 +249,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<script>
+		
+			var time="";
+
 			function bj(){
 				layui.use('form', function() {
 					var form = layui.form;
 					$("#username").removeAttr("disabled");
 					$("#nan").removeAttr("disabled");
 					$("#nv").removeAttr("disabled");
-					$("#bj").html("<button class='layui-btn' lay-submit lay-filter='formDemo'>修改</button><button class='layui-btn layui-btn-primary' onclick='qx()'>取消</button>");
+					$("#bj").html("<button class='layui-btn' id='xx' lay-submit lay-filter='formDemo'>修改</button><button class='layui-btn layui-btn-primary' onclick='qx()'>取消</button>");
 					$("#sctx").html("<button type='button' class='layui-btn' id='test1' style='float:left; margin-top:35px; margin-left:30px;'>上传图片</button>")
 					layui.use('upload', function() {
 						var $ = layui.jquery,
 							upload = layui.upload;
-					
+		
 						//普通图片上传
 						var uploadInst = upload.render({
 							elem: '#test1',
-							url: '/upload/',
-							before: function(obj) {
+							url: 'upload/headImg.action',
+							auto:false,
+							bindAction:'#xx',
+							size:102400,
+							choose: function(obj) {
 								//预读本地文件示例，不支持ie8
 								obj.preview(function(index, file, result) {
+									var day2 = new Date();
+									day2.setTime(day2.getTime());
+									time = day2.getFullYear() +""+ (day2.getMonth()+1) +"" + day2.getDate() + ""+day2.getSeconds();
 									$('#demo1').attr('src', result); //图片链接（base64）
+									obj.resetFile(index, file, time+"_"+ file.name);
 								});
+								$("#lef").css("height","583px");
+								var demoText = $('#demoText');
+								demoText.html(
+									'<span style="color: lightgrey;margin-left:50px">已选择</span>');
 							},
 							done: function(res) {
 								//如果上传失败
@@ -303,57 +317,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					$("#sctx").html("")
 					$("#demo1").attr("src","${sessionScope.userSession.user_img }")
 					$("#demoText").html("");
+					$("#lef").css("height","560px");
 					form.render(); 
 				});
 			}
 			
-			
-		</script>
-
-		<script>
-			//Demo
 			layui.use('form', function() {
 				var form = layui.form;
 
 				//监听提交
 				form.on('submit(formDemo)', function(data) {
-					layer.msg(JSON.stringify(data.field));
+					if(time != "")
+						data.field.file = "_"+time+ "_" +data.field.file.substring(data.field.file.lastIndexOf('\\')+1);
+					window.location.href="personal_modify.html?sex="+data.field.sex+"&file="+data.field.file+"&username="+data.field.username+"&userid="+"${sessionScope.userSession.user_id }";
 					return false;
-				});
-			});
-		</script>
-
-		<script>
-			layui.use('upload', function() {
-				var $ = layui.jquery,
-					upload = layui.upload;
-
-				//普通图片上传
-				var uploadInst = upload.render({
-					elem: '#test1',
-					url: '/upload/',
-					before: function(obj) {
-						//预读本地文件示例，不支持ie8
-						obj.preview(function(index, file, result) {
-							$('#demo1').attr('src', result); //图片链接（base64）
-						});
-					},
-					done: function(res) {
-						//如果上传失败
-						if (res.code > 0) {
-							return layer.msg('上传失败');
-						}
-						//上传成功
-					},
-					error: function() {
-						//演示失败状态，并实现重传
-						var demoText = $('#demoText');
-						demoText.html(
-							'<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
-						demoText.find('.demo-reload').on('click', function() {
-							uploadInst.upload();
-						});
-					}
 				});
 			});
 		</script>
