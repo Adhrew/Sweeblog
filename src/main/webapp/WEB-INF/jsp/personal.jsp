@@ -35,17 +35,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="js/move-top.js"></script>
 		<script type="text/javascript" src="js/easing.js"></script>
 		<script src="js/jquery-2.2.3.min.js"></script>
-		
-		<% 
-			User user = new User();
-			user.setUser_id(5);
-			user.setUser_name("Andrew");
-			user.setUser_img("statics/images/_201982747_baidu3.png");
-			user.setUser_sex("男");
-			user.setUser_tel("13290982796");
-			user.setUser_identity(1);
-			session.setAttribute(Constants.USER_SESSION, user); 
-		%>
 
 		<!-- //Jquery -->
 		<!-- Jquery -->
@@ -94,8 +83,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 
 	</head>
+	
+	<script>
+		$(document).ready(function() {
+			var user_tel = "${sessionScope.userSession.user_tel }";
+			var str = "<label class='layui-form-label' style='width:auto'>博客币:"+ "${sessionScope.userSession.user_money }" +"</label>";
+			str += "<a class='layui-btn' style='text-decoration:none;float:left;height:23px;line-height:23px;width:40px;margin-top:8px;padding:0px' href='chongzhizhongxin.html'>充值</a>";
+			str += "<label class='layui-form-label'>积分:"+ "${sessionScope.userSession.user_credit }" +"</label>";
+			str += "<label class='layui-form-label'><a href='personal.html' style='text-decoration:none'>"+ "${sessionScope.userSession.user_name }" +"</a></label>";
+			str += "<label class='layui-form-label'><a href='zhuxiao.html' style='text-decoration:none;color:#9AC0CD'>注销</a></label>";
+			if(user_tel!="")
+				$("#layerDemo").html(str);
+			
+		})
+	</script>
 
-	<body style="min-width: 500px;">
+	<body style="min-width: 800px;">
 
 		<div class="header" id="home">
 			<div class="header-top">
@@ -111,7 +114,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</ul>
 					</div>
 					<div class="social-icons">
-						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -3px;">
+						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -8px;">
 							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">登录</button>
 							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">注册</button>
 						</div>
@@ -223,12 +226,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									$(document).ready(function() {
 										if(${sessionScope.userSession.user_identity }==999){
 											$("#qwrz").html("");
+											$("#rz").html("已认证");
+										}
+										else if(${sessionScope.userSession.user_identity }==1)
+										{
+											$("#qwrz").html("");
+											$("#rz").html("待审核");
+										}else{
+											$("#rz").html("未认证");
 										}
 									})
 									</script>
 									<div class="layui-form-item">
 										<label class="layui-form-label" style="width:auto;">认证状态</label>
-										<label class="layui-form-label" id="rz">${sessionScope.userSession.user_identity }</label>
+										<label class="layui-form-label" id="rz"></label>
 										<div id="qwrz">
 											<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">前往认证>></button>
 										</div>

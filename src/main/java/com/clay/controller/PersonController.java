@@ -71,6 +71,11 @@ public class PersonController {
 		return "personal_record";
 	}
 	
+	@RequestMapping("/personal_message.html")
+	public String personal_message(HttpSession session, HttpServletRequest request) {
+		return "personal_message";
+	}
+	
 	@RequestMapping("/acc_init.action")
 	public void personal_acc_init(@RequestParam("userid")int userid,HttpServletResponse response, HttpServletRequest request) throws IOException {
 		response.setContentType("text/html;charset=UTF-8");

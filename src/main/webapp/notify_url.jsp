@@ -1,3 +1,5 @@
+<%@page import="com.clay.tools.Constants"%>
+<%@page import="com.clay.entity.User"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
 <%@ page import="java.util.*"%>
@@ -22,6 +24,7 @@
  */
  
 	//获取支付宝POST过来反馈信息
+	
 	Map<String,String> params = new HashMap<String,String>();
 	Map<String,String[]> requestParams = request.getParameterMap();
 	for (Iterator<String> iter = requestParams.keySet().iterator(); iter.hasNext();) {
@@ -72,8 +75,9 @@
 			//注意：
 			//付款完成后，支付宝系统发送该交易状态通知
 		}
-		
-		out.println("success");
+		System.out.println("11111111111111111111");
+		request.getRequestDispatcher("modify_money.html?money="+request.getParameter("total_amount")).forward(request, response);
+		out.println("<script>window.location.href='modify_money.html?money="+request.getParameter("total_amount")+"'</script>");
 		
 	}else {//验证失败
 		out.println("fail");

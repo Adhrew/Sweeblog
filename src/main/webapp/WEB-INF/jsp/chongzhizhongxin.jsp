@@ -22,11 +22,11 @@
 				<div class="tr_rechhead">
 					<img src="images/ys_head2.jpg" />
 					<p>充值帐号：
-						<span>王凯</span>
+						<span>${sessionScope.userSession.user_name }</span>
 					</p>
 					<div class="tr_rechheadcion">
 						<img src="images/coin.png" alt="" />
-						<span>当前余额：<span>1000博客币</span></span>
+						<span>当前余额：<span>${sessionScope.userSession.user_money }博客币</span></span>
 					</div>
 				</div>
 				<div class="tr_rechli am-form-group">

@@ -27,10 +27,10 @@ public class AlipayConfig {
     public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA4v9aalH6BtUX4WfkDrefqCN22DpvMTZOIRC/tnA8pMwe+THC6jYR7loepYJv2wBKObGGhFpSHw26woV8srSFx2FupaMWqztvFjxQSJBoERHsek+a2gKG5ZPB1Eo9mekT118kpWRR1EBI1xLwjbkbNJbSWIatVZmLk9lshAjyvnbz3QSEBjAb+Sr6Ece9a88z1CMj0T0qUTkjB22Xh18xn9LuLzKFoEiN89WhkxgV+ST3tKRwnctJpmn6oZ8X+P5J1NLm06xqhXwpIZJ534P9Icc00KB8YYGzjfO2hdC9xxblLX6y7e1Ykzt//DDbyL6YMR1jEx4zRgAbsKid9vbk4QIDAQAB";
 
 	// 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String notify_url = "http://localhost:8081/Sweeblog/notify_url.jsp";
+	public static String notify_url = "http://localhost:8080/Sweeblog/notify_url.jsp";
 
 	// 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-	public static String return_url = "http://localhost:8081/Sweeblog/return_url.jsp";
+	public static String return_url = "http://localhost:8080/Sweeblog/return_url.jsp";
 
 	// 签名方式
 	public static String sign_type = "RSA2";

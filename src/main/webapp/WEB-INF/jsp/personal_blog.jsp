@@ -36,16 +36,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		<script type="text/javascript" src="js/move-top.js"></script>
 		<script type="text/javascript" src="js/easing.js"></script>
 		<script src="js/jquery-2.2.3.min.js"></script>
-		<% 
-			User user = new User();
-			user.setUser_id(5);
-			user.setUser_name("Andrew");
-			user.setUser_img("statics/images/_201982747_baidu3.png");
-			user.setUser_sex("男");
-			user.setUser_tel("13290982796");
-			user.setUser_identity(1);
-			session.setAttribute(Constants.USER_SESSION, user); 
-		%>
 		<!-- //Jquery -->
 		<!-- Jquery -->
 		<script src="js/jquery-simple-validator.min.js"></script>
@@ -101,7 +91,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</script>
 
 	</head>
-
+<script>
+		$(document).ready(function() {
+			var user_tel = "${sessionScope.userSession.user_tel }";
+			var str = "<label class='layui-form-label' style='width:auto'>博客币:"+ "${sessionScope.userSession.user_money }" +"</label>";
+			str += "<a class='layui-btn' style='text-decoration:none;float:left;height:23px;line-height:23px;width:40px;margin-top:8px;padding:0px' href='chongzhizhongxin.html'>充值</a>";
+			str += "<label class='layui-form-label'>积分:"+ "${sessionScope.userSession.user_credit }" +"</label>";
+			str += "<label class='layui-form-label'><a href='personal.html' style='text-decoration:none'>"+ "${sessionScope.userSession.user_name }" +"</a></label>";
+			str += "<label class='layui-form-label'><a href='zhuxiao.html' style='text-decoration:none;color:#9AC0CD'>注销</a></label>";
+			if(user_tel!=null)
+				$("#layerDemo").html(str);
+			
+		})
+	</script>
 	<body style="min-width: 630px;">
 
 		<div class="header" id="home">
@@ -118,7 +120,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</ul>
 					</div>
 					<div class="social-icons">
-						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -3px;">
+						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -8px;">
 							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">登录</button>
 							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">注册</button>
 						</div>
@@ -187,7 +189,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					<div style="padding: 20px; background-color: #F2F2F2;height: 800px;">
 						<div class="layui-form-item">
 							<div class="layui-input-block" align="right">
-								<button class="layui-btn" onclick="">创建博客</button>
+								<a class="layui-btn" href="writeBlog.html">创建博客</a>
 							</div>
 						</div>
 						<div id="my_data">
@@ -231,7 +233,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									var str = "";
 									$.each(data.data,function(i,item){
 										console.log(item);
-										str+="<a href=''><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
+										str+="<a href='mineblog.html?blog_id="+ item.blog_id +"'><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
 										+"</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><label class='layui-form-label' style='text-align: left; width:100%;word-wrap:break-word'>"+
 										item.blog_text+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
 									})
@@ -244,7 +246,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							var str = "";
 							$.each(data.data,function(i,item){
 							console.log(item);
-							str+="<a href=''><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
+							str+="<a href='mineblog.html?blog_id="+ item.blog_id +"'><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
 							+"</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><label class='layui-form-label' style='text-align: left; width:100%;word-wrap:break-word'>"+
 							item.blog_text+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
 							})

@@ -183,14 +183,17 @@ public class UserController {
 		response.setCharacterEncoding("utf-8");
 		response.setContentType("text/html;charset=utf=8");
 		PrintWriter out = response.getWriter();
+		
 		if(phone==null||password==null) {
 			out.print("<script>alert('输入不能为空');history.go(-1);</script>");
 			out.flush();
 			out.close();
 		}		
-		if(userService.userLogin( phone, password)!=null) {
+		user = userService.userLogin( phone, password);
+		if(user!=null) {
 			session.setAttribute("user_tel",phone);
 			session.setAttribute("user_pwd",password);
+			session.setAttribute(Constants.USER_SESSION, user);
 			out.print(
 					"<script>alert('登陆成功');window.location.href='index.html';</script>");
 			out.flush();
@@ -244,5 +247,22 @@ public class UserController {
 		}
 
 	}
-
+	
+	@RequestMapping("/zhuxiao.html")
+	public String zhuxiao(HttpSession session)
+	{
+		session.removeAttribute(Constants.USER_SESSION);
+		return "index";
+	}
+	
+	@RequestMapping("/modify_money.html")
+	public String modify_money(@RequestParam("money") Integer money,HttpSession session)
+	{
+		User user = (User)session.getAttribute(Constants.USER_SESSION);
+		user.setUser_money(user.getUser_money()+money);
+		userService.updateUser(user);
+		return "index";
+	}
+	
+	
 }

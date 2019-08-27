@@ -90,14 +90,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 			});
 		</script>
-<%
-	User user = new User();
-	user.setUser_id(5);
-	session.setAttribute(Constants.USER_SESSION, user);
-%>
 	</head>
+<script>
+		$(document).ready(function() {
+			var user_tel = "${sessionScope.userSession.user_tel }";
+			var str = "<label class='layui-form-label' style='width:auto'>博客币:"+ "${sessionScope.userSession.user_money }" +"</label>";
+			str += "<a class='layui-btn' style='text-decoration:none;float:left;height:23px;line-height:23px;width:40px;margin-top:8px;padding:0px' href='chongzhizhongxin.html'>充值</a>";
+			str += "<label class='layui-form-label'>积分:"+ "${sessionScope.userSession.user_credit }" +"</label>";
+			str += "<label class='layui-form-label'><a href='personal.html' style='text-decoration:none'>"+ "${sessionScope.userSession.user_name }" +"</a></label>";
+			str += "<label class='layui-form-label'><a href='zhuxiao.html' style='text-decoration:none;color:#9AC0CD'>注销</a></label>";
+			if(user_tel!=null)
+				$("#layerDemo").html(str);
+			
+		})
+	</script>
 
-	<body style="min-width: 630px;">
+	<body style="min-width: 800px;">
 
 		<div class="header" id="home">
 			<div class="header-top">
@@ -113,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</ul>
 					</div>
 					<div class="social-icons">
-						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -3px;">
+						<div class="" id="layerDemo" style="margin-bottom: 0;margin-top: -8px;">
 							<button id="layer_one" data-method="notice" class="layui-btn" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">登录</button>
 							<button id="layer_two" data-method="notice" class="layui-btn layui-btn-primary" style="height: 25px; line-height: 25px; width: 50px; padding: 0;">注册</button>
 						</div>
@@ -275,8 +283,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					var laypage = layui.laypage;
 					var layer = layui.layer;
 					if(datak==0){
-						$("#lef").css("height","300px");
-						$("#my_data").css("height","300px");
+						$("#lef").css("height","350px");
+						$("#my_data").css("height","350px");
 						$("#tabledata").html("<div align='center'><label class='layui-form-label' style='width:auto;'>暂未有订单记录</label></div>");
 						return;
 					}
