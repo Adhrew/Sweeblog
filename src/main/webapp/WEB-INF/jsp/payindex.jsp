@@ -200,7 +200,7 @@ h2 {
 			<h2 id="tab1" class="selected" name="tab">付 款</h2>
 			
 		</div>
-		<form name=alipayment action=alipay.trade.page.pay.jsp method=post
+		<form name=alipayment action="paymoney.html" method=post
 			target="_blank">
 			<div id="body1" class="show" name="divcontent">
 				<dl class="content">
