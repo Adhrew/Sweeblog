@@ -7,7 +7,6 @@ import java.util.Date;
 import java.util.Random;
 
 import javax.annotation.Resource;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -32,10 +31,8 @@ import com.aliyuncs.dysmsapi.model.v20170525.SendSmsResponse;
 import com.aliyuncs.exceptions.ClientException;
 import com.aliyuncs.profile.DefaultProfile;
 import com.aliyuncs.profile.IClientProfile;
-import com.clay.entity.Blog;
 import com.clay.entity.User;
 import com.clay.service.UserService;
-import com.clay.service.impl.UserServiceImpl;
 import com.clay.tools.Constants;
 
 
@@ -55,6 +52,9 @@ public class UserController {
 	/**
 	 * @生成一个6位的随机码
 	 */
+	
+	
+	
 	public static String createRandNum() {
 		Random random = new Random();
 		sb = new StringBuffer();
@@ -301,7 +301,8 @@ public class UserController {
 	        String result;
 	        
 	        User user = (User)session.getAttribute(Constants.USER_SESSION);
-			Integer money=Integer.valueOf(total_amount);
+			double mone=Double.valueOf(total_amount);
+			int money=(int)mone;
 	        user.setUser_money(user.getUser_money()+money);
 			userService.updateUser(user);
 	        try {
