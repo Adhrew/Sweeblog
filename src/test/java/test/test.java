@@ -16,16 +16,19 @@ import com.clay.entity.Admin;
 import com.clay.entity.Blog;
 import com.clay.entity.Identity;
 import com.clay.entity.Image;
+import com.clay.entity.Message;
 import com.clay.entity.Record;
 import com.clay.entity.Type;
 import com.clay.entity.User;
 import com.clay.pojo.BlogVo;
 import com.clay.pojo.IdentityVo;
+import com.clay.pojo.MessageVo;
 import com.clay.pojo.PagePojo;
 import com.clay.pojo.RecordVo;
 import com.clay.pojo.UserVo;
 import com.clay.service.BlogService;
 import com.clay.service.IdentityService;
+import com.clay.service.MessageService;
 import com.clay.service.RecordService;
 import com.clay.service.UserService;
 import com.clay.service.impl.AdminServiceImpl;
@@ -41,11 +44,10 @@ public class test {
 	@Test
 	public  void test1(){
 		ApplicationContext ctx = new ClassPathXmlApplicationContext("applicationContext-mybatis.xml");
-		BlogService is = (BlogService) ctx.getBean("blogService");
+		MessageService ms= (MessageService) ctx.getBean("messageService");
 		try {
-			BlogVo bv = new BlogVo();
-			bv.setType_name("需求");
-			System.out.println(is.queryByPage(bv, 1, 10).getData().size());
+			List<Message> list = ms.queryMessaged(1, 2);
+			System.out.println(list.size());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

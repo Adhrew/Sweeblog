@@ -12,4 +12,6 @@ public interface TypeService {
 	boolean insertType(Type type);//增删改
 	boolean updateType(Type type);
 	boolean deleteType(int id);
+	List<Type> queryTe();  //查询不是需求的标签
+	Type queryTeByname(String name);  //根据标签名找标签
 }

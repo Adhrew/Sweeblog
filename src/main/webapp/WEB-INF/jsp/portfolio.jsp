@@ -46,40 +46,7 @@
 		});
 	});
 
-	//一进去加载的需求博客
-/* 	$(document).ready(function() {
-		enterajax();
 
-
-	});
-
-	//加载需求的博客函数
-	function enterajax(key) {
-		$.ajaxSetup({async:false});
-		$.getJSON("Neajax",{"key":key}, function(a) {
-			console.log(a);
-			var str1 = "";
-			var str2 = "";
-			for (var i = 0; i < a.data.length; i++) {
-					if(i==0)
-					{
-					str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></a>"; 
-				        str2+="<div id='small-dialog' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+a.data[i].blog_text+"</p></div></div>";
-			
-					}else{
-				        str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+a.data[i].blog_title+"</h5></div></a>"; 
-				        str2+="<div id='small-dialog"+i+"' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+a.data[i].blog_text+"</p></div></div>";
-					}
-			}
-			console.log(str1);
-			console.log(str2);
-		    $(".portfolio-wrapper").html(str1); 
-			$(".needtext").html(str2);
-
-
-		});
-
-	} */
 </script>
 
 <!---- start-smoth-scrolling---->
@@ -214,9 +181,9 @@
 		<div class="clearfix"></div>
 		<br />
 		<div id="portfoliolist">
-			<div class="portfolio" style="max-width: 300px;">
-				<div class="portfolio-wrapper">
-					<a href="#small-dialog0"
+			<div class="portfolio" style="max-width: 300px;" >
+				<div class="portfolio-wrapper" >
+					<a href="#small-dialog">
 						class="b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim">
 						<img class="work-img" src="images/img1.jpg" width="300px" alt="" />
 						<div class="b-wrapper">
@@ -241,40 +208,13 @@
 					</a>
 				</div>
 			</div>
-
-
-			<!-- <div class="portfolio-wrapper">
-						<a href="#small-dialog" class="b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim">
-							<img class="work-img" src="images/img1.jpg" width="300px" alt="" />
-							<div class="b-wrapper">
-								<h2 class="b-animate b-from-left b-delay03 "><img src="images/icon-eye.png" alt="" /></h2>
-							</div>
-						</a>
-					</div>
-					<div class="bottom-header" style="width: auto;">
-						<h5>某机电行业电商平台即将开放分享</h5>	
-					</div>  -->
-			<div class="clearfix"></div>
-		</div>
-
-
-		
-		<!-- Gallery Script Ends -->
-		<!-- pop-up-box -->
-		<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
-		<link href="css/popuo-box.css" rel="stylesheet" type="text/css"
-			media="all" />
-		<!-- <link rel="stylesheet" href="layui/css/layui.css" media="all">
-        <script src="layui/layui.js" charset="utf-8"></script> -->
-		
-		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
-		<!-- //pop-up-box -->
-		<div class="needtext">
-			<div id="small-dialog" class="mfp-hide">
+			<div class="clearfix" id="clearfix"></div>
+			</div>
+	        <div id="div1">
+           <!--  <div id="small-dialog" class="mfp-hide">
 				<div class="image-top">
 					<img src="images/img2.jpg" alt="" />
-					<p>
-					</p>
+					<p>1111</p>
 				</div>
 			</div>
 			<div id="small-dialog1" class="mfp-hide">
@@ -282,85 +222,21 @@
 					<img src="images/img2.jpg" alt="" />
 					<p>dadsadasd</p>
 				</div>
-			</div>
-		</div>
+			</div> -->
+           </div>
 
-				<script>
-				
-					/* layui.use([ 'laypage', 'layer' ], function() {
-						var laypage = layui.laypage;
-						var layer = layui.layer;
-						var data = [
-							"1"
-						];
-				
-						//调用分页
-						laypage.render({
-							elem : 'demo20',
-							count : data.length,
-							jump : function(obj) {
-								//模拟渲染
-								document.getElementById('biuuu_city_list').innerHTML = function() {
-									var arr = [],
-										thisData = data.concat().splice(obj.curr * obj.limit - obj.limit, obj.limit);
-									layui.each(thisData, function(index, item) {
-										arr.push('<li>' + item + '</li>');
-									});
-									return arr.join('');
-								}();
-							}
-						});
-				
-					}); */
-					
-/* 					layui.use(['laypage', 'layer'], function(){
-                    var laypage = layui.laypage,layer = layui.layer;
+		
+		<!-- Gallery Script Ends -->
+		<!-- pop-up-box -->
+		<script type="text/javascript" src="js/modernizr.custom.min.js"></script>
+		<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+		<!-- <link rel="stylesheet" href="layui/css/layui.css" media="all">
+        <script src="layui/layui.js" charset="utf-8"></script> -->
+		
+		<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+		<!-- //pop-up-box -->
 
-                    //完整功能
-                     laypage.render({
-                       elem: 'demo20'
-                      ,count: ${sessionScope.pd.count}
-                      ,curr:${sessionScope.pd.page}
-                       ,limit:${sessionScope.pd.size}
-                       ,layout: ['count', 'prev', 'page','limit','next', 'skip']
-                       ,jump: function(obj,first){
-                        console.log(obj);
-                        console.log(first);
-                       //首次不执行
-                       if(!first){
-                      //跳页的实现
-                       //uc?op=queryByPage&page=1&pageSize=10
-    	                location.href="Neajax?page="+obj.curr+"&pageSize="+obj.limit;
-      }
-    }
-  }); 
- 
-/* }); */
-
-     	/* if (datak > 3)
-						//调用分页
-						laypage.render({
-							elem : 'demo20',
-							count : datak,
-							limit : 1,
-							jump : function(obj,first) {
-								//模拟渲染
-								$.getJSON("acc_page.action?curr="+ obj.curr+"&userid="+${sessionScope.userSession.user_id }, function(data) {
-									var str = "";
-									$.each(data.data,function(i,item){
-										console.log(item);
-										str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
-										str+=item.blog_id.user_id.user_name + "</td><td>";
-										str+=item.blog_id.blog_title + "</td><td>";
-										str+=item.record_money + "</td><td>";
-										str+=item.record_starttime + "</td></tr><tr><td>";
-										str+="</td></tr></tbody></table></div><div class='layui-input-block' align='right'><button id='rec" + item.blog_id.blog_id + "' class='layui-btn' onclick=''>接受<tton><button id='rej" + item.blog_id.blog_id + "' class='layui-btn layui-btn-primary' onclick=''>拒绝<tton></div></div></div></div>";
-									})
-									$("#my_data").html(str);
-								})
-							}
-						}); */
-						
+				<script>		
 				$(document).ready(function(){
 				      console.log(1111);
 				      jj();
@@ -394,15 +270,17 @@
 										
 					   if(i==0)
 					 {
-					    str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
+	/* 				    str1+="<a href='#small-dialog' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>";  */
+				         str1+="<a href='mineblog.html?blog_id="+item.blog_id+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim' ><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
 				        str2+="<div id='small-dialog' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+item.blog_text+"</p></div></div>";
 			
 					}else{
-				        str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
+				       /*  str1+="<a href='#small-dialog"+i+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim'><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>";  */
+				        str1+="<a href='mineblog.html?blog_id="+item.blog_id+"' class='b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim' ><img class='work-img' src='images/img1.jpg' width='300px' alt=''/>"+"<div class='b-wrapper'><h2 class='b-animate b-from-left b-delay03'><img src='images/icon-eye.png' alt=''/></h2></div>"+"<div class='bottom-header' style='width: auto;'><h5>"+item.blog_title+"</h5></div></a>"; 
 				        str2+="<div id='small-dialog"+i+"' class='mfp-hide'><div class='image-top'><img src='images/img2.jpg' alt='' /><p>"+item.blog_text+"</p></div></div>";
 					}
 									})
-			                     $(".needtext").html(str2);
+			                     $("#div1").html(str2);
 			                     $(".portfolio-wrapper").html(str1); 
 								})
 							}

@@ -119,7 +119,7 @@
 	
 	<insert id="insertBlog" parameterType="com.clay.entity.Blog">
 		insert into blog_info(blog_title, blog_text, blog_time, blog_hot, user_id, blog_grade, type_id) 
-				values(#{blog_title},#{blog_text},#{blog_time},#{blog_hot},#{user_id.user_id},#{blog_grade},#{type_id.type_id})
+				values(#{blog_title},#{blog_text},now(),0,#{user_id.user_id},0,#{type_id.type_id})
 	</insert>
 	<delete id="deleteBlog" parameterType="java.lang.Integer">
 		delete from blog_info where blog_id = #{blog_id}

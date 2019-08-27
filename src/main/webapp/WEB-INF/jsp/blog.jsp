@@ -22,6 +22,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				window.scrollTo(0, 1);
 			}
 		</script>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 		<link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic'
 		 rel='stylesheet' type='text/css'>
 		 <link rel="stylesheet" href="css/layui.css" type="text/css" media="all">
@@ -68,7 +69,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				
 						
 			    function enterTec(key){
-			    $.ajaxSetup({async:false});
 			    $.getJSON("Teagax",{"key":key} ,function(a) {
 				layui.use([ 'laypage', 'layer' ], function() {
 					var laypage = layui.laypage;
@@ -90,11 +90,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 									
 									$.each(data.data,function(i,a){
 										console.log(a);
-									 str1+="<div class='blog_posts'><div class='blog_date'><figure><span>"+data.data[i].blog_time[3]+data.data[i].blog_time[4]+"</span>"+data.data[i].blog_time[0]+data.data[i].blog_time[1]+"</figure>"
-	              +"</div><div class='blog_desc'><div class='blog_heading'><a href='' target='_blank'>"+data.data[i].blog_title+"</a>"
+									 str1+="<div class='blog_posts'><div class='blog_date'><figure><span>"+data.data[i].blog_time[8]+data.data[i].blog_time[9]+"</span>"+data.data[i].blog_time[6]+"月</figure>"
+	              +"</div><div class='blog_desc'><div class='blog_heading'><a href='mineblog.html?blog_id="+data.data[i].blog_id+"' >"+data.data[i].blog_title+"</a>"
 				  +"<p>发布于"+data.data[i].blog_time+" by <a href='' target='_blank'>"+data.data[i].user_id.user_name+"</a></p></div>"
 				  +"<div class='section group example'><div class='col blog_1_of_2'><div class='blog_img'><a href='' target='_blank'><img src='http://www.5imoban.net/uploads/allimg/151026/1-1510261K3450-L.gif' alt='image' class='img-responsive zoom-img'></a>"
-				  +"</div></div><div class='col blogdata_1_of_2'><div class='blog_data'><p>"+data.data[i].blog_text+"</p><div class='more'><span><a class='button outline-outward hvr-rectangle-in' href='' target='_blank'>Read More</a></span>"
+				  +"</div></div><div class='col blogdata_1_of_2'><div class='blog_data'><p></p><div class='more'><span><a class='button outline-outward hvr-rectangle-in' href='Chat.html?user_id=1&sender_id="
+				  +data.data[i].user_id.user_id+"' >联系博主</a></span>"
 				  +"</div></div></div></div><div class='clearfix'></div></div><div class='clearfix'></div></div>"; 	
 					      
 									})
@@ -109,36 +110,77 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		}
 		
 		
-		
-		
-		
-		/* $(document).ready(function(){
-		      enterTec();
-		
+		$(document).ready(function(){
+		    console.log("标签加载。。。。");
+		    entype();
 		});
 		
 		
-		function enterTec(key){
-		  $.ajaxSetup({async:false});
-		  $.getJSON("Teagax",{"key":key},function(a){
-		         console.log(a);
-		         str1="";
-		         str2="";
-		         for(var i=0;i<a.data.length;i++)
-		         {
-		          str1+="<div class='blog_posts'><div class='blog_date'><figure><span>"+a.data[i].blog_time[3]+a.data[i].blog_time[4]+"</span>"+a.data[i].blog_time[0]+a.data[i].blog_time[1]+"</figure>"
-	              +"</div><div class='blog_desc'><div class='blog_heading'><a href='' target='_blank'>"+a.data[i].blog_title+"</a>"
-				  +"<p>发布于"+a.data[i].blog_time+" by <a href='' target='_blank'>"+a.data[i].user_id.user_name+"</a></p></div>"
+		
+		function entype(){
+		   $.getJSON("blogtitle",function(data){
+		         console.log(data);
+		         var str="";
+		        for(var i=0;i<data.length;i++)
+		        {
+		           str+="<button type='button' class='btn btn-info' onclick='dianji(this.value)' value="+data[i].type_name+" style='margin:10px 10px;'>"+data[i].type_name+"</button>";	
+		        }
+		        console.log(str);
+		         $("#type").html(str);
+		   
+		   });
+		
+		
+		}
+		
+		
+		function dianji(key){
+			    $.getJSON("Tyajax",{"key":key} ,function(a) {
+				layui.use([ 'laypage', 'layer' ], function() {
+					var laypage = layui.laypage;
+					var layer = layui.layer;
+					console.log(1111);
+					console.log(a);
+					console.log(a.count);
+					var datak =a.count;
+						//调用分页
+						laypage.render({
+							elem : 'demo20',
+							count : datak,
+							limit : 1,
+							jump : function(obj,first) {
+								//模拟渲染
+								
+								$.getJSON("Tyajax",{"page":obj.curr,"key":key}, function(data) {
+									var str1 = "";
+									
+									$.each(data.data,function(i,a){
+										console.log(a);
+									 str1+="<div class='blog_posts'><div class='blog_date'><figure><span>"+data.data[i].blog_time[8]+data.data[i].blog_time[9]+"</span>"+data.data[i].blog_time[6]+"月</figure>"
+	              +"</div><div class='blog_desc'><div class='blog_heading'><a href='mineblog.html?blog_id="+data.data[i].blog_id+"' >"+data.data[i].blog_title+"</a>"
+				  +"<p>发布于"+data.data[i].blog_time+" by <a href='' target='_blank'>"+data.data[i].user_id.user_name+"</a></p></div>"
 				  +"<div class='section group example'><div class='col blog_1_of_2'><div class='blog_img'><a href='' target='_blank'><img src='http://www.5imoban.net/uploads/allimg/151026/1-1510261K3450-L.gif' alt='image' class='img-responsive zoom-img'></a>"
-				  +"</div></div><div class='col blogdata_1_of_2'><div class='blog_data'><p>"+a.data[i].blog_text+"</p><div class='more'><span><a class='button outline-outward hvr-rectangle-in' href='' target='_blank'>Read More</a></span>"
-				  +"</div></div></div></div><div class='clearfix'></div></div><div class='clearfix'></div></div>";   
-				  console.log(str1); 
-		         }
-		         $("#chuan").html(str1);
-		  
-		  
-		  });  
-		} */
+				  +"</div></div><div class='col blogdata_1_of_2'><div class='blog_data'><p></p><div class='more'><span><a class='button outline-outward hvr-rectangle-in' href='Chat.html?user_id=1&sender_id="
+				  +data.data[i].user_id.user_id+"'>联系博主</a></span>"
+				  +"</div></div></div></div><div class='clearfix'></div></div><div class='clearfix'></div></div>"; 	
+					      
+									})
+			                     $("#chuan").html(str1);
+			                  
+								})
+							}
+						});
+				});
+			})
+		
+		
+		
+		}
+		
+		
+		
+		
+		
        </script>
        <script>
 			layui.use('layer', function() { //独立版的layer无需执行这一句
@@ -290,14 +332,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 							</div>
 						</div>
 						<div class="col-md-4 blog-grid1">
-							<div class="rsidebar span_1_of_3">
-								<h3>重点推荐</h3>
-								<ul>
-									<li><a href="http://www.5imoban.net/plus/search.php?keyword=%E9%9D%99%E6%80%81%E6%A8%A1%E6%9D%BF" target="_blank">静态模板</a></li>
-									<li><a href="http://www.5imoban.net/plus/search.php?keyword=bootstrap" target="_blank">bootstrap</a> </li>
-									<li><a href="http://www.5imoban.net/jiaocheng/other/2016/0112/1557.html" target="_blank">实用的sublime插件集合</a></li>
-									<li><a href="http://www.5imoban.net/cssmoban/qiye/20140822824.html" target="_blank">经典蓝色后台管理系统HTML模板</a></li>
-								</ul>
+							<div class="rsidebar span_1_of_3" id="type">
+							 <button id="button" type="button" class="btn btn-info" >办公脚本</button>	
 							</div>
 						</div>
 						<div class="clearfix"></div>

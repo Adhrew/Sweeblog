@@ -231,6 +231,21 @@
     <artifactId>aliyun-java-sdk-dysmsapi</artifactId>
     <version>1.1.0</version>
 </dependency>
+
+<!-- https://mvnrepository.com/artifact/javax.websocket/javax.websocket-api -->
+<dependency>
+    <groupId>javax.websocket</groupId>
+    <artifactId>javax.websocket-api</artifactId>
+    <version>1.1</version>
+    <scope>provided</scope>
+</dependency>
+
+<dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+            <classifier>jdk15</classifier>
+</dependency>
 		
 		
 	</dependencies>

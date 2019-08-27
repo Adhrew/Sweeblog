@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.dao.MessageDao">
+	<resultMap type="com.clay.entity.Message" id="msg">
+		<id property="message_id" column="message_id"/>
+		<result property="message_msg" column="message_msg"/>
+		<result property="message_time" column="message_time"/>
+		<result property="message_status" column="message_status"/>
+		<association property="sender_id" javaType="com.clay.entity.User" column="sender_id" select="com.clay.dao.UserDao.queryById"/>
+		<association property="accept_id" javaType="com.clay.entity.User" column="accept_id" select="com.clay.dao.UserDao.queryById"/>
+	</resultMap>
+	
+	<sql id="queryBySender">
+		<if test="sender_id!=null">
+			and sender_id = #{sender_id}
+		</if>
+	</sql>
+	<sql id="queryByAccept">
+		<if test="accept_id!=null">
+			and accept_id = #{accept_id}
+		</if>
+	</sql>
+		
+	
+	<select id="queryMessage" parameterType="com.clay.pojo.MessageVo" resultMap="msg">
+		select * from message_info
+		<where>
+			message_status = 0
+			<include refid="queryBySender"></include>
+			<include refid="queryByAccept"></include>
+		</where>
+	</select>
+	
+	<select id="queryMessaged" resultMap="msg">
+		select * from message_info
+		where (sender_id = #{0} and #{1}) or (sender_id =#{1} and accept_id = #{0})
+		ORDER BY message_time asc
+		
+	</select>
+	
+	<insert id="insertMessage" parameterType="com.clay.entity.Message">
+		insert into message_info(sender_id, accept_id, message_msg, message_status, message_time) 
+		values(#{sender_id.user_id}, #{accept_id.user_id}, #{message_msg}, 0, now())
+	</insert>
+	<update id="readMessage">
+		update message_info set message_status = 1
+		where sender_id = #{0} and accept_id=#{1}
+	</update>
+	
+	
+</mapper>
