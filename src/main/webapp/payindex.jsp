@@ -298,8 +298,8 @@ h2 {
 		sNow += String(vNow.getSeconds());
 		sNow += String(vNow.getMilliseconds());
 		document.getElementById("WIDout_trade_no").value =  sNow;
-		document.getElementById("WIDsubject").value = "测试";
-		document.getElementById("WIDtotal_amount").value = "0.01";
+		document.getElementById("WIDsubject").value = "充值博客币";
+		//document.getElementById("WIDtotal_amount").value = "0.01";
 	}
 	GetDateNow();
 </script>

@@ -145,11 +145,6 @@ public class UserController {
 	public String blog(HttpSession session, HttpServletRequest request) {
 		return "blog";
 	}
-
-	@RequestMapping("/payindex.html")
-	public String payindex(HttpSession session, HttpServletRequest request) {
-		return "payindex";
-	}
 	
 	@RequestMapping("/toregister.html")
 	public String toregister() {
@@ -161,6 +156,14 @@ public class UserController {
 	public String tologin() {
 		return "login";
 	}
+	
+	
+	@RequestMapping("/chongzhizhongxin.html")
+	public String tochongzhizhongxin() {
+		
+		return "chongzhizhongxin";
+	}
+	
 	
 	
 	@RequestMapping("/login.html")
