@@ -17,7 +17,7 @@
 			<p>1.博客币是虚拟货币，你可以使用博客币购买站内的博客。</p>
 			<p>2.博客币与人民币换算为1：1，即1元=1博客币，你可以选择支付宝来进行充值，博客币每次10个起充。</p>
 		</div>
-		<form action="" class="am-form" id="doc-vld-msg">
+		<form action="payindex.html" class="am-form" id="doc-vld-msg">
 			<div class="tr_rechbox">
 				<div class="tr_rechhead">
 					<img src="images/ys_head2.jpg" />
@@ -72,7 +72,7 @@
 				</div>
 			</div>
 			<div class="tr_paybox">
-				<input type="submit" value="确认支付" class="tr_pay am-btn" onclick='window.open("payindex.jsp")' />
+				<input type="submit" value="确认支付" class="tr_pay am-btn"  />
 				<span>温馨提示：博客币只限于在本站中购买博客，遇到问题请拨打联系电话。</span>
 			</div>
 		</form>
@@ -97,27 +97,27 @@
 		$('#uc_01 li:eq(3)').click(function() {
 			$('.tr_rechoth').show();
 			$('.tr_rechoth').find("input").attr('required', 'true')
-			$('.rechnum').val('10.00元');
+			$('.rechnum').val('10.00');
 		})
 		$('#uc_01 li:eq(0)').click(function() {
 			$('.tr_rechoth').hide();
-			$('.rechnum').val('10.00元');
+			$('.rechnum').val('10.00');
 			$('.othbox').val('');
 		})
 		$('#uc_01 li:eq(1)').click(function() {
 			$('.tr_rechoth').hide();
-			$('.rechnum').val('20.00元');
+			$('.rechnum').val('20.00');
 			$('.othbox').val('');
 		})
 		$('#uc_01 li:eq(2)').click(function() {
 			$('.tr_rechoth').hide();
-			$('.rechnum').val('50.00元');
+			$('.rechnum').val('50.00');
 			$('.othbox').val('');
 		})
 		$(document).ready(function() {
 			$('.othbox').on('input propertychange', function() {
 				var num = $(this).val();
-				$('.rechnum').val(num + ".00元");
+				$('.rechnum').val(num + ".00");
 			});
 		});
 	})

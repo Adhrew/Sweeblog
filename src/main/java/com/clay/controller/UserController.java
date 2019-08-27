@@ -164,6 +164,11 @@ public class UserController {
 		return "chongzhizhongxin";
 	}
 	
+	@RequestMapping("/payindex.html")
+	public String topayindex(@RequestParam("chongzhi") String money,HttpServletRequest request) {
+		request.setAttribute("money",money);
+		return "payindex";
+	}
 	
 	
 	@RequestMapping("/login.html")
