@@ -194,9 +194,9 @@
 		<br />
 		<div id="portfoliolist">
 			<div class="portfolio" style="max-width: 300px;" >
-				<div class="portfolio-wrapper" >
+				<div class="portfolio-wrapper" style="float:left;">
 					<a href="#small-dialog">
-						class="b-link-stripe b-animate-go  thickbox play-icon popup-with-zoom-anim">
+						class="b-link-stripe b-animate-go thickbox play-icon popup-with-zoom-anim">
 						<img class="work-img" src="images/img1.jpg" width="300px" alt="" />
 						<div class="b-wrapper">
 							<h2 class="b-animate b-from-left b-delay03 ">
