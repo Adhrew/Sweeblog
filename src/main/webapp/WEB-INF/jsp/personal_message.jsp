@@ -185,7 +185,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 						</li>
 						<li class="layui-nav-item"><a href="personal_blog.html" style="text-decoration: none;">博客</a></li>
 						<li class="layui-nav-item layui-this">
-							<a href="personal.html" style="text-decoration: none;">消息</a><div align="right" style="margin-right: 35px;"><span class="layui-badge">1</span></div>
+							<a href="personal_message.html" style="text-decoration: none;">消息</a><div align="right" style="margin-right: 45px;" id="mes2"><span id="mes" class="layui-badge"></span></div>
 						</li>
 					</ul>
 				</div>
@@ -205,70 +205,86 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 
 		<script>
+		
+		function init(data){
+				var str = "";
+				$.each(data,function(i,item){
+					let reg=/<\/?.+?\/?>/g;
+					var mes = item.message_msg;
+					if(mes.length>50)
+						mes=mes.substring(0,50);
+					mes = mes.replace(reg,'&nbsp;');
+					str+="<div class='layui-card'><div class='layui-card-header'>"+item.sender_id.user_name
+					+"</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><label class='layui-form-label' style='text-align: left; width:100%;word-wrap:break-word'>"+mes
+					+"</label></div></div></div>";
+				})
+				return str;
+			}
+		
 		$(document).ready(function() {
-			$.get("acc_init.action?userid="+${sessionScope.userSession.user_id }, function(datak) {
+			$.getJSON("message_init.action?userid="+${sessionScope.userSession.user_id }, function(datak) {
 				layui.use([ 'laypage', 'layer' ], function() {
 					var laypage = layui.laypage;
 					var layer = layui.layer;
-					console.log(datak)
-					if(datak==0){
+					console.log(datak);
+					console.log(datak.length);
+					if(datak.length==0){
+						$("#mes2").html("");
 						$("#lef").css("height","350px");
 						$("#my_data").css("height","350px");
-						$("#tabledata").html("<div align='center'><label class='layui-form-label' style='width:auto;'>暂未有交易记录</label></div>");
+						$("#tabledata").html("<div align='center'><label class='layui-form-label' style='width:auto;'>暂未有消息记录</label></div>");
 						return;
+					}else
+					{	
+						if(datak.length>99)
+							$("#mes").html("99+");
+						else
+							$("#mes").html(datak.length);
 					}
-					if (datak >= 3)
-						//调用分页
+					if (datak.length >= 3)
+					{	//调用分页
+						var mydata = [];
 						laypage.render({
 							elem : 'demo20',
-							count : datak,
+							count : datak.length,
 							limit : 3,
 							jump : function(obj,first) {
-								//模拟渲染
-								if((3*obj.curr)>datak){
-									$("#lef").css("height",(datak-(3*(obj.curr-1)))*400+"px");
-									$("#my_data").css("height",(datak-(3*(obj.curr-1)))*400+"px");
+							//模拟渲染
+								var str = "";
+								var arr = [];
+								mydata = jQuery.extend(true,[],datak);
+								var k = 0;
+								if((3*obj.curr)>datak.length){
+									$("#lef").css("height",((datak.length-(3*(obj.curr-1)))*100+350)+"px");
+									$("#my_data").css("height",((datak.length-(3*(obj.curr-1)))*100+350)+"px");
+									console.log(datak.length-(3*obj.curr));
+									k = datak.length;
 								}
 								else{
-									$("#lef").css("height","1200px");
-									$("#my_data").css("height","1200px");
+									k = (3*obj.curr);
+									$("#lef").css("height","700px");
+									$("#my_data").css("height","700px");
 								}
-								$.getJSON("acc_page.action?curr="+ obj.curr+"&userid="+${sessionScope.userSession.user_id }, function(data) {
-									var str = "";
-									$.each(data.data,function(i,item){
-										console.log(item);
-										str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
-										str+=item.blog_id.user_id.user_name + "</td><td>";
-										str+=item.blog_id.blog_title + "</td><td>";
-										str+=item.record_money + "</td><td>";
-										str+=item.record_starttime + "</td></tr><tr><td>";
-										str+="</td></tr></tbody></table></div></div></div></div>";
-									})
-									$("#my_data").html(str);
-								})
+								for(var i = 3*(obj.curr-1);i<k;i++){
+									arr.push(datak[i]);
+								}
+								mydata = arr;
+								console.log(mydata);
+								str = init(mydata);
+								$("#my_data").html(str);
 							}
 						});
+					}
 					else{
-						$("#lef").css("height",datak*400+"px");
-						$("#my_data").css("height",datak*400+"px");
-						$.getJSON("acc_page.action?curr=1&userid="+${sessionScope.userSession.user_id }, function(data) {
-							var str = "";
-							$.each(data.data,function(i,item){
-							console.log(item);
-							str+="<div class='layui-card'><div class='layui-card-header'>接收交易</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><div class='col-md-12 column'><table class='table'><thead><tr><th>发起人姓名</th><th>博客名</th><th>金额</th><th>发起时间</th></tr></thead><tbody><tr><td>"
-							str+=item.blog_id.user_id.user_name + "</td><td>";
-							str+=item.blog_id.blog_title + "</td><td>";
-							str+=item.record_money + "</td><td>";
-							str+=item.record_starttime + "</td></tr><tr><td>";
-							str+="</td></tr></tbody></table></div></div></div></div>";
-							})
-							$("#my_data").html(str);
-						})
+						$("#lef").css("height",(350+datak*100)+"px");
+						$("#my_data").css("height",(350+datak*100)+"px");
+						var str = "";
+						str = init(datak);
+						$("#my_data").html(str);
 					}
 				});
 			})
 		})
-
 	</script>
 
 		<script>

@@ -204,9 +204,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								</div>
 							</div>
 						</div>
-						<div id="demo20" align="center"></div>
-						<ul id="biuuu_city_list"></ul>
 					</div>
+					<div id="demo20" align="center" style="margin-top:-60px"></div>
 				</div>
 			</div>
 		</div>
@@ -231,11 +230,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 								//模拟渲染
 								$.getJSON("myblog_All.action?curr="+ obj.curr+"&userid="+${sessionScope.userSession.user_id }, function(data) {
 									var str = "";
+									let reg=/<\/?.+?\/?>/g;
 									$.each(data.data,function(i,item){
-										console.log(item);
-										str+="<a href='mineblog.html?blog_id="+ item.blog_id +"'><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
+										var nei = item.blog_text.replace(reg,'');
+										if(nei.length>100) nei=nei.substring(0,100);
+										str+="<a href='mineblog.html?blog_id="+ item.blog_id +"'><div class='layui-card' style='margin-bottom:20px'><div class='layui-card-header'>"+item.blog_title
 										+"</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><label class='layui-form-label' style='text-align: left; width:100%;word-wrap:break-word'>"+
-										item.blog_text+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
+										nei+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
 									})
 									$("#my_data").html(str);
 								})
@@ -244,11 +245,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					else{
 						$.getJSON("myblog_All.action?curr=1&userid="+${sessionScope.userSession.user_id }, function(data) {
 							var str = "";
+							let reg=/<\/?.+?\/?>/g;
 							$.each(data.data,function(i,item){
-							console.log(item);
-							str+="<a href='mineblog.html?blog_id="+ item.blog_id +"'><div class='layui-card'><div class='layui-card-header'>"+item.blog_title
+							var nei = item.blog_text.replace(reg,'&nbsp;');
+							if(nei.length>100) nei=nei.substring(0,100);
+							str+="<a href='mineblog.html?blog_id="+ item.blog_id +"'><div class='layui-card' style='margin-bottom:20px'><div class='layui-card-header'>"+item.blog_title
 							+"</div><div class='layui-card-body'><div class='layui-form-item' id='tabledata'><label class='layui-form-label' style='text-align: left; width:100%;word-wrap:break-word'>"+
-							item.blog_text+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
+							nei+"</label></div><div align='right'><button id='del" + item.blog_id + "' class='layui-btn layui-btn-danger' onclick='del(this)'>删除</button></div></div></div></a>"
 							})
 							$("#my_data").html(str);
 						})

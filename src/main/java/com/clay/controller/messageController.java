@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.clay.entity.Message;
 import com.clay.pojo.MessageVo;
@@ -23,8 +24,8 @@ public class messageController {
 	@Resource
 	private MessageService messageService;
 	
-	@RequestMapping()
-	public void rendMesssage(HttpServletRequest request,HttpServletResponse response, Integer accept_id) throws IOException{
+	@RequestMapping("/message_init.action")
+	public void rendMesssage(@RequestParam("userid")Integer accept_id,HttpServletRequest request,HttpServletResponse response) throws IOException{
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
 	    PrintWriter out=response.getWriter();
