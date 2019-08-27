@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
         <link rel="stylesheet" href="../statics/css/font.css">
         <link rel="stylesheet" href="../statics/css/xadmin.css">
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
         <script src="../statics/lib/layui/layui.js" charset="utf-8"></script>
         <script type="text/javascript" src="../statics/js/xadmin.js"></script>
         <!--[if lt IE 9]>
@@ -41,10 +42,10 @@
                                     <input class="layui-input"  autocomplete="off" placeholder="截止日" name="end" id="end">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <input type="text" name="username"  placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                                    <input type="text" name="username" id="keywords"  placeholder="请输入博客名" autocomplete="off" class="layui-input">
                                 </div>
                                 <div class="layui-inline layui-show-xs-block">
-                                    <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+                                    <a class="layui-btn likebtn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></a>
                                 </div>
                             </form>
                         </div>
@@ -92,6 +93,43 @@
     	  });
     	});
     })
+    
+    
+    $(".likebtn").click(function(){
+	   /* console.log($(".keywords").val()); */
+	   /* console.log("模糊查询"); */
+	   /* console.log($("#start").val());
+	   console.log($("#end").val()); */
+	   layui.use('table', function(){
+    	  var table = layui.table;
+    	  /* console.log($(".keywords").val()); */
+    	  $.getJSON("../queryBlogByLike.action",{blog_title:$("#keywords").val(),starttime:$("#start").val(),endtime:$("#end").val()},function(data){
+        	  //展示已知数据
+        	  table.render({
+        	    elem: '#demo'
+        	    ,cols: [[//标题栏
+        	    		{type:'numbers' ,title:'编号'}
+        	    		,{type:'checkbox'}
+        	    		,{field:'blog_id',title: '博客id', width:80, sort: true}
+        	      		,{field:'blog_title',title: '博客标题', width:120}
+                        ,{field:'blog_text',title: '博客内容', width:80}
+                        ,{field:'type_id',title: '博客类型', width:80,templet: '<div>{{d.type_id.type_name}}</div>'}
+                        ,{field:'blog_time',title: '创建时间', width: 130}
+                        ,{field:'blog_hot',title: '热度', sort:true, width: 80}
+                        ,{field:'user_name', title: '创建者',width:80,templet: '<div>{{d.user_id.user_name}}</div>'}
+                        ,{field:'blog_grade',title: '博客评分',sort: true,minWidth: 120}
+                        ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+        	    ]]
+        	    ,data: data
+        	    ,skin: 'line' //表格风格
+        	    ,even: true
+        	    ,page: true //是否显示分页
+        	    ,limits: [5, 7, 10]
+        	    ,limit: 10 //每页默认显示的数量
+        	  });
+        	});
+    })
+   })
     </script>
      <script  type="text/html" id="barDemo">
     <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
@@ -148,9 +186,9 @@
           });
       }
 
+		
 
-
-      function delAll (argument) {
+      /* function delAll (argument) {
 
         var data = tableCheck.getData();
   
@@ -159,7 +197,42 @@
             layer.msg('删除成功', {icon: 1});
             $(".layui-form-checked").not('.header').parents('tr').remove();
         });
+      } */
+      
+      function delAll(argument) {
+          /* var data = $(".layui-form-checked").not('.header').parents('tr').find('td'); */
+          /* console.log(argument); */
+			/* console.log(data.eq(2)[0].innerText); */
+			layer.confirm('确认要删除吗？',
+		            function(index) {
+		                //捉到所有被选中的，发异步进行删除
+		                layer.msg('删除成功', {
+		                    icon: 1
+		                });
+		                layui.each($(".layui-form-checked").not('.header').parents('tr'),function(index,item){
+		                	if($(item).attr("data-index")!=null){
+		                		$.get("../delCheckBlog.action",{blog_arr:$(item).find('td').eq(2)[0].innerText},function(data){ 
+				    				/* console.log($(obj).parents('tr').find('td').eq(2)[0].innerText); */
+				    				layer.msg('删除成功！', {
+				                        icon: 1,
+				                        time: 1000
+				                    });	
+				    			});
+		                	}
+		                });
+		                $(".layui-form-checked").not('.header').parents('tr').remove();
+		            });
+          
       }
+      
+      
+      layui.use('table', function(){
+    		var table = layui.table;
+    		//监听表格复选框选择
+    		table.on('checkbox(demo)', function(obj){
+      		console.log(obj);
+    		}); 
+      })
     </script>
     <script>var _hmt = _hmt || []; (function() {
         var hm = document.createElement("script");

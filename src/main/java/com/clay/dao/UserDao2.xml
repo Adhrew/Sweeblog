@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.dao.UserDao2">
+	<sql id="queryByUserIdentity">
+		<if test="user_identity!=null">
+			and user_identity = #{user_identity}
+		</if>
+	</sql>
+	<sql id="queryByStrLike">
+		<if test="user_str_like!=null">
+			and user_name like concat("%",#{user_str_like},"%")
+		</if>
+	</sql>
+	
+	<sql id="queryByStartTime">
+		<if test="starting_time!=''">
+			and user_register &gt;= #{starting_time} 
+		</if>
+	</sql>
+	<sql id="queryByEndTime">
+		<if test="ending_time!=''">
+			and user_register &lt;= #{ending_time} 
+		</if>
+	</sql>
+	<select id="userLogin" resultType="com.clay.entity.User">
+		select * from user_info where user_name=#{0} and user_pwd =#{1}
+	</select>
+	<insert id="insertUser" parameterType="com.clay.entity.User">
+		insert into user_info(user_name, user_pwd, user_img, user_sex, user_tel, user_identity, user_register, user_money, user_credit) 
+		values ( #{user_name}, #{user_pwd}, NULL, #{user_sex}, #{user_tel}, 0, now(), 0, 0)
+	</insert>
+	
+	<select id="queryByPage" parameterType="com.clay.pojo.UserVo2" resultType="com.clay.entity.User">
+		select * from user_info 
+		<where>
+			<include refid="queryByUserIdentity"></include>
+			<include refid="queryByStrLike"></include>
+			<include refid="queryByStartTime"></include>
+			<include refid="queryByEndTime"></include>
+		</where>
+	</select>
+	
+	<select id="queryAll" resultType="com.clay.entity.User">
+		select * from user_info 
+		
+	</select>
+	
+	<select id="queryById" resultType="com.clay.entity.User" parameterType="java.lang.Integer">
+		select * from user_info where user_id = #{id}
+	</select>
+	
+	<select id="getCount" resultType="java.lang.Integer">
+		select count(*) from user_info
+		<where>
+			<include refid="queryByUserIdentity"></include>
+			<include refid="queryByStrLike"></include> 
+		</where>
+	</select>
+	
+	<delete id="deleteUser" parameterType="java.lang.Integer">
+		delete from user_info where user_id = #{id}
+	</delete>
+	
+	
+	<update id="updateUser" parameterType="com.clay.entity.User">
+		update user_info set
+		<if test="user_name!=null">
+			user_name = #{user_name},
+		</if>
+		<if test="user_pwd!=null">
+			user_pwd = #{user_pwd},
+		</if>
+		<if test="user_img!=null">
+			user_img = #{user_img},
+		</if>
+		<if test="user_sex!=null">
+			user_sex = #{user_sex},
+		</if>
+		<if test="user_tel!=null">
+			user_tel = #{user_tel},
+		</if>
+		<if test="user_identity!=null">
+			user_identity = #{user_identity},
+		</if>
+		<if test="user_money!=null">
+			user_money = #{user_money},
+		</if>
+		<if test="user_credit!=null">
+			user_credit = #{user_credit},
+		</if>
+		user_id = #{user_id}
+		<where>
+			user_id = #{user_id}
+		</where>
+	</update>
+	
+</mapper>

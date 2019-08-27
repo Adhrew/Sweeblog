@@ -9,6 +9,7 @@
         <meta name="renderer" content="webkit">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
         <link rel="stylesheet" href="../statics/css/font.css">
         <link rel="stylesheet" href="../statics/css/xadmin.css">
         <script src="../statics/lib/layui/layui.js" charset="utf-8"></script>
@@ -38,35 +39,36 @@
                                 <div class="layui-input-inline layui-show-xs-block">
                                     <input class="layui-input" placeholder="截止日" name="end" id="end"></div>
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <select name="contrller">
-                                        <option>支付方式</option>
-                                        <option>支付宝</option>
-                                        <option>微信</option>
-                                        <option>货到付款</option></select>
-                                </div>
-                                <div class="layui-input-inline layui-show-xs-block">
-                                    <select name="contrller">
+                                    <select name="record_status" id="record_status">
                                         <option value="">订单状态</option>
-                                        <option value="0">待确认</option>
-                                        <option value="1">已确认</option>
-                                        <option value="2">已收货</option>
-                                        <option value="3">已取消</option>
-                                        <option value="4">已完成</option>
-                                        <option value="5">已作废</option></select>
+                                        <option value="0">等待客户</option>
+                                        <option value="1">进行中</option>
+                                        <option value="2">正常结束</option>
+                                        <option value="3">用户毁约</option>
+                                        <option value="4">博主毁约</option>
+                                    </select>
                                 </div>
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <input type="text" name="username" placeholder="请输入订单号" autocomplete="off" class="layui-input"></div>
+                                    <select name="record_ok" id="record_ok">
+                                        <option value="">确认状态</option>
+                                        <option value="0">待确认</option>
+                                        <option value="1">博主确认</option>
+                                        <option value="2">客户确认</option>
+                                        <option value="3">全部确认</option>
+                                   </select>
+                                </div>
                                 <div class="layui-input-inline layui-show-xs-block">
-                                    <button class="layui-btn" lay-submit="" lay-filter="sreach">
-                                        <i class="layui-icon">&#xe615;</i></button>
+                                    <input type="text" name="username" id="blog_id" placeholder="请输入博客ID" autocomplete="off" class="layui-input"></div>
+                                <div class="layui-input-inline layui-show-xs-block">
+                                    <a class="layui-btn likebtn" lay-submit="" id="likbtn" lay-filter="sreach">
+                                        <i class="layui-icon">&#xe615;</i></a>
                                 </div>
                             </form>
                         </div>
                         <div class="layui-card-header">
-                            <button class="layui-btn layui-btn-danger" onclick="delAll()">
-                                <i class="layui-icon"></i>批量删除</button>
-                            <button class="layui-btn" onclick="xadmin.open('添加用户','./order-add.html',800,600)">
-                                <i class="layui-icon"></i>添加</button></div>
+                            <a class="layui-btn layui-btn-danger" onclick="delAll()">
+                                <i class="layui-icon"></i>批量删除</a>
+                            </div>
                         <div class="layui-card-body ">
                             <table class="layui-hide" id="demo"  lay-filter="demo">
                                
@@ -80,38 +82,91 @@
         </div>
     </body>
     <script type="text/javascript">
-    layui.use('table', function(){
-    	  var table = layui.table;
-    	  $.getJSON("../allRecord.action",function(data){
-    	  table.render({
-	    	elem: '#demo'
-	    	,cols: [[//标题栏
-	    		{type:'numbers' ,title:'编号'}
-	    		,{type:'checkbox'}
-	    		,{field:'record_id',title: '订单编号', width:80, sort: true}
-	      		,{field:'user_id',title: '买家ID', width:120}
-                ,{field:'record_money',title: '总金额', width:80,templet: '#switchTpl'}
-                ,{field:'record_money',title: '应付金额', minWidth: 100}
-                ,{field:'record_status',title: '订单状态', minWidth: 100}
-                ,{field:'record_ok', title: '支付状态',sort: true}
-                ,{field:'record_starttime',title: '开始时间',sort: true,minWidth: 150}
-                ,{field:'record_endtime',title: '结束时间',sort: true,minWidth: 150}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
-	    ]]
-	    ,data: data
-	    ,skin: 'line' //表格风格
-	    ,even: true
-	    ,page: true //是否显示分页
-	    ,limits: [5, 7, 10]
-	    ,limit: 10 //每页默认显示的数量
-	  });
+    
+    
+    </script>
+    
+    
+    
+    
+    
+    <script type="text/javascript">
+    $(function(){
+    	layui.use('table', function(){
+      	  var table = layui.table;
+      	  $.getJSON("../allRecord.action",function(data){
+      	  table.render({
+  	    	elem: '#demo'
+  	    	,cols: [[//标题栏
+  	    		{type:'numbers' ,title:'编号'}
+  	    		,{type:'checkbox'}
+  	    		,{field:'record_id',title: '订单编号', width:80, sort: true}
+  	      		,{field:'user_id',title: '买家ID', width:120,templet: '<div>{{d.user_id.user_name}}</div>'}
+                  ,{field:'record_money',title: '总金额', width:80,templet: '#switchTpl'}
+                  ,{field:'record_money',title: '应付金额', minWidth: 100}
+                  ,{field:'record_status',title: '订单状态', minWidth: 100}
+                  ,{field:'record_ok', title: '支付状态',sort: true}
+                  ,{field:'record_starttime',title: '开始时间',sort: true,minWidth: 150}
+                  ,{field:'record_endtime',title: '结束时间',sort: true,minWidth: 150}
+                  ,{ title:'操作', toolbar: '#barDemo', width:150}
+  	    ]]
+  	    ,data: data
+  	    ,skin: 'line' //表格风格
+  	    ,even: true
+  	    ,page: true //是否显示分页
+  	    ,limits: [5, 7, 10]
+  	    ,limit: 10 //每页默认显示的数量
+  	  });
+      	})
+      	})
+    })
+    
+    $(".likebtn").click(function(){
+ 	   /* console.log($(".keywords").val()); */
+ 	   /* console.log("模糊查询"); */
+ 	   /* console.log($("#start").val());
+ 	   console.log($("#end").val()); */
+ 	   /* console.log($("#start").val());
+ 	   console.log($("#end").val());
+ 	   console.log($("#record_ok option:selected").val()); */
+ 	  layui.use('table', function(){
+     	  	var table = layui.table;
+     	  /* console.log($(".keywords").val()); 
+     	  console.log(1111);
+     	  console.log($("#record_ok option:selected").val())*/
+     	  $.getJSON("../queryRecordByLike.action",{blog_id:$("#blog_id").val(),record_ok:$("#record_ok option:selected").val(),record_status:$("#record_status option:selected").val(),starttime:$("#start").val(),endtime:$("#end").val()},function(data1){
+    	  		/* console.log(data1);
+    	  		console.log("11111111"); */
+	   	  		table.render({
+	    		elem: '#demo'
+	    		,cols: [[//标题栏
+	    			{type:'numbers' ,title:'编号'}
+	    			,{type:'checkbox'}
+		    		,{field:'record_id',title: '订单编号', width:80, sort: true}
+		      		,{field:'user_id',title: '买家ID', width:120,templet: '<div>{{d.user_id.user_name}}</div>'}
+	                ,{field:'record_money',title: '总金额', width:80,templet: '#switchTpl'}
+	                ,{field:'record_money',title: '应付金额', minWidth: 100}
+	                ,{field:'record_status',title: '订单状态', minWidth: 100}
+	                ,{field:'record_ok', title: '确认状态',sort: true}
+	                ,{field:'record_starttime',title: '开始时间',sort: true,minWidth: 150}
+	                ,{field:'record_endtime',title: '结束时间',sort: true,minWidth: 150}
+	                ,{title:'操作', toolbar: '#barDemo', width:150}
+	    		]]
+	    		,data: data1
+			    ,skin: 'line' //表格风格
+			    ,even: true
+			    ,page: true //是否显示分页
+			    ,limits: [5, 7, 10]
+			    ,limit: 10 //每页默认显示的数量
+	  			});
     	})
-    	})
+     })
+    })
     </script>
     <script  type="text/html" id="barDemo">
     <a title="查看" onclick="xadmin.open('编辑','order-view.html')" href="javascript:;">
     <i class="layui-icon">&#xe63c;</i></a>
-	<a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
+	<a title="删除" id="" onclick="member_del(this,layui.table)" href="javascript:;">
     <i class="layui-icon">&#xe640;</i></a>
     </script>
     <script>layui.use(['laydate', 'form'],
@@ -165,26 +220,59 @@
             layer.confirm('确认要删除吗？',
             function(index) {
                 //发异步删除数据
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!', {
-                    icon: 1,
-                    time: 1000
-                });
+                $(obj).parents('tr').remove();
+               /*  console.log($(obj).parents('tr').find('td').eq(2)[0].innerText); */
+				$.get("../delOrder.action",{orderid:$(obj).parents('tr').find('td').eq(2)[0].innerText},function(data){
+					/* console.log($(obj).parents('tr').find('td').eq(2)[0].innerText); */
+					if(data=='删除成功！'){
+						layer.msg(data, {
+		                    icon: 1,
+		                    time: 1000
+		                });	
+					}else{
+						layer.msg(data, {
+		                    icon: 2,
+		                    time: 1000
+		                });
+					}
+				})
             });
         }
 
         function delAll(argument) {
+            /* var data = $(".layui-form-checked").not('.header').parents('tr').find('td'); */
+            /* console.log(argument); */
+			/* console.log(data.eq(2)[0].innerText); */
+			layer.confirm('确认要删除吗？',
+		            function(index) {
+		                //捉到所有被选中的，发异步进行删除
+		                layer.msg('删除成功', {
+		                    icon: 1
+		                });
+		                layui.each($(".layui-form-checked").not('.header').parents('tr'),function(index,item){
+		                	if($(item).attr("data-index")!=null){
+		                		$.get("../delCheckRecord.action",{record_arr:$(item).find('td').eq(2)[0].innerText},function(data){ 
+				    				/* console.log($(obj).parents('tr').find('td').eq(2)[0].innerText); */
+				    				layer.msg('删除成功！', {
+				                        icon: 1,
+				                        time: 1000
+				                    });	
+				    			});
+		                	}
+		                });
+		                $(".layui-form-checked").not('.header').parents('tr').remove();
+		            });
+            
+        }
 
-            var data = tableCheck.getData();
-
-            layer.confirm('确认要删除吗？' + data,
-            function(index) {
-                //捉到所有被选中的，发异步进行删除
-                layer.msg('删除成功', {
-                    icon: 1
-                });
-                $(".layui-form-checked").not('.header').parents('tr').remove();
-            });
-        }</script>
+        
+        layui.use('table', function(){
+      		var table = layui.table;
+      		//监听表格复选框选择
+      		table.on('checkbox(demo)', function(obj){
+        		console.log(obj);
+      		}); 
+        })
+        </script>
 
 </html>

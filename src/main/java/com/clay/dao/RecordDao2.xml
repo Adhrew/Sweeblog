@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.clay.dao.RecordDao2">
+
+	<resultMap type="com.clay.entity.Record" id="reco">
+		<id property="record_id" column="record_id" />
+		<result property="record_status" column="record_status" />
+		<result property="record_ok" column="record_ok" />
+		<result property="record_starttime" column="record_starttime" />
+		<result property="record_endtime" column="record_endtime" />
+		<result property="record_money" column="record_money" />
+		<association property="blog_id" javaType="com.clay.entity.Blog"
+			column="blog_id" select="com.clay.dao.BlogDao.queryById" />
+		<association property="user_id" javaType="com.clay.entity.User"
+			column="user_id" select="com.clay.dao.UserDao.queryById" />
+	</resultMap>
+
+	<sql id="queryByStatus">
+		<if test="status!=null">
+			and record_status = #{status}
+		</if>
+	</sql>
+	<sql id="queryByUserId">
+		<if test="user_id!=null">
+			and r.user_id = #{user_id}
+		</if>
+	</sql>
+	<sql id="queryByBlogId">
+		<if test="blog_id!=null">
+			and r.blog_id = #{blog_id}
+		</if>
+	</sql>
+	<sql id="queryByBlogUserId">
+		<if test="ok!=null">
+			and record_ok = #{ok}
+		</if>
+	</sql>
+	<sql id="queryByOk">
+		<if test="blog_user_id!=null">
+			and u.user_id = #{blog_user_id}
+		</if>
+	</sql>
+
+	<sql id="queryByStrLike">
+		<if test="record_str_like!=null">
+			and b.blog_title like concat("%",#{record_str_like},"%")
+		</if>
+	</sql>
+
+	<sql id="queryByStartTime">
+		<if test="starting_time!=null">
+			and record_starttime &gt;= #{starting_time}
+		</if>
+	</sql>
+	<sql id="queryByEndTime">
+		<if test="ending_time!=null">
+			and record_starttime &lt;= #{ending_time}
+		</if>
+	</sql>
+
+	<select id="queryByPage" resultMap="reco" parameterType="com.clay.pojo.RecordVo2">
+		select *
+		from record_info r, blog_info b, user_info u
+		<where>
+			r.blog_id = b.blog_id and b.user_id = u.user_id
+			<include refid="queryByStatus" />
+			<include refid="queryByUserId" />
+			<include refid="queryByBlogId" />
+			<include refid="queryByBlogUserId" />
+			<include refid="queryByOk" />
+			<include refid="queryByStrLike" />
+			<include refid="queryByStartTime"></include>
+			<include refid="queryByEndTime"></include>
+		</where>
+	</select>
+
+	<select id="getCount" resultType="java.lang.Integer"
+		parameterType="com.clay.pojo.RecordVo">
+		select count(*) from record_info r, blog_info b, user_info u
+		<where>
+			r.blog_id = b.blog_id and b.user_id = u.user_id
+			<include refid="queryByStatus" />
+			<include refid="queryByUserId" />
+			<include refid="queryByBlogId" />
+			<include refid="queryByBlogUserId" />
+			<include refid="queryByOk" />
+			<include refid="queryByStrLike" />
+		</where>
+	</select>
+
+	<select id="queryById" resultMap="reco" parameterType="java.lang.Integer">
+		select *
+		from record_info r, blog_info b, user_info u
+		where r.blog_id =
+		b.blog_id and b.user_id = u.user_id and record_id = #{id}
+	</select>
+
+	<insert id="insertRecord" parameterType="com.clay.entity.Record">
+		insert into
+		record_info(blog_id,user_id,record_status,record_ok,record_starttime,record_money)
+		values(#{blog_id.blog_id},#{user_id.user_id},0,0,now(),#{record_money})
+	</insert>
+
+	<delete id="deleteRecord" parameterType="java.lang.Integer">
+		delete from record_info
+		where record_id = #{id};
+	</delete>
+
+	<update id="updateRecord" parameterType="com.clay.entity.Record">
+		update record_info set
+		<if test="record_status!=null">
+			record_status=#{record_status},
+		</if>
+		<if test="record_ok!=null">
+			record_ok=#{record_ok},
+		</if>
+		<if test="record_money!=null">
+			record_money=#{record_money},
+		</if>
+		<if test="record_starttime!=null">
+			record_starttime = now(),
+		</if>
+		<if test="record_endtime!=null">
+			record_endtime = now(),
+		</if>
+		record_id = #{record_id}
+		<where>
+			record_id = #{record_id}
+		</where>
+	</update>
+
+</mapper>

@@ -47,52 +47,47 @@
                             <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
                         </div>
                         <div class="layui-card-body ">
-                            <table class="layui-table layui-form">
-                                <thead>
-                                  <tr>
-                                    <th>
-                                     <input type="checkbox" name=""  lay-skin="primary">
-                                    </th>
-                                    <th>ID</th>
-                                    <th>分类名</th>
-                                    <th>操作</th>
-                                </thead>
-                                <tbody>
-                                  <tr>
-                                    <td>
-                                      <input type="checkbox" name=""  lay-skin="primary">
-                                    </td>
-                                    <td>1</td>
-                                    <td>会员相关</td>
-                                    <td class="td-manage">
-                                      <a title="编辑"  onclick="xadmin.open('编辑','admin-edit.html')" href="javascript:;">
-                                        <i class="layui-icon">&#xe642;</i>
-                                      </a>
-                                      <a title="删除" onclick="member_del(this,'要删除的id')" href="javascript:;">
-                                        <i class="layui-icon">&#xe640;</i>
-                                      </a>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
+                             <table class="layui-hide" id="demo"  lay-filter="demo">
+                            </table>
                         </div>
-                        <div class="layui-card-body ">
-                            <div class="page">
-                                <div>
-                                  <a class="prev" href="">&lt;&lt;</a>
-                                  <a class="num" href="">1</a>
-                                  <span class="current">2</span>
-                                  <a class="num" href="">3</a>
-                                  <a class="num" href="">489</a>
-                                  <a class="next" href="">&gt;&gt;</a>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
         </div> 
     </body>
+    <script type="text/javascript">
+    
+    $(function(){
+    	layui.use('table', function(){
+      	  var table = layui.table;
+      	  $.getJSON("../allUser.action",function(data){
+      	  //展示已知数据
+      	  table.render({
+      	    elem: '#demo'
+      	    ,cols: [[//标题栏
+      	    		{type:'numbers' ,title:'编号'}
+      	    		,{type:'checkbox'}
+      	    		,{field:'user_id',title: 'id', width:80, sort: true}
+      	      		,{field:'user_name',title: '用户名', width:120}
+                      ,{field:'user_sex',title: '性别', width:80}
+                      ,{field:'user_tel',title: '手机号码', width: 130}
+                      ,{field:'user_money',title: '博客币', width: 80}
+                      ,{field:'user_credit', title: '积分',sort: true,width:80}
+                      ,{field:'user_register',title: '注册时间',sort: true,minWidth: 120}
+                      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+      	    ]]
+      	    ,data: data
+      	    ,skin: 'line' //表格风格
+      	    ,even: true
+      	    ,page: true //是否显示分页
+      	    ,limits: [5, 7, 10]
+      	    ,limit: 10 //每页默认显示的数量
+      	  });
+      	});
+      })
+    })
+    </script>
     <script>
       layui.use(['laydate','form'], function(){
         var laydate = layui.laydate;

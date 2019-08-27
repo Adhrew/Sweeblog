@@ -1,5 +1,5 @@
-﻿package com.clay.service.impl;
-import java.beans.ExceptionListener;
+package com.clay.service.impl;
+
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -11,25 +11,28 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.clay.dao.IdentityDao;
 import com.clay.dao.UserDao;
+import com.clay.dao.UserDao2;
 import com.clay.entity.Identity;
 import com.clay.entity.User;
 import com.clay.pojo.PagePojo;
 import com.clay.pojo.UserVo;
-import com.clay.service.UserService;
+import com.clay.pojo.UserVo2;
+import com.clay.service.UserService2;
 
-@Service("userService")
-public class UserServiceImpl implements UserService {
+@Service("userService2")
+public class UserServiceImpl2 implements UserService2 {
 
 	@Resource
 	private UserDao userDao;
 	@Resource
+	private UserDao2 user_dao2;
+	@Resource
 	private IdentityDao identityDao;
-	
 
 	@Override
-	public User userLogin(String user_tel, String user_pwd) {
-		if(user_tel!=null && user_pwd!=null){
-			return userDao.userLogin(user_tel, user_pwd);
+	public User userLogin(String user_name, String user_pwd) {
+		if (user_name != null && user_pwd != null) {
+			return userDao.userLogin(user_name, user_pwd);
 		}
 		return null;
 	}
@@ -40,19 +43,19 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public PagePojo<User> queryByPage(UserVo uv, int page, int size) {
-		if(page<0||size<0){
+	public PagePojo<User> queryByPage(UserVo2 uv, int page, int size) {
+		if (page < 0 || size < 0) {
 			return null;
 		}
 		PagePojo<User> userPojo = new PagePojo<User>();
-		List<User> data=userDao.queryByPage(uv, new RowBounds((page-1)*size, size));
-		int count = userDao.getCount(uv);
+		List<User> data = user_dao2.queryByPage(uv, new RowBounds((page - 1) * size, size));
+		int count = user_dao2.getCount(uv);
 		userPojo.setData(data);
 		userPojo.setPage(page);
 		userPojo.setSize(size);
-		if(count%size!=0||count==0){
-			count = (count/size)+1;
-		}else{
+		if (count % size != 0 || count == 0) {
+			count = (count / size) + 1;
+		} else {
 			count = count / size;
 		}
 		userPojo.setCount(count);
@@ -83,58 +86,63 @@ public class UserServiceImpl implements UserService {
 	public User queryById(int id) {
 		return userDao.queryById(id);
 	}
+
 	/**
 	 * 实现用户认证
+	 * 
 	 * @param id
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Override
-	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
 	public boolean identifyUser(int id) throws Exception {
-		//将用户认证标识赋值为999,已认证
+		// 将用户认证标识赋值为2,已认证
 		User user = userDao.queryById(id);
-		user.setUser_identity(999);
-		if(!userDao.updateUser(user)){
+		user.setUser_identity(2);
+		if (!userDao.updateUser(user)) {
 			throw new Exception();
 		}
 		return true;
 	}
+
 	/**
 	 * 实现拒绝用户认证
+	 * 
 	 * @param id
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Override
-	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
+	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
 	public boolean identifyUserNot(int id) throws Exception {
-		//将用户认证标识赋值为0,未认证
+		// 将用户认证标识赋值为0,未认证
 		User user = userDao.queryById(id);
 		user.setUser_identity(0);
-		if(!userDao.updateUser(user)){
+		if (!userDao.updateUser(user)) {
 			throw new Exception();
 		}
 		return true;
 	}
-	
+
 	/**
 	 * 用户发起认证
+	 * 
 	 * @param id
 	 * @return
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	@Override
-	@Transactional(isolation=Isolation.SERIALIZABLE, rollbackFor=Exception.class)
-	public boolean doIdentify(int id,Identity identity) throws Exception {
-		//将用户认证标识赋值为1,认证中
+	@Transactional(isolation = Isolation.SERIALIZABLE, rollbackFor = Exception.class)
+	public boolean doIdentify(int id, Identity identity) throws Exception {
+		// 将用户认证标识赋值为1,认证中
 		User user = userDao.queryById(id);
 		user.setUser_identity(1);
-		//将认证信息插入认证表中
-		if(!userDao.updateUser(user)||!identityDao.insertIdentity(identity)){
+		// 将认证信息插入认证表中
+		if (!userDao.updateUser(user) || !identityDao.insertIdentity(identity)) {
 			throw new Exception();
 		}
 		return true;
 	}
-	
+
 }

@@ -22,10 +22,10 @@
 <body class="login-bg">
     
     <div class="login layui-anim layui-anim-up">
-        <div class="message">x-admin2.0-管理登录</div>
+        <div class="message">Sweeblog-管理登录</div>
         <div id="darkbannerwrap"></div>
         
-        <form method="post" class="layui-form" >
+        <form method="post" class="layui-form" action="${pageContext.request.contextPath}/checklogin.action">
             <input name="username" placeholder="用户名"  type="text" lay-verify="required" class="layui-input" >
             <hr class="hr15">
             <input name="password" lay-verify="required" placeholder="密码"  type="password" class="layui-input">
@@ -37,7 +37,7 @@
 
     <script>
         $(function  () {
-            layui.use('form', function(){
+            /* layui.use('form', function(){
               var form = layui.form;
               // layer.msg('玩命卖萌中', function(){
               //   //关闭后的操作
@@ -50,7 +50,7 @@
                 });
                 return false;
               });
-            });
+            }); */
         })
     </script>
     <!-- 底部结束 -->

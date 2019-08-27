@@ -1,18 +1,33 @@
 package com.clay.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 /**
  * Ò³ÃæÌø×ª¿ØÖÆÆ÷
+ * 
  * @author ´Ìâ¬
  *
  */
 @Controller
 public class PageController {
+
 	
-	@RequestMapping(value="/sys/index.html")
-	public String loadIndex() {
-		return "admin/index";
+	@RequestMapping(value = "/sys/index.html")
+	public String loadIndex(HttpServletRequest request) {
+		if (request.getSession().getAttribute("sysusername")!=null) {
+			return "admin/index";
+		}else {
+			return "redirect:/sys/login.html";
+		}
+		
+	}
+
+	@RequestMapping(value = "/sys/check.html")
+	public String loadcheck() {
+		return "admin/check";
 	}
 
 	@RequestMapping(value = "/sys/welcome.html")
@@ -74,12 +89,12 @@ public class PageController {
 	public String loadAdminRole() {
 		return "admin/admin-role";
 	}
-	
+
 	@RequestMapping(value = "/sys/admin-cate.html")
 	public String loadAdminCate() {
 		return "admin/admin-cate";
 	}
-	
+
 	@RequestMapping(value = "/sys/admin-rule.html")
 	public String loadAdminRule() {
 		return "admin/admin-rule";

@@ -37,7 +37,7 @@
                 <div class="layui-col-md12">
                     <div class="layui-card">
                         <div class="layui-card-body ">
-                            <form class="layui-form layui-col-space5">
+                            <!-- <form class="layui-form layui-col-space5">
                                 <div class="layui-inline layui-show-xs-block">
                                     <input class="layui-input" autocomplete="off" placeholder="开始日" name="start" id="start"></div>
                                 <div class="layui-inline layui-show-xs-block">
@@ -48,7 +48,7 @@
                                     <a class="layui-btn likebtn" id="likbtn" lay-submit="" lay-filter="sreach">
                                         <i class="layui-icon">&#xe615;</i></a>
                                 </div>
-                            </form>
+                            </form> -->
                         </div>
                         <div class="layui-card-body ">
                             <table class="layui-hide" id="demo"  lay-filter="demo">
@@ -70,21 +70,33 @@
    function queryUser(){
     	layui.use('table', function(){
       	  var table = layui.table;
-      	  $.getJSON("../allUser.action",function(data){
+      	  $.getJSON("../getIdentity.action",function(data){
       	  //展示已知数据
       	  table.render({
       	    elem: '#demo'
       	    ,cols: [[//标题栏
       	    		{type:'numbers' ,title:'编号'}
       	    		,{type:'checkbox'}
-      	    		,{field:'user_id',title: 'id', width:80, sort: true}
-      	      		,{field:'user_name',title: '用户名', width:120}
-                      ,{field:'user_sex',title: '性别', width:80}
-                      ,{field:'user_tel',title: '手机号码', width: 130}
-                      ,{field:'user_money',title: '博客币', width: 80}
-                      ,{field:'user_credit', title: '积分',sort: true,width:80}
-                      ,{field:'user_register',title: '注册时间',sort: true,minWidth: 120}
-                      ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
+      	    		,{field:'identity_id',title: '认证id', width:80, sort: true}
+      	    		,{field:'user_id',title: '用户id', width:120, templet: '<div>{{d.user_id.user_id}}</div>'}
+      	      		,{field:'identity_name',title: '真实姓名', width:120}
+                    ,{field:'identity_idcard',title: '身份证号', width:200, templet: function(d){
+                    	
+                    	return d.identity_idcard.replace(/^(.{4})(?:\d+)(.{4})$/,"$1******$2");
+                    	
+                    }}
+                    ,{field:'user_id',title: '认证状态', width: 80, templet: function(d){
+                    	if(d.user_id.user_identity==1){
+                    		return '预认证';
+                    	} else if(d.user_id.user_identity==0){
+                    		return '未认证';
+                    	}else{
+                    		return '已认证';
+                    	}
+                    	
+                    }}
+                    ,{title:'操作', toolbar: '#barDemo2', width:200}
+                    ,{title:'操作', toolbar: '#barDemo', width:285}
       	    ]]
       	    ,data: data
       	    ,skin: 'line' //表格风格
@@ -96,51 +108,14 @@
       	});
       })
     }
-   
-   
-   /* 模糊查询用户*/
-   $("#likbtn").click(function(){
-	   /* console.log($(".keywords").val()); */
-	   /* console.log("模糊查询"); */
-	   /* console.log($("#start").val());
-	   console.log($("#end").val()); */
-	   layui.use('table', function(){
-    	  var table = layui.table;
-    	  /* console.log($(".keywords").val()); */
-    	  $.getJSON("../likeUser.action",{keyword:$(".keywords").val(),starttime:$("#start").val(),endtime:$("#end").val()},function(data){
-    	  //展示已知数据
-    	  table.render({
-    	    elem: '#demo'
-    	    ,cols: [[//标题栏
-    	    	{type:'numbers' ,title:'编号'}
-  	    		,{type:'checkbox'}
-  	    		,{field:'user_id',title: 'id', width:80, sort: true}
-  	      		,{field:'user_name',title: '用户名', width:120}
-                  ,{field:'user_sex',title: '性别', width:80}
-                  ,{field:'user_tel',title: '手机号码', width: 130}
-                  ,{field:'user_money',title: '博客币', width: 80}
-                  ,{field:'user_credit', title: '积分',sort: true,width:80}
-                  ,{field:'user_register',title: '注册时间',sort: true,minWidth: 120}
-                  ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:200}
-    	    ]]
-    	    ,data: data
-    	    ,skin: 'line' //表格风格
-    	    ,even: true
-    	    ,page: true //是否显示分页
-    	    ,limits: [5, 7, 10]
-    	    ,limit: 10 //每页默认显示的数量
-    	  });
-    	});
-    })
-   })
+
  </script>
  
- 
- 
   	<script type="text/html" id="barDemo">
-  		<a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
-  		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+		<a onclick="member_stop(this,'10001')" href="javascript:;"  title="启用"><i class="layui-icon">&#xe601;</i></a>
+	</script>
+	<script type="text/html" id="barDemo2">
+	<span class="layui-btn layui-btn-normal layui-btn-mini">未认证</span></td>
 	</script>
 	<script type="text/javascript">
 	layui.use('table', function(){
@@ -234,6 +209,36 @@ $('.demoTable .layui-btn').on('click', function(){
     active[type] ? active[type].call(this) : '';
   });
 });
+	/*用户-停用*/
+	  function member_stop(obj,id){
+		  if($(obj).attr('title')=='启用'){
+	      layer.confirm('是否同意通过？',function(index){
+	    	  
+				/* console.log( $(obj).parents("tr").find("td").eq(3)[0].innerText); */
+	         	$.get("../checkUserCardID.action",{userid: $(obj).parents("tr").find("td").eq(3)[0].innerText},function(data){
+	         		//发异步把用户状态进行更改
+	         		if(data == "实名认证成功！"){
+	         			$(obj).attr('title','停用')
+	 		            $(obj).find('i').html('&#xe62f;');
+	 		            $(obj).parents("tr").find("td").find('span').addClass('layui-btn-disabled').html('已认证');
+	 		           	$(obj).parents("tr").find("td").eq(6)[0].innerText='已认证';
+	 		            layer.msg(data,{icon: 6,time:1000});
+	         		}else{
+	         			layer.msg(data,{icon: 5,time:2000});
+	         		}
+		           
+	         	})
+	      })
+	      }/* else{
+	            $(obj).attr('title','启用')
+	            $(obj).find('i').html('&#xe601;');
+
+	            $(obj).parents("tr").find("td").find('span').removeClass('layui-btn-disabled').html('未认证');
+	            layer.msg('未认证!',{icon: 5,time:1000});
+	          } */
+	          
+	     ;
+	  }
 </script>
     <script type="text/html" id="toolbarDemo">
         <div class = "layui-btn-container" > 

@@ -35,9 +35,9 @@
             </div>
             <ul class="layui-nav left fast-add" lay-filter="">
                 <li class="layui-nav-item">
-                    <a href="javascript:;">+新增</a>
+                    <!-- <a href="javascript:;">+新增</a>
                     <dl class="layui-nav-child">
-                        <!-- 二级菜单 -->
+                        二级菜单
                         <dd>
                             <a onclick="xadmin.open('最大化','http://www.baidu.com','','',true)">
                                 <i class="iconfont">&#xe6a2;</i>弹出最大化</a></dd>
@@ -53,7 +53,7 @@
                         <dd>
                             <a onclick="xadmin.add_tab('在tab打开刷新','member-del.html',true)">
                                 <i class="iconfont">&#xe6b8;</i>在tab打开刷新</a></dd>
-                    </dl>
+                    </dl> -->
                 </li>
             </ul>
             <ul class="layui-nav right" lay-filter="">
@@ -90,23 +90,23 @@
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>统计页面</cite></a>
                             </li>
-                            <li>
+                            <%-- <li>
                                 <a onclick="xadmin.add_tab('会员列表(静态表格)','${pageContext.request.contextPath}/sys/member-list.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>会员列表(静态表格)</cite></a>
-                            </li>
+                            </li> --%>
                             <li>
-                                <a onclick="xadmin.add_tab('会员列表(动态表格)','${pageContext.request.contextPath}/sys/member-list1.html',true)">
+                                <a onclick="xadmin.add_tab('会员列表','${pageContext.request.contextPath}/sys/member-list1.html',true)">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>会员列表(动态表格)</cite></a>
+                                    <cite>会员列表</cite></a>
                             </li>
-                            <li>
+                            <%-- <li>
                                 <a onclick="xadmin.add_tab('会员删除','${pageContext.request.contextPath}/sys/member-del.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>会员删除</cite></a>
-                            </li>
+                            </li> --%>
                             <li>
-                                <a href="javascript:;">
+                                <%-- <a href="javascript:;">
                                     <i class="iconfont">&#xe70b;</i>
                                     <cite>会员管理</cite>
                                     <i class="iconfont nav_right">&#xe697;</i></a>
@@ -121,7 +121,7 @@
                                             <i class="iconfont">&#xe6a7;</i>
                                             <cite>等级管理</cite></a>
                                     </li>
-                                </ul>
+                                </ul> --%>
                             </li>
                         </ul>
                     </li>
@@ -136,11 +136,11 @@
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>订单列表</cite></a>
                             </li>
-                            <li>
+                            <%-- <li>
                                 <a onclick="xadmin.add_tab('订单列表1','${pageContext.request.contextPath}/sys/order-list1.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>订单列表1</cite></a>
-                            </li>
+                            </li> --%>
                         </ul>
                     </li>
                     <li>
@@ -150,14 +150,14 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('多级分类','${pageContext.request.contextPath}/sys/cate.html')">
+                                <a onclick="xadmin.add_tab('多级分类','${pageContext.request.contextPath}/sys/check.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>多级分类</cite></a>
+                                    <cite>认证</cite></a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;">
+                        <%-- <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="城市联动">&#xe723;</i>
                             <cite>城市联动</cite>
                             <i class="iconfont nav_right">&#xe697;</i></a>
@@ -167,7 +167,7 @@
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>三级地区联动</cite></a>
                             </li>
-                        </ul>
+                        </ul> --%>
                     </li>
                     <li>
                         <a href="javascript:;">
@@ -176,28 +176,28 @@
                             <i class="iconfont nav_right">&#xe697;</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a onclick="xadmin.add_tab('管理员列表','${pageContext.request.contextPath}/sys/admin-list.html')">
+                                <a onclick="xadmin.add_tab('博客列表','${pageContext.request.contextPath}/sys/admin-list.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>博客列表</cite></a>
                             </li>
-                            <li>
+                            <%-- <li>
                                 <a onclick="xadmin.add_tab('角色管理','${pageContext.request.contextPath}/sys/admin-role.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>角色管理</cite></a>
-                            </li>
+                            </li> --%>
                             <li>
-                                <a onclick="xadmin.add_tab('权限分类','${pageContext.request.contextPath}/sys/cate.html')">
+                                <%-- <a onclick="xadmin.add_tab('博客分类','${pageContext.request.contextPath}/sys/cate.html')">
                                     <i class="iconfont">&#xe6a7;</i>
-                                    <cite>博客分类</cite></a>
+                                    <cite>博客分类</cite></a> --%>
                             </li>
-                            <li>
+                            <%-- <li>
                                 <a onclick="xadmin.add_tab('权限管理','${pageContext.request.contextPath}/sys/admin-rule.html')">
                                     <i class="iconfont">&#xe6a7;</i>
                                     <cite>权限管理</cite></a>
-                            </li>
+                            </li> --%>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="系统统计">&#xe6ce;</i>
                             <cite>系统统计</cite>
@@ -244,7 +244,7 @@
                                     <cite>仪表图</cite></a>
                             </li>
                         </ul>
-                    </li>
+                    </li> 
                     <li>
                         <a href="javascript:;">
                             <i class="iconfont left-nav-li" lay-tips="图标字体">&#xe6b4;</i>
@@ -328,7 +328,9 @@
                                     <cite>notice 通知控件</cite></a>
                             </li>
                         </ul>
+                        
                     </li>
+                    -->
                 </ul>
             </div>
         </div>
