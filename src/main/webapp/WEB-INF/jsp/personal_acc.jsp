@@ -96,8 +96,8 @@
 			var user_tel = "${sessionScope.userSession.user_tel }";
 			var str = "<label class='layui-form-label' style='width:auto'>博客币:"+ "${sessionScope.userSession.user_money }" +"</label>";
 			str += "<a class='layui-btn' style='text-decoration:none;float:left;height:23px;line-height:23px;width:40px;margin-top:8px;padding:0px' href='chongzhizhongxin.html'>充值</a>";
-			str += "<label class='layui-form-label'>积分:"+ "${sessionScope.userSession.user_credit }" +"</label>";
-			str += "<label class='layui-form-label'><a href='personal.html' style='text-decoration:none'>"+ "${sessionScope.userSession.user_name }" +"</a></label>";
+			str += "<label class='layui-form-label' style='width:auto'>积分:"+ "${sessionScope.userSession.user_credit }" +"</label>";
+			str += "<label class='layui-form-label' style='width:auto'><a href='personal.html' style='text-decoration:none'>"+ "${sessionScope.userSession.user_name }" +"</a></label>";
 			str += "<label class='layui-form-label'><a href='zhuxiao.html' style='text-decoration:none;color:#9AC0CD'>注销</a></label>";
 			if(user_tel!="")
 				$("#layerDemo").html(str);
@@ -194,6 +194,9 @@
 						</li>
 					<li class="layui-nav-item"><a href="personal_blog.html"
 						style="text-decoration: none;">博客</a></li>
+					<li class="layui-nav-item">
+							<a href="personal_message.html" style="text-decoration: none;">消息</a><div align="right" style="margin-right: 45px;" id="mes2"><span id="mes" class="layui-badge"></span></div>
+						</li>
 				</ul>
 			</div>
 			<div class="layui-col-xs9" id="rig" style="">
@@ -232,6 +235,21 @@
 	</div>
 
 	<script>
+		
+		$(document).ready(function() {
+			$.getJSON("message_init.action?userid="+${sessionScope.userSession.user_id }, function(datak) {
+				if(datak.length==0){$("#mes2").html("");return;}
+				else
+					{	
+						if(datak.length>99)
+							$("#mes").html("99+");
+						else
+							$("#mes").html(datak.length);
+					}
+			})
+		})
+				
+	
 	
 		$(document).ready(function() {
 			$.get("acc_init.action?userid="+${sessionScope.userSession.user_id }, function(datak) {

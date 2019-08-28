@@ -295,7 +295,8 @@ public class PersonController {
 		response.setContentType("text/html;charset=UTF-8");
 		PrintWriter out = response.getWriter();
 		boolean deal = false;
-		User user = new User();
+		HttpSession session = request.getSession();
+		User user = (User)session.getAttribute(Constants.USER_SESSION);
 		user.setUser_img("statics/images/" + pic);
 		user.setUser_name(username);
 		user.setUser_sex(sex);
@@ -304,7 +305,6 @@ public class PersonController {
 		if(!deal)
 			out.print("<script>alert('未知的错误！')</script>");
 		else {
-			HttpSession session = request.getSession();
 			session.setAttribute(Constants.USER_SESSION, user);
 			out.print("<script>alert('修改成功！')</script>");
 		}

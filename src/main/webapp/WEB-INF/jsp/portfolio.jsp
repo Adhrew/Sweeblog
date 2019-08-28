@@ -114,10 +114,10 @@
 			var user_tel = "${sessionScope.userSession.user_tel }";
 			var str = "<label class='layui-form-label' style='width:auto'>博客币:"+ "${sessionScope.userSession.user_money }" +"</label>";
 			str += "<a class='layui-btn' style='text-decoration:none;float:left;height:23px;line-height:23px;width:40px;margin-top:8px;padding:0px' href='chongzhizhongxin.html'>充值</a>";
-			str += "<label class='layui-form-label'>积分:"+ "${sessionScope.userSession.user_credit }" +"</label>";
-			str += "<label class='layui-form-label'><a href='personal.html' style='text-decoration:none'>"+ "${sessionScope.userSession.user_name }" +"</a></label>";
+			str += "<label class='layui-form-label' style='width:auto'>积分:"+ "${sessionScope.userSession.user_credit }" +"</label>";
+			str += "<label class='layui-form-label' style='width:auto'><a href='personal.html' style='text-decoration:none'>"+ "${sessionScope.userSession.user_name }" +"</a></label>";
 			str += "<label class='layui-form-label'><a href='zhuxiao.html' style='text-decoration:none;color:#9AC0CD'>注销</a></label>";
-			if(user_tel!=null)
+			if(user_tel!="")
 				$("#layerDemo").html(str);
 			
 		})
