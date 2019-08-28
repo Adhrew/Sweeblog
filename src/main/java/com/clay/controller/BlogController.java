@@ -26,6 +26,7 @@ import com.clay.entity.Type;
 import com.clay.entity.User;
 import com.clay.service.BlogService;
 import com.clay.service.TypeService;
+import com.clay.tools.Constants;
 import com.google.gson.Gson;
 
 @Controller
@@ -81,8 +82,9 @@ public class BlogController {
 		System.out.println(title);
 		System.out.println(text);
 		Blog blog=new Blog();
-		User a=new User();
-		a.setUser_id(1);
+		HttpSession session=request.getSession();
+		
+		User a=(User)session.getAttribute(Constants.USER_SESSION);
 		blog.setUser_id(a);
 		blog.setBlog_text(text);
 		blog.setBlog_title(title);

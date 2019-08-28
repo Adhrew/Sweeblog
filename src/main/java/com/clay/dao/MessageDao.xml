@@ -34,7 +34,7 @@
 	
 	<select id="queryMessaged" resultMap="msg">
 		select * from message_info
-		where (sender_id = #{0} and #{1}) or (sender_id =#{1} and accept_id = #{0})
+		where (sender_id = #{0} and accept_id = #{1}) or (sender_id =#{1} and accept_id = #{0})
 		ORDER BY message_time asc
 		
 	</select>
@@ -43,6 +43,7 @@
 		insert into message_info(sender_id, accept_id, message_msg, message_status, message_time) 
 		values(#{sender_id.user_id}, #{accept_id.user_id}, #{message_msg}, 0, now())
 	</insert>
+	
 	<update id="readMessage">
 		update message_info set message_status = 1
 		where sender_id = #{0} and accept_id=#{1}

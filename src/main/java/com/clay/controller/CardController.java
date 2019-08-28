@@ -52,9 +52,10 @@ public class CardController {
 		String path = id.getIdentity_img();
 		String db_name = id.getIdentity_name();
 		// *************************获取身份证信息***************************************
+		System.out.println(path);
 		JSONObject json = null;
 		try {
-			json = FaceTools.getUserInfo(path, "jpg");// 图片路径以及图片类型
+			json = FaceTools.getUserInfo("D:\\apache-tomcat-9.0.21\\webapps\\Sweeblog\\statics\\images\\"+path, "jpg");// 图片路径以及图片类型
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			// e.printStackTrace();

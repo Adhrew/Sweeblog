@@ -24,14 +24,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.clay.entity.Blog;
+import com.clay.entity.Identity;
 import com.clay.entity.Record;
 import com.clay.entity.User;
 import com.clay.pojo.BlogVo;
 import com.clay.pojo.PagePojo;
 import com.clay.pojo.RecordVo;
 import com.clay.service.BlogService;
+import com.clay.service.IdentityService;
 import com.clay.service.RecordService;
 import com.clay.service.UserService;
+import com.clay.tools.Constants;
 import com.google.gson.Gson;
 
 @Controller
@@ -45,6 +48,9 @@ public class PersonController {
 	
 	@Resource
 	private BlogService blogService;
+	
+	@Resource
+	private IdentityService identityService;
 	
 	@RequestMapping("/personal.html")
 	public String personal(HttpSession session, HttpServletRequest request) {
@@ -74,6 +80,11 @@ public class PersonController {
 	@RequestMapping("/personal_message.html")
 	public String personal_message(HttpSession session, HttpServletRequest request) {
 		return "personal_message";
+	}
+	
+	@RequestMapping("/personal_identity.html")
+	public String personal_identity(HttpSession session, HttpServletRequest request) {
+		return "personal_identity";
 	}
 	
 	@RequestMapping("/acc_init.action")
@@ -293,6 +304,8 @@ public class PersonController {
 		if(!deal)
 			out.print("<script>alert('未知的错误！')</script>");
 		else {
+			HttpSession session = request.getSession();
+			session.setAttribute(Constants.USER_SESSION, user);
 			out.print("<script>alert('修改成功！')</script>");
 		}
 		out.print("<script>window.location.href='personal.html'</script>");
@@ -386,4 +399,28 @@ public class PersonController {
 		out.flush();
 		out.close();
 	}
+	
+	@RequestMapping("/renzheng.html")
+	public void renzheng(@RequestParam("file")String filename,@RequestParam("identity")String identity,@RequestParam("username")String username,HttpServletResponse response, HttpServletRequest request) throws Exception{
+		response.setContentType("text/html;charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		boolean deal = true;
+		Identity iden = new Identity();
+		iden.setIdentity_idcard(identity);
+		iden.setIdentity_img(filename);
+		iden.setIdentity_name(username);
+		HttpSession session = request.getSession();
+		User userid = (User)session.getAttribute(Constants.USER_SESSION);
+		userid.setUser_identity(1);
+		iden.setUser_id(userid);
+		userService.updateUser(userid);
+		session.setAttribute(Constants.USER_SESSION, userid);
+		deal = identityService.insertIdentity(iden);
+		if(!deal)
+			out.print("<script>alert('认证失败！')</script>");
+		out.print("<script>alert('审核中！')</script>");
+		out.flush();
+		out.close();
+	}
+	
 }

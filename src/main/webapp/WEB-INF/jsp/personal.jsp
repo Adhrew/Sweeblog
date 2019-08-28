@@ -6,7 +6,7 @@ String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <!DOCTYPE html>
-<html>
+<html class="Xadmin">
 	<head>
 		<link href="css/bootstrap.css" rel="stylesheet" type="text/css" media="all">
 		<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
@@ -241,7 +241,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 										<label class="layui-form-label" style="width:auto;">认证状态</label>
 										<label class="layui-form-label" id="rz"></label>
 										<div id="qwrz">
-											<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="">前往认证>></button>
+											<button id="btn_rz" type="button" class="layui-btn layui-btn-primary" onclick="openHtml('编辑',600,400,'personal_identity.html')">前往认证>></button>
 										</div>
 									</div>
 									<div class="layui-form-item">
@@ -260,7 +260,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		</div>
 		
 		<script>
-		
+			
+			function openHtml(title,width,height,content){
+		        var index = layer.open({
+				  type: 2,
+				  content: content,
+				  area: [width, height],
+				  shadeClose: true,
+				  title: title,
+				  success:function(data){
+				  	 window.parent.location.reload();//刷新父页面
+           			 parent.layer.close(index);//关闭弹出层
+				  }
+				});
+		    }
 			var time="";
 
 			function bj(){

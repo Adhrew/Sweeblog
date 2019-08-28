@@ -252,7 +252,7 @@ public class UserController {
 	public String zhuxiao(HttpSession session)
 	{
 		session.removeAttribute(Constants.USER_SESSION);
-		return "index";
+		return "login";
 	}
 	
 	@RequestMapping("/modify_money.html")
